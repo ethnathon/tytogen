@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_PGgTEEAVEeGYOYg4h4FTCA">
+  <model href="org.andromda.profile.service.profile.uml#_11_5_e240333_1154527425687_111873_349"/>
+  <diagrams xmi:id="_PGgTEUAVEeGYOYg4h4FTCA" position="0,0" size="100,100" name="No name" viewport="0,0">
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_PGgTEkAVEeGYOYg4h4FTCA" presentation="org.topcased.modeler.uml.usecasediagram">
+      <element href="org.andromda.profile.service.profile.uml#_11_5_e240333_1154527425687_111873_349"/>
+    </semanticModel>
+  </diagrams>
+</diagrams:Diagrams>

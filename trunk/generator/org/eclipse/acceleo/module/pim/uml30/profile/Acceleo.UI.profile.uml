@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.0.0/UML" xmi:id="_n4E-YBKqEdypx4Rgey6BQg" name="Acceleo::UI" metaclassReference="_WJv7kCKSEd2GBrOu_NRkww _WJwioyKSEd2GBrOu_NRkww _WJxJsyKSEd2GBrOu_NRkww _WJxwwiKSEd2GBrOu_NRkww _WJyX0yKSEd2GBrOu_NRkww _WJy-4SKSEd2GBrOu_NRkww _WJ2pQSKSEd2GBrOu_NRkww _WJ33YCKSEd2GBrOu_NRkww _WJ4ecCKSEd2GBrOu_NRkww _WJ4edCKSEd2GBrOu_NRkww">
+  <eAnnotations xmi:id="_bqi1ERKrEdypx4Rgey6BQg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_BT60sRKtEdypx4Rgey6BQg" name="Acceleouiprofile" nsURI="http:///schemas/Acceleouiprofile/_WKBBUCKSEd2GBrOu_NRkww/2" nsPrefix="Acceleouiprofile">
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2gSKSEd2GBrOu_NRkww" name="Text">
+        <eAnnotations xmi:id="_WKC2giKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_u4u9sBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2gyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2hSKSEd2GBrOu_NRkww" name="Password">
+        <eAnnotations xmi:id="_WKC2hiKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_vr7VMBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2hyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2iSKSEd2GBrOu_NRkww" name="TextArea">
+        <eAnnotations xmi:id="_WKC2iiKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_wv1CMBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2iyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2jSKSEd2GBrOu_NRkww" name="List">
+        <eAnnotations xmi:id="_WKC2jiKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_x0arsBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2jyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2kSKSEd2GBrOu_NRkww" name="Table">
+        <eAnnotations xmi:id="_WKC2kiKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ypNlsBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2kyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2lSKSEd2GBrOu_NRkww" name="Combobox">
+        <eAnnotations xmi:id="_WKC2liKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_ziDSMBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2lyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2mSKSEd2GBrOu_NRkww" name="Checkbox">
+        <eAnnotations xmi:id="_WKC2miKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_0UQLMBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2myKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2nSKSEd2GBrOu_NRkww" name="Radio">
+        <eAnnotations xmi:id="_WKC2niKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_1YOwsBKqEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2nyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2oSKSEd2GBrOu_NRkww" name="Title">
+        <eAnnotations xmi:id="_WKC2oiKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_9F58IBKsEdypx4Rgey6BQg"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2oyKSEd2GBrOu_NRkww" name="base_Property" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Property"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_WKC2pSKSEd2GBrOu_NRkww" name="Screen">
+        <eAnnotations xmi:id="_WKC2piKSEd2GBrOu_NRkww" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Q6u5ACKSEd2GBrOu_NRkww"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_WKC2pyKSEd2GBrOu_NRkww" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/2.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_WJv7kCKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJwioyKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJxJsyKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJxwwiKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <elementImport xmi:id="_WJyX0yKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJy-4SKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJ2pQSKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJ33YCKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJ4ecCKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <elementImport xmi:id="_WJ4edCKSEd2GBrOu_NRkww">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_u4u9sBKqEdypx4Rgey6BQg" name="Text">
+    <ownedAttribute xmi:id="_WJ5FgCKSEd2GBrOu_NRkww" name="base_Property" association="_WJ4edSKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_vr7VMBKqEdypx4Rgey6BQg" name="Password">
+    <ownedAttribute xmi:id="_WJy-4CKSEd2GBrOu_NRkww" name="base_Property" association="_WJyX1CKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_wv1CMBKqEdypx4Rgey6BQg" name="TextArea">
+    <ownedAttribute xmi:id="_WJ2pQCKSEd2GBrOu_NRkww" name="base_Property" association="_WJzl8CKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_x0arsBKqEdypx4Rgey6BQg" name="List">
+    <ownedAttribute xmi:id="_WJxJsiKSEd2GBrOu_NRkww" name="base_Property" association="_WJxJsCKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_ypNlsBKqEdypx4Rgey6BQg" name="Table">
+    <ownedAttribute xmi:id="_WJ33YyKSEd2GBrOu_NRkww" name="base_Property" association="_WJ33YSKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_ziDSMBKqEdypx4Rgey6BQg" name="Combobox">
+    <ownedAttribute xmi:id="_WJwioiKSEd2GBrOu_NRkww" name="base_Property" association="_WJwioCKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_0UQLMBKqEdypx4Rgey6BQg" name="Checkbox">
+    <ownedAttribute xmi:id="_WJ2pRCKSEd2GBrOu_NRkww" name="base_Property" association="_WJ2pQiKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_1YOwsBKqEdypx4Rgey6BQg" name="Radio">
+    <ownedAttribute xmi:id="_WJ4ecyKSEd2GBrOu_NRkww" name="base_Property" association="_WJ4ecSKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_bqfKsBKrEdypx4Rgey6BQg" name="Property_List" memberEnd="_bqfKsRKrEdypx4Rgey6BQg">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_bqfKsRKrEdypx4Rgey6BQg" name="extension_List" aggregation="composite" association="_bqfKsBKrEdypx4Rgey6BQg"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_9F58IBKsEdypx4Rgey6BQg" name="Title">
+    <ownedAttribute xmi:id="_WJxwwSKSEd2GBrOu_NRkww" name="base_Property" association="_WJxJtCKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_Q6u5ACKSEd2GBrOu_NRkww" name="Screen">
+    <ownedAttribute xmi:id="_WJyX0iKSEd2GBrOu_NRkww" name="base_Class" association="_WJyX0CKSEd2GBrOu_NRkww">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJwioCKSEd2GBrOu_NRkww" name="Property_Combobox" memberEnd="_WJwioSKSEd2GBrOu_NRkww _WJwioiKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJwioSKSEd2GBrOu_NRkww" name="extension_Combobox" type="_ziDSMBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJwioCKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJxJsCKSEd2GBrOu_NRkww" name="Property_List" memberEnd="_WJxJsSKSEd2GBrOu_NRkww _WJxJsiKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJxJsSKSEd2GBrOu_NRkww" name="extension_List" type="_x0arsBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJxJsCKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJxJtCKSEd2GBrOu_NRkww" name="Property_Title" memberEnd="_WJxwwCKSEd2GBrOu_NRkww _WJxwwSKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJxwwCKSEd2GBrOu_NRkww" name="extension_Title" type="_9F58IBKsEdypx4Rgey6BQg" aggregation="composite" association="_WJxJtCKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJyX0CKSEd2GBrOu_NRkww" name="Class_Screen" memberEnd="_WJyX0SKSEd2GBrOu_NRkww _WJyX0iKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJyX0SKSEd2GBrOu_NRkww" name="extension_Screen" type="_Q6u5ACKSEd2GBrOu_NRkww" aggregation="composite" association="_WJyX0CKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJyX1CKSEd2GBrOu_NRkww" name="Property_Password" memberEnd="_WJyX1SKSEd2GBrOu_NRkww _WJy-4CKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJyX1SKSEd2GBrOu_NRkww" name="extension_Password" type="_vr7VMBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJyX1CKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJzl8CKSEd2GBrOu_NRkww" name="Property_TextArea" memberEnd="_WJ2CMCKSEd2GBrOu_NRkww _WJ2pQCKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJ2CMCKSEd2GBrOu_NRkww" name="extension_TextArea" type="_wv1CMBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJzl8CKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJ2pQiKSEd2GBrOu_NRkww" name="Property_Checkbox" memberEnd="_WJ2pQyKSEd2GBrOu_NRkww _WJ2pRCKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJ2pQyKSEd2GBrOu_NRkww" name="extension_Checkbox" type="_0UQLMBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJ2pQiKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJ33YSKSEd2GBrOu_NRkww" name="Property_Table" memberEnd="_WJ33YiKSEd2GBrOu_NRkww _WJ33YyKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJ33YiKSEd2GBrOu_NRkww" name="extension_Table" type="_ypNlsBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJ33YSKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJ4ecSKSEd2GBrOu_NRkww" name="Property_Radio" memberEnd="_WJ4eciKSEd2GBrOu_NRkww _WJ4ecyKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJ4eciKSEd2GBrOu_NRkww" name="extension_Radio" type="_1YOwsBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJ4ecSKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_WJ4edSKSEd2GBrOu_NRkww" name="Property_Text" memberEnd="_WJ4ediKSEd2GBrOu_NRkww _WJ5FgCKSEd2GBrOu_NRkww">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_WJ4ediKSEd2GBrOu_NRkww" name="extension_Text" type="_u4u9sBKqEdypx4Rgey6BQg" aggregation="composite" association="_WJ4edSKSEd2GBrOu_NRkww"/>
+  </packagedElement>
+</uml:Profile>
