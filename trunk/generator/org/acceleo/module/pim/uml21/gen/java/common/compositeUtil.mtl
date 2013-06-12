@@ -20,7 +20,7 @@ else
 			if (anEntity.getPKAttribute()->asSequence()->first().type->asSequence()->first().oclIsTypeOf(PrimitiveType)) then
 				anEntity.getPKAttribute()->asSequence()->first().type->asSequence()->first().oclAsType(PrimitiveType).convertToJavaWrapperType()
 			else
-				anEntity.getPKAttribute()->asSequence()->first().type->asSequence()->first().convertToJavaType()
+				anEntity.getPKAttribute()->asSequence()->first().type.convertToJavaType()
 			endif
 		else
 			if(isPrimaryTypeWrapper) then
