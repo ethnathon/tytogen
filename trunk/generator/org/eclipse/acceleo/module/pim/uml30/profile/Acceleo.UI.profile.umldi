@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagrams:Diagrams xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.topcased.org/DI/1.0" xmlns:diagrams="http://www.topcased.org/Diagrams/1.0" xmi:id="_ABWhECKSEd2GBrOu_NRkww" activeDiagram="_ABXIICKSEd2GBrOu_NRkww">
+  <model href="Acceleo.UI.profile.uml#_n4E-YBKqEdypx4Rgey6BQg"/>
+  <diagrams xmi:id="_ABXIICKSEd2GBrOu_NRkww" position="0,0" size="100,100" name="Acceleo.ui.profile" viewport="80,0">
+    <property xmi:id="_ABXIISKSEd2GBrOu_NRkww" key="pageFormatName" value="A4"/>
+    <property xmi:id="_ABXIIiKSEd2GBrOu_NRkww" key="diagramWidth" value="840"/>
+    <property xmi:id="_ABXIIyKSEd2GBrOu_NRkww" key="diagramHeight" value="1188"/>
+    <property xmi:id="_ABXIJCKSEd2GBrOu_NRkww" key="pageMarginName" value="Small Margin"/>
+    <property xmi:id="_ABXIJSKSEd2GBrOu_NRkww" key="diagramTopMargin" value="20"/>
+    <property xmi:id="_ABXIJiKSEd2GBrOu_NRkww" key="diagramBottomMargin" value="20"/>
+    <property xmi:id="_ABXIJyKSEd2GBrOu_NRkww" key="diagramLeftMargin" value="20"/>
+    <property xmi:id="_ABXIKCKSEd2GBrOu_NRkww" key="diagramRightMargin" value="20"/>
+    <property xmi:id="_ABXIKSKSEd2GBrOu_NRkww" key="orientation" value="portrait"/>
+    <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXIKiKSEd2GBrOu_NRkww" presentation="org.topcased.modeler.uml.profilediagram">
+      <element href="Acceleo.UI.profile.uml#_n4E-YBKqEdypx4Rgey6BQg"/>
+    </semanticModel>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXIKyKSEd2GBrOu_NRkww" position="138,62" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXILCKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_u4u9sBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXILSKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXILiKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXILyKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_u4u9sBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXIMCKSEd2GBrOu_NRkww" position="138,165" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXIMSKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_vr7VMBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXIMiKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXIMyKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXINCKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_vr7VMBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXINSKSEd2GBrOu_NRkww" position="138,293" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXINiKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_wv1CMBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXINyKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXIOCKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXIOSKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_wv1CMBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXIOiKSEd2GBrOu_NRkww" position="138,373" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXIOyKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_x0arsBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvMCKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvMSKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvMiKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_x0arsBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXvMyKSEd2GBrOu_NRkww" position="138,473" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvNCKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_ypNlsBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvNSKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvNiKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvNyKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_ypNlsBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXvOCKSEd2GBrOu_NRkww" position="138,570" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvOSKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_ziDSMBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvOiKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvOyKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvPCKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_ziDSMBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXvPSKSEd2GBrOu_NRkww" position="138,687" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvPiKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_0UQLMBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvPyKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvQCKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvQSKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_0UQLMBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXvQiKSEd2GBrOu_NRkww" position="138,764" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvQyKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_1YOwsBKqEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvRCKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvRSKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvRiKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_1YOwsBKqEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_ABXvRyKSEd2GBrOu_NRkww" position="418,286" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvSCKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_9F58IBKsEdypx4Rgey6BQg"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_ABXvSSKSEd2GBrOu_NRkww">
+        <property xmi:id="_ABXvSiKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_ABXvSyKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_9F58IBKsEdypx4Rgey6BQg"/>
+        </semanticModel>
+      </contained>
+    </contained>
+    <contained xsi:type="di:GraphNode" xmi:id="_Q6scwCKSEd2GBrOu_NRkww" position="395,163" size="120,-1">
+      <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_Q6scwSKSEd2GBrOu_NRkww" presentation="default">
+        <element href="Acceleo.UI.profile.uml#_Q6u5ACKSEd2GBrOu_NRkww"/>
+      </semanticModel>
+      <contained xsi:type="di:GraphNode" xmi:id="_Q6scwiKSEd2GBrOu_NRkww">
+        <property xmi:id="_Q6scwyKSEd2GBrOu_NRkww" key="eStructuralFeatureID" value="37"/>
+        <semanticModel xsi:type="di:EMFSemanticModelBridge" xmi:id="_Q6scxCKSEd2GBrOu_NRkww" presentation="default">
+          <element href="Acceleo.UI.profile.uml#_Q6u5ACKSEd2GBrOu_NRkww"/>
+        </semanticModel>
+      </contained>
+    </contained>
+  </diagrams>
+</diagrams:Diagrams>

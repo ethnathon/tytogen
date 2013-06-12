@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Acceleo Iia Module Runtime Plug-in
+Bundle-SymbolicName: it.tyto.tytogen;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: it.tyto.iia.Activator
+Bundle-Vendor: Eclipse Modeling Project
+Require-Bundle: org.eclipse.core.runtime, 
+ org.eclipse.uml2.uml, 
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.ocl,
+ org.eclipse.ocl.ecore,
+ org.eclipse.acceleo.common;bundle-version="3.2.1",
+ org.eclipse.acceleo.parser;bundle-version="3.2.1";resolution:=optional,
+ org.eclipse.acceleo.model;bundle-version="3.2.1",
+ org.eclipse.acceleo.profiler;bundle-version="3.2.1",
+ org.eclipse.acceleo.engine;bundle-version="3.2.1",
+ com.google.guava;bundle-version="10.0.1"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Eclipse-LazyStart: true
+Export-Package: it.tyto.iia.main,
+ org.acceleo.module.pim.uml21.gen.java.spring.services,
+ org.acceleo.module.pim.uml21.services,
+ org.eclipse.acceleo.module.pim.uml30.profile
+
