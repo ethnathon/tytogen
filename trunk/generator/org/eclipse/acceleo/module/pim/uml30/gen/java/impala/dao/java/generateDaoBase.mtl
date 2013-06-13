@@ -637,7 +637,7 @@ public abstract class [aClass.name.toUpperFirst()/]DaoBase
         [aClass.name.toUpperFirst()/] source,
         [aDtoClass.name.toUpperFirst()/] target)
     {
-        target.setId(source.getId());
+        target.set[aClass.getPKName().toUpperFirst()/](source.get[aClass.getPKName().toUpperFirst()/]());
 		[for (aProperty : Property | aDtoClass.getAllStrutureClasses().ownedAttribute->select(dtoAttr:Property | aClass.ownedAttribute->exists(aProp:Property|aProp.name=dtoAttr.name and aProp.type = dtoAttr.type)))]
         target.set[aProperty.name.toUpperFirst()/](source.get[aProperty.name.toUpperFirst()/]());
 		[/for]

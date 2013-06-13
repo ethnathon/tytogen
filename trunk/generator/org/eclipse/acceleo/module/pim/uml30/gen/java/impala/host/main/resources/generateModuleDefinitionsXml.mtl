@@ -8,7 +8,7 @@
     <names>
 	    [getProperty('projectName')/]-main
 	    [aModel.generateExtensionModules()/]
-	    [getProperty('projectName')/]-web
+	    [comment]LD [getProperty('projectName')/]-web[/comment]
     </names>
 </parent>
 	[/file]

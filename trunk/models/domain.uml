@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0" xmlns:common="http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:persistence="http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0" xmlns:presentation="http:///schemas/presentation/_cIzYsDxvEeCI66ZuyT0eiA/0" xmlns:service="http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_cJfWpTxvEeCI66ZuyT0eiA http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_cJeuyDxvEeCI66ZuyT0eiA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0" xmlns:common="http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:persistence="http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0" xmlns:presentation="http:///schemas/presentation/_cIzYsDxvEeCI66ZuyT0eiA/0" xmlns:service="http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_cJfWpTxvEeCI66ZuyT0eiA http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0 ../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_cJeuyDxvEeCI66ZuyT0eiA">
   <uml:Model xmi:id="_0" name="iia" viewpoint="">
     <ownedComment xmi:id="_ownedComment.0" annotatedElement="_0">
       <body>Author:Saratoga.
@@ -87,419 +87,6 @@ Comment:.
       <packagedElement xmi:type="uml:DataType" xmi:id="datatype-Guid" name="Guid"/>
       <packagedElement xmi:type="uml:DataType" xmi:id="datatype-PaginationResult" name="PaginationResult"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker" name="org.andromda.timetracker">
-      <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-vo" name="vo">
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-UserVO" name="UserVO">
-          <ownedComment xmi:id="org.andromda.timetracker-vo-UserVO-_ownedComment.0" annotatedElement="org.andromda.timetracker-vo-UserVO">
-            <body></body>
-          </ownedComment>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserVO-id" name="id" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-UserVO-id-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-UserVO-id-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserVO-username" name="username" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserVO-firstName" name="firstName" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserVO-lastName" name="lastName" visibility="public" type="datatype-String"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.1" name="" supplier="org.andromda.timetracker-vo-UserVO" client="org.andromda.timetracker-domain-User"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO" name="TimecardSearchCriteriaVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-submitterId" name="submitterId" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-submitterId-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-submitterId-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-approverId" name="approverId" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-approverId-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-approverId-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-status" name="status" visibility="public" type="org.andromda.timetracker-domain-TimecardStatus">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-status-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-status-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMin" name="startDateMin" visibility="public" type="datatype-Date">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMin-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMin-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMax" name="startDateMax" visibility="public" type="datatype-Date">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMax-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSearchCriteriaVO-startDateMax-_lowerValue" name=""/>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO" name="TimecardSummaryVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-id" name="id" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-id-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-id-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-status" name="status" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-startDate" name="startDate" visibility="public" type="datatype-Date"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-comments" name="comments" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-submitterName" name="submitterName" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardSummaryVO-approverName" name="approverName" visibility="public" type="datatype-String"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.4" name="" supplier="org.andromda.timetracker-vo-TimecardSummaryVO" client="org.andromda.timetracker-domain-Timecard"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-UserDetailsVO" name="UserDetailsVO">
-          <generalization xmi:id="org.andromda.timetracker-vo-UserDetailsVO-_generalization.0" isSubstitutable="false" general="org.andromda.timetracker-vo-UserVO"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-password" name="password" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-email" name="email" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-isActive" name="isActive" visibility="public" type="datatype-boolean"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-creationDate" name="creationDate" visibility="public" type="datatype-Date"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-comment" name="comment" visibility="public" type="datatype-String">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-UserDetailsVO-comment-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-UserDetailsVO-comment-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserDetailsVO-roles" name="roles" visibility="public" type="datatype-String">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-UserDetailsVO-roles-_upperValue" value="*"/>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-UserRoleVO" name="UserRoleVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserRoleVO-id" name="id" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-UserRoleVO-id-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-UserRoleVO-id-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-UserRoleVO-role" name="role" visibility="public" type="datatype-String"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TimecardVO" name="TimecardVO">
-          <generalization xmi:id="org.andromda.timetracker-vo-TimecardVO-_generalization.0" isSubstitutable="false" general="org.andromda.timetracker-vo-TimecardSummaryVO"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimecardVO-allocations" name="allocations" visibility="public" type="org.andromda.timetracker-vo-TimeAllocationVO">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimecardVO-allocations-_upperValue" value="*"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimecardVO-allocations-_lowerValue"/>
-          </ownedAttribute>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TimeAllocationVO" name="TimeAllocationVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimeAllocationVO-id" name="id" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TimeAllocationVO-id-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TimeAllocationVO-id-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimeAllocationVO-timePeriodVO" name="timePeriodVO" visibility="public" type="org.andromda.timetracker-vo-TimePeriodVO"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimeAllocationVO-taskId" name="taskId" visibility="public" type="datatype-Long"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TaskVO" name="TaskVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TaskVO-id" name="id" visibility="public" type="datatype-Long">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-vo-TaskVO-id-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-vo-TaskVO-id-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TaskVO-name" name="name" visibility="public" type="datatype-String"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-vo-TimePeriodVO" name="TimePeriodVO">
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimePeriodVO-startTime" name="startTime" visibility="public" type="datatype-Date"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-vo-TimePeriodVO-endTime" name="endTime" visibility="public" type="datatype-Date"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.11" name="" supplier="org.andromda.timetracker-vo-UserDetailsVO" client="org.andromda.timetracker-domain-User"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.12" name="" supplier="org.andromda.timetracker-vo-UserRoleVO"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.13" name="" supplier="org.andromda.timetracker-vo-TimecardVO" client="org.andromda.timetracker-domain-Timecard"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.14" name="" supplier="org.andromda.timetracker-vo-TimeAllocationVO" client="org.andromda.timetracker-domain-TimeAllocation"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.15" name="" supplier="org.andromda.timetracker-domain-TimeAllocation" client="org.andromda.timetracker-domain-Timecard"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.16" name="" supplier="org.andromda.timetracker-vo-TimePeriodVO"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.17" name="" supplier="org.andromda.timetracker-vo-TaskVO" client="org.andromda.timetracker-domain-Task"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-vo-_packagedElement.18" name="" client="org.andromda.timetracker-domain-User"/>
-        <profileApplication xmi:id="_pC17IMqYEeKMt-GSHYtkEw">
-          <eAnnotations xmi:id="_pC2iMMqYEeKMt-GSHYtkEw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-            <references xmi:type="ecore:EPackage" href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA"/>
-          </eAnnotations>
-          <appliedProfile href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_11_5_e240333_1154527625671_782614_56"/>
-        </profileApplication>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-service" name="service">
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-service-UserService" name="UserService" clientDependency="org.andromda.timetracker-service-_packagedElement.1">
-          <ownedOperation xmi:id="org.andromda.timetracker-service-UserService-getAllUsers" name="getAllUsers" visibility="public">
-            <ownedParameter xmi:id="org.andromda.timetracker-service-UserService-getAllUsers-_ownedParameter.0" name="" visibility="public" type="org.andromda.timetracker-vo-UserVO" direction="return">
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-service-UserService-getAllUsers-_ownedParameter.0-_upperValue" value="*"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-service-UserService-getAllUsers-_ownedParameter.0-_lowerValue"/>
-            </ownedParameter>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-service-_packagedElement.1" name="" supplier="org.andromda.timetracker-domain-User" client="org.andromda.timetracker-service-UserService"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-service-_packagedElement.2" name="" supplier="org.andromda.timetracker-service-UserService" client="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-service-TimeTrackingService" name="TimeTrackingService" clientDependency="org.andromda.timetracker-service-_packagedElement.4">
-          <ownedOperation xmi:id="org.andromda.timetracker-service-TimeTrackingService-findTimecards" name="findTimecards" visibility="public">
-            <ownedParameter xmi:id="org.andromda.timetracker-service-TimeTrackingService-findTimecards-criteria" name="criteria" visibility="public" type="org.andromda.timetracker-vo-TimecardSearchCriteriaVO" direction="inout"/>
-            <ownedParameter xmi:id="org.andromda.timetracker-service-TimeTrackingService-findTimecards-_ownedParameter.1" name="" visibility="public" type="org.andromda.timetracker-vo-TimecardVO" direction="return">
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-service-TimeTrackingService-findTimecards-_ownedParameter.1-_upperValue" value="*"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-service-TimeTrackingService-findTimecards-_ownedParameter.1-_lowerValue"/>
-            </ownedParameter>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-service-_packagedElement.4" name="" supplier="org.andromda.timetracker-domain-Timecard" client="org.andromda.timetracker-service-TimeTrackingService"/>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-service-_packagedElement.5" name="" supplier="org.andromda.timetracker-service-TimeTrackingService" client="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController"/>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-service-SecurityService" name="SecurityService" clientDependency="org.andromda.timetracker-service-_packagedElement.7">
-          <ownedOperation xmi:id="org.andromda.timetracker-service-SecurityService-getUserDetails" name="getUserDetails" visibility="public">
-            <ownedParameter xmi:id="org.andromda.timetracker-service-SecurityService-getUserDetails-username" name="username" visibility="public" type="datatype-String" direction="inout"/>
-            <ownedParameter xmi:id="org.andromda.timetracker-service-SecurityService-getUserDetails-_ownedParameter.1" name="" visibility="public" type="org.andromda.timetracker-vo-UserDetailsVO" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Dependency" xmi:id="org.andromda.timetracker-service-_packagedElement.7" name="" supplier="org.andromda.timetracker-domain-User" client="org.andromda.timetracker-service-SecurityService"/>
-        <profileApplication xmi:id="_h0YMgMqcEeKPe8Db68y_zA">
-          <eAnnotations xmi:id="_h0aowMqcEeKPe8Db68y_zA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-            <references xmi:type="ecore:EPackage" href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_cJeuyDxvEeCI66ZuyT0eiA"/>
-          </eAnnotations>
-          <appliedProfile href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_11_5_e240333_1154527425687_111873_349"/>
-        </profileApplication>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-domain" name="domain">
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-domain-User" name="User" clientDependency="org.andromda.timetracker-vo-_packagedElement.18 org.andromda.timetracker-vo-_packagedElement.1 org.andromda.timetracker-vo-_packagedElement.11">
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-username" name="username" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-password" name="password" visibility="public" type="datatype-String" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-firstName" name="firstName" visibility="public" type="datatype-String" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-lastName" name="lastName" visibility="public" type="datatype-String" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-email" name="email" visibility="public" type="datatype-String"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-isActive" name="isActive" visibility="public" type="datatype-boolean" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-creationDate" name="creationDate" visibility="public" type="datatype-Date" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-User-comment" name="comment" visibility="public" type="datatype-String" isUnique="false">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-User-comment-_upperValue" name="" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-User-comment-_lowerValue" name=""/>
-          </ownedAttribute>
-          <ownedOperation xmi:id="org.andromda.timetracker-domain-User-getUserDetails" name="getUserDetails" visibility="public" isStatic="true">
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-User-getUserDetails-username" name="username" visibility="public" type="datatype-String" direction="inout"/>
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-User-getUserDetails-_ownedParameter.1" name="" visibility="public" type="org.andromda.timetracker-domain-User" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-domain-Timecard" name="Timecard" clientDependency="org.andromda.timetracker-vo-_packagedElement.15 org.andromda.timetracker-vo-_packagedElement.13 org.andromda.timetracker-vo-_packagedElement.4">
-          <ownedComment xmi:id="org.andromda.timetracker-domain-Timecard-_ownedComment.0" annotatedElement="org.andromda.timetracker-domain-Timecard">
-            <body>This class represents a timecard submitted by a person.</body>
-          </ownedComment>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-Timecard-status" name="status" visibility="public" type="org.andromda.timetracker-domain-TimecardStatus" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-Timecard-startDate" name="startDate" visibility="public" type="datatype-Date" isUnique="false"/>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-Timecard-comments" name="comments" visibility="public" type="datatype-String" isUnique="false"/>
-          <ownedOperation xmi:id="org.andromda.timetracker-domain-Timecard-findByCriteria" name="findByCriteria" visibility="public" isStatic="true">
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-Timecard-findByCriteria-criteria" name="criteria" visibility="public" type="org.andromda.timetracker-vo-TimecardSearchCriteriaVO" direction="inout"/>
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-Timecard-findByCriteria-_ownedParameter.1" name="" visibility="public" type="org.andromda.timetracker-vo-TimecardVO" direction="return">
-              <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-Timecard-findByCriteria-_ownedParameter.1-_upperValue" value="*"/>
-              <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-Timecard-findByCriteria-_ownedParameter.1-_lowerValue"/>
-            </ownedParameter>
-          </ownedOperation>
-          <ownedOperation xmi:id="org.andromda.timetracker-domain-Timecard-addTimeAllocation" name="addTimeAllocation" visibility="public">
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-Timecard-addTimeAllocation-timeAllocation" name="timeAllocation" visibility="public" type="org.andromda.timetracker-domain-TimeAllocation" direction="inout"/>
-            <ownedParameter xmi:id="org.andromda.timetracker-domain-Timecard-addTimeAllocation-_ownedParameter.1" name="" visibility="public" type="datatype-void" direction="return"/>
-          </ownedOperation>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-domain-TimeAllocation" name="TimeAllocation" clientDependency="org.andromda.timetracker-vo-_packagedElement.14">
-          <ownedComment xmi:id="org.andromda.timetracker-domain-TimeAllocation-_ownedComment.0" annotatedElement="org.andromda.timetracker-domain-TimeAllocation">
-            <body>TimeAllocation represents a time period for which the timecard submitter worked on the associated task.</body>
-          </ownedComment>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-TimeAllocation-startTime" name="startTime" visibility="public" type="datatype-Date" isUnique="false">
-            <qualifier xmi:id="org.andromda.timetracker-domain-TimeAllocation-startTime-endTime" name="endTime" visibility="public" isUnique="false"/>
-            <qualifier xmi:id="org.andromda.timetracker-domain-TimeAllocation-startTime-endTime.1" name="endTime" visibility="public" isUnique="false"/>
-          </ownedAttribute>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-TimeAllocation-endTime" name="endTime" type="datatype-Date"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Enumeration" xmi:id="org.andromda.timetracker-domain-Role" name="Role">
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-Role-StandardUser" name="StandardUser"/>
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-Role-Administrator" name="Administrator"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E" name="A_&lt;user>_&lt;role>" memberEnd="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-user org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-roles" navigableOwnedEnd="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-roles">
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-user" name="user" type="org.andromda.timetracker-domain-User" association="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-user-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-user-_lowerValue" value="1"/>
-          </ownedEnd>
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-roles" name="roles" type="org.andromda.timetracker-domain-UserRole" association="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-roles-_upperValue" value="*"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Cuser3E_3Crole3E-roles-_lowerValue"/>
-          </ownedEnd>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-domain-UserRole" name="UserRole">
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-UserRole-role" name="role" type="org.andromda.timetracker-domain-Role"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Class" xmi:id="org.andromda.timetracker-domain-Task" name="Task" clientDependency="org.andromda.timetracker-vo-_packagedElement.17">
-          <ownedComment xmi:id="org.andromda.timetracker-domain-Task-_ownedComment.0" annotatedElement="org.andromda.timetracker-domain-Task">
-            <body>This class represents a task for which time allocations need to be tracked.</body>
-          </ownedComment>
-          <ownedAttribute xmi:id="org.andromda.timetracker-domain-Task-name" name="name" visibility="public" type="datatype-String"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Enumeration" xmi:id="org.andromda.timetracker-domain-TimecardStatus" name="TimecardStatus">
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-TimecardStatus-Draft" name="Draft"/>
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-TimecardStatus-Submitted" name="Submitted"/>
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-TimecardStatus-Approved" name="Approved"/>
-          <ownedLiteral xmi:id="org.andromda.timetracker-domain-TimecardStatus-Rejected" name="Rejected"/>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E" name="A_&lt;timeAllocation>_&lt;timecard>" memberEnd="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timeAllocation org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timecard" navigableOwnedEnd="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timecard">
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timeAllocation" name="timeAllocation" type="org.andromda.timetracker-domain-TimeAllocation" association="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timeAllocation-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timeAllocation-_lowerValue" value="1"/>
-          </ownedEnd>
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timecard" name="timecard" type="org.andromda.timetracker-domain-Timecard" association="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timecard-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctimecard3E-timecard-_lowerValue" value="1"/>
-          </ownedEnd>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E" name="A_&lt;timeAllocation>_&lt;task>" memberEnd="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-timeAllocation org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-task" navigableOwnedEnd="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-task">
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-timeAllocation" name="timeAllocation" type="org.andromda.timetracker-domain-TimeAllocation" association="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-timeAllocation-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-timeAllocation-_lowerValue" value="1"/>
-          </ownedEnd>
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-task" name="task" type="org.andromda.timetracker-domain-Task" association="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-task-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3CtimeAllocation3E_3Ctask3E-task-_lowerValue" value="1"/>
-          </ownedEnd>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E" name="A_&lt;timecard>_&lt;user>" memberEnd="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-timecard org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-approver" navigableOwnedEnd="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-approver">
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-timecard" name="timecard" type="org.andromda.timetracker-domain-Timecard" association="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-timecard-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-timecard-_lowerValue" value="1"/>
-          </ownedEnd>
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-approver" name="approver" type="org.andromda.timetracker-domain-User" association="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-approver-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E-approver-_lowerValue"/>
-          </ownedEnd>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Association" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2" name="A_&lt;timecard>_&lt;user>_2" memberEnd="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-timecard org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-submitter" navigableOwnedEnd="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-submitter">
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-timecard" name="timecard" type="org.andromda.timetracker-domain-Timecard" association="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-timecard-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-timecard-_lowerValue" value="1"/>
-          </ownedEnd>
-          <ownedEnd xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-submitter" name="submitter" type="org.andromda.timetracker-domain-User" association="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2">
-            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-submitter-_upperValue" value="1"/>
-            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-domain-A_3Ctimecard3E_3Cuser3E_2-submitter-_lowerValue" value="1"/>
-          </ownedEnd>
-        </packagedElement>
-        <profileApplication xmi:id="_hX2WQMCQEeKZWZZlWifqhA">
-          <eAnnotations xmi:id="_hX29UMCQEeKZWZZlWifqhA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-            <references xmi:type="ecore:EPackage" href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_cJfWpTxvEeCI66ZuyT0eiA"/>
-          </eAnnotations>
-          <appliedProfile href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_11_5_e240333_1154527540265_181005_899"/>
-        </profileApplication>
-      </packagedElement>
-      <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-web" name="web">
-        <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-web-timecardsearch" name="timecardsearch">
-          <packagedElement xmi:type="uml:UseCase" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards" name="Search Timecards">
-            <ownedBehavior xmi:type="uml:StateMachine" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine" name="Search Timecards State Machine">
-              <nestedClassifier xmi:type="uml:Class" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController" name="SearchController" clientDependency="org.andromda.timetracker-service-_packagedElement.2 org.andromda.timetracker-service-_packagedElement.5">
-                <ownedOperation xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen" name="populateSearchScreen" visibility="public">
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-submitter" name="submitter" visibility="public" type="datatype-Long" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-approver" name="approver" visibility="public" type="datatype-Long" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-status" name="status" visibility="public" type="datatype-String" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-startDateMinimum" name="startDateMinimum" visibility="public" type="datatype-Date" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-startDateMaximum" name="startDateMaximum" visibility="public" type="datatype-Date" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-timecardSummaries" name="timecardSummaries" visibility="public" type="org.andromda.timetracker-vo-TimecardSummaryVO" direction="inout">
-                    <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-timecardSummaries-_upperValue" value="*"/>
-                    <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-timecardSummaries-_lowerValue"/>
-                  </ownedParameter>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen-_ownedParameter.6" name="" visibility="public" type="datatype-void" direction="return"/>
-                </ownedOperation>
-                <ownedOperation xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-initializeTimecardId" name="initializeTimecardId" visibility="public">
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-initializeTimecardId-id" name="id" visibility="public" type="datatype-Long" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-initializeTimecardId-timecardId" name="timecardId" visibility="public" type="datatype-Long" direction="inout"/>
-                  <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-initializeTimecardId-_ownedParameter.2" name="" visibility="public" type="datatype-void" direction="return"/>
-                </ownedOperation>
-              </nestedClassifier>
-              <region xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0" name="" visibility="public">
-                <subvertex xmi:type="uml:Pseudostate" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_subvertex.0" name="" visibility="public"/>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen" name="Populate Search Screen" visibility="public">
-                  <entry xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen-_entry" name="">
-                    <node xmi:type="uml:CallOperationAction" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen-_entry-_node.0" name="" visibility="public" operation="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-populateSearchScreen"/>
-                  </entry>
-                </subvertex>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Search20Timecards" name="Search Timecards" visibility="public"/>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Initialize20Timecard20Id" name="Initialize Timecard Id" visibility="public">
-                  <entry xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Initialize20Timecard20Id-_entry" name="">
-                    <node xmi:type="uml:CallOperationAction" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Initialize20Timecard20Id-_entry-_node.0" name="" visibility="public" operation="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-SearchController-initializeTimecardId"/>
-                  </entry>
-                </subvertex>
-                <subvertex xmi:type="uml:FinalState" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Timecard20Details" name="Timecard Details" visibility="public"/>
-                <transition xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.0" name="" visibility="public" source="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_subvertex.0" target="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen"/>
-                <transition xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.1" name="" visibility="public" source="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen" target="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Search20Timecards">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.1-_effect" name="">
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.1-_effect-timecardSummaries" name="timecardSummaries" visibility="public" direction="inout"/>
-                  </effect>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2" name="" visibility="public" source="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Search20Timecards" target="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Populate20Search20Screen">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search" name="search">
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-submitter" name="submitter" visibility="public" type="datatype-Long" direction="inout">
-                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-submitter-_upperValue" name="" value="1"/>
-                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-submitter-_lowerValue" name=""/>
-                    </ownedParameter>
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-approver" name="approver" visibility="public" type="datatype-Long" direction="inout">
-                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-approver-_upperValue" name="" value="1"/>
-                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-approver-_lowerValue" name=""/>
-                    </ownedParameter>
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-status" name="status" visibility="public" type="datatype-String" direction="inout">
-                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-status-_upperValue" name="" value="1"/>
-                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-status-_lowerValue" name=""/>
-                    </ownedParameter>
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMinimum" name="startDateMinimum" visibility="public" type="datatype-Date" direction="inout">
-                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMinimum-_upperValue" name="" value="1"/>
-                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMinimum-_lowerValue" name=""/>
-                    </ownedParameter>
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMaximum" name="startDateMaximum" visibility="public" type="datatype-Date" direction="inout">
-                      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMaximum-_upperValue" name="" value="1"/>
-                      <lowerValue xmi:type="uml:LiteralInteger" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.2-search-startDateMaximum-_lowerValue" name=""/>
-                    </ownedParameter>
-                  </effect>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.3" name="" visibility="public" source="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Search20Timecards" target="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Initialize20Timecard20Id">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.3-details" name="details">
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.3-details-id" name="id" visibility="public" type="datatype-Long" direction="inout"/>
-                  </effect>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.4" name="" visibility="public" source="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Initialize20Timecard20Id" target="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-Timecard20Details">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.4-_effect" name="">
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecardsearch-Search20Timecards-Search20Timecards20State20Machine-_region.0-_transition.4-_effect-timecardId" name="timecardId" visibility="public" type="datatype-Long" direction="inout"/>
-                  </effect>
-                </transition>
-              </region>
-            </ownedBehavior>
-          </packagedElement>
-          <packagedElement xmi:type="uml:StateMachine" xmi:id="_Xdj74MtbEeKo4-gRDmw6wQ" name="StateMachine">
-            <region xmi:id="_Xdj74ctbEeKo4-gRDmw6wQ" name="Region"/>
-          </packagedElement>
-          <packagedElement xmi:type="uml:StateMachine" xmi:id="_gOrMMMtbEeKo4-gRDmw6wQ" name="StateMachine">
-            <region xmi:id="_gOrMMctbEeKo4-gRDmw6wQ" name="Region"/>
-          </packagedElement>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-web-timecarddetails" name="timecarddetails">
-          <packagedElement xmi:type="uml:UseCase" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details" name="Timecard Details">
-            <ownedBehavior xmi:type="uml:StateMachine" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine" name="Timecard Details State Machine">
-              <nestedClassifier xmi:type="uml:Class" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-TimecardController" name="TimecardController"/>
-              <region xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0" name="" visibility="public">
-                <subvertex xmi:type="uml:Pseudostate" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_subvertex.0" name="" visibility="public"/>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-PopulateScreen" name="PopulateScreen" visibility="public"/>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-Timecard" name="Timecard" visibility="public"/>
-                <transition xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_transition.0" name="" visibility="public" source="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_subvertex.0" target="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-PopulateScreen"/>
-                <transition xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_transition.1" name="" visibility="public" source="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-PopulateScreen" target="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-Timecard">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_transition.1-_effect" name="">
-                    <ownedParameter xmi:id="org.andromda.timetracker-web-timecarddetails-Timecard20Details-Timecard20Details20State20Machine-_region.0-_transition.1-_effect-timecardId" name="timecardId" visibility="public" type="datatype-Long" direction="inout"/>
-                  </effect>
-                </transition>
-              </region>
-            </ownedBehavior>
-          </packagedElement>
-        </packagedElement>
-        <packagedElement xmi:type="uml:Package" xmi:id="org.andromda.timetracker-web-timetrackerhome" name="timetrackerhome">
-          <packagedElement xmi:type="uml:UseCase" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home" name="TimeTracker Home">
-            <ownedBehavior xmi:type="uml:StateMachine" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine" name="TimeTracker Home State Machine">
-              <nestedClassifier xmi:type="uml:Class" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-HomeController" name="HomeController"/>
-              <region xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0" name="" visibility="public">
-                <subvertex xmi:type="uml:Pseudostate" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_subvertex.0" name="" visibility="public"/>
-                <subvertex xmi:type="uml:State" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home" name="TimeTracker Home" visibility="public"/>
-                <subvertex xmi:type="uml:FinalState" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-Timecard20Details" name="Timecard Details" visibility="public"/>
-                <subvertex xmi:type="uml:FinalState" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-Search20Timecards" name="Search Timecards" visibility="public"/>
-                <subvertex xmi:type="uml:FinalState" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home.1" name="TimeTracker Home" visibility="public"/>
-                <transition xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.0" name="" visibility="public" source="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_subvertex.0" target="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home"/>
-                <transition xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.1" name="" visibility="public" source="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home" target="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-Timecard20Details">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.1-latestTimecard" name="latestTimecard"/>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.2" name="" visibility="public" source="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home" target="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-Search20Timecards">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.2-searchTimecards" name="searchTimecards"/>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.3" name="" visibility="public" source="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home" target="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home.1">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.3-newTimecard" name="newTimecard"/>
-                </transition>
-                <transition xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.4" name="" visibility="public" source="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home" target="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-TimeTracker20Home.1">
-                  <effect xmi:type="uml:Activity" xmi:id="org.andromda.timetracker-web-timetrackerhome-TimeTracker20Home-TimeTracker20Home20State20Machine-_region.0-_transition.4-approveTimecards" name="approveTimecards"/>
-                </transition>
-              </region>
-            </ownedBehavior>
-          </packagedElement>
-        </packagedElement>
-      </packagedElement>
-      <profileApplication xmi:id="_W63-QMqaEeKMt-GSHYtkEw">
-        <eAnnotations xmi:id="_W64lUMqaEeKMt-GSHYtkEw" source="http://www.eclipse.org/uml2/2.0.0/UML">
-          <references xmi:type="ecore:EPackage" href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA"/>
-        </eAnnotations>
-        <appliedProfile href="../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_11_5_e240333_1154527625671_782614_56"/>
-      </profileApplication>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Package" xmi:id="Use20Cases" name="Use Cases">
-      <packagedElement xmi:type="uml:Actor" xmi:id="Use20Cases-User" name="User"/>
-    </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_HsXcoNIBEeKMPvTnAXQFfA" name="it.tyto.iia">
       <packagedElement xmi:type="uml:Package" xmi:id="_TZkqoNIBEeKMPvTnAXQFfA" name="domain">
         <packagedElement xmi:type="uml:Package" xmi:id="_wqiDQNIBEeKMPvTnAXQFfA" name="agency">
@@ -528,7 +115,7 @@ Comment:.
           </packagedElement>
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_SxtHcNIDEeKMPvTnAXQFfA" name="ranges">
-          <packagedElement xmi:type="uml:Class" xmi:id="_UEng0NIDEeKMPvTnAXQFfA" name="Ean">
+          <packagedElement xmi:type="uml:Class" xmi:id="_UEng0NIDEeKMPvTnAXQFfA" name="Ean" clientDependency="_7Z2WkNR7EeKeq76eDJw7Rg">
             <ownedAttribute xmi:id="_X1PSwNIDEeKMPvTnAXQFfA" name="prefix" type="datatype-Integer"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_pL7RwNIDEeKMPvTnAXQFfA" name="GroupPrefixRange">
@@ -574,6 +161,19 @@ Comment:.
             </ownedEnd>
           </packagedElement>
         </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_O-78QNR7EeKeq76eDJw7Rg" name="services">
+        <packagedElement xmi:type="uml:Class" xmi:id="_he6ekNR7EeKeq76eDJw7Rg" name="EANService">
+          <ownedOperation xmi:id="_m83VANR7EeKeq76eDJw7Rg" name="listEan">
+            <ownedParameter xmi:id="_uRwe8NR7EeKeq76eDJw7Rg" name="return" direction="return"/>
+          </ownedOperation>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_bhPmQNR7EeKeq76eDJw7Rg" name="vo">
+        <packagedElement xmi:type="uml:Class" xmi:id="_1YaYkNR7EeKeq76eDJw7Rg" name="EanVO">
+          <ownedAttribute xmi:id="_aatfMNR_EeKVFa9NqApvoA" name="prefix" type="datatype-Integer"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Dependency" xmi:id="_7Z2WkNR7EeKeq76eDJw7Rg" name="Dependency1" supplier="_1YaYkNR7EeKeq76eDJw7Rg" client="_UEng0NIDEeKMPvTnAXQFfA"/>
       </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_profileApplication.0">
@@ -742,50 +342,50 @@ Comment:.
   <persistence:_andromdahibernatecascade xmi:id="_35"/>
   <persistence:_andromdahibernatecascade xmi:id="_36"/>
   <persistence:_andromdapersistencecolumnindex xmi:id="_37"/>
-  <persistence:Manageable xmi:id="_38" base_Class="org.andromda.timetracker-domain-User"/>
-  <persistence:Manageable xmi:id="_39" base_Class="org.andromda.timetracker-domain-Task"/>
-  <persistence:Entity xmi:id="_40" base_Class="org.andromda.timetracker-domain-Timecard"/>
-  <persistence:Entity xmi:id="_41" base_Class="org.andromda.timetracker-domain-TimeAllocation"/>
+  <persistence:Manageable xmi:id="_38"/>
+  <persistence:Manageable xmi:id="_39"/>
+  <persistence:Entity xmi:id="_40"/>
+  <persistence:Entity xmi:id="_41"/>
   <persistence:Entity xmi:id="_42"/>
-  <persistence:Entity xmi:id="_43" base_Class="org.andromda.timetracker-domain-User"/>
-  <persistence:Entity xmi:id="_44" base_Class="org.andromda.timetracker-domain-Task"/>
-  <persistence:PersistentClass xmi:id="_45" _andromdapersistencetable="USERS" base_Class="org.andromda.timetracker-domain-User"/>
+  <persistence:Entity xmi:id="_43"/>
+  <persistence:Entity xmi:id="_44"/>
+  <persistence:PersistentClass xmi:id="_45" _andromdapersistencetable="USERS"/>
   <Standard:ModelLibrary xmi:id="_46" base_Package="_0"/>
   <UMLStandardProfile:modelLibrary xmi:id="_47" base_Package="eee_1045467100313_135436_1"/>
-  <service:Service xmi:id="_48" base_Class="org.andromda.timetracker-service-UserService"/>
-  <service:Service xmi:id="_49" base_Class="org.andromda.timetracker-service-SecurityService"/>
-  <service:Service xmi:id="_50" base_Class="org.andromda.timetracker-service-TimeTrackingService"/>
-  <persistence:Entity xmi:id="_51" base_Class="org.andromda.timetracker-domain-UserRole"/>
+  <service:Service xmi:id="_48"/>
+  <service:Service xmi:id="_49"/>
+  <service:Service xmi:id="_50"/>
+  <persistence:Entity xmi:id="_51"/>
   <persistence:Entity xmi:id="_52"/>
-  <common:ValueObject xmi:id="_53" base_Class="org.andromda.timetracker-vo-UserVO"/>
-  <common:ValueObject xmi:id="_54" base_Class="org.andromda.timetracker-vo-TimecardSearchCriteriaVO"/>
-  <common:ValueObject xmi:id="_55" base_Class="org.andromda.timetracker-vo-TimecardSummaryVO"/>
-  <common:ValueObject xmi:id="_56" base_Class="org.andromda.timetracker-vo-UserDetailsVO"/>
-  <common:ValueObject xmi:id="_57" base_Class="org.andromda.timetracker-vo-UserRoleVO"/>
-  <common:ValueObject xmi:id="_58" base_Class="org.andromda.timetracker-vo-TimecardVO"/>
-  <common:ValueObject xmi:id="_59" base_Class="org.andromda.timetracker-vo-TimeAllocationVO"/>
-  <common:ValueObject xmi:id="_60" base_Class="org.andromda.timetracker-vo-TaskVO"/>
-  <common:ValueObject xmi:id="_61" base_Class="org.andromda.timetracker-vo-TimePeriodVO"/>
+  <common:ValueObject xmi:id="_53"/>
+  <common:ValueObject xmi:id="_54"/>
+  <common:ValueObject xmi:id="_55"/>
+  <common:ValueObject xmi:id="_56"/>
+  <common:ValueObject xmi:id="_57"/>
+  <common:ValueObject xmi:id="_58"/>
+  <common:ValueObject xmi:id="_59"/>
+  <common:ValueObject xmi:id="_60"/>
+  <common:ValueObject xmi:id="_61"/>
   <common:ValueObject xmi:id="_62"/>
   <persistence:Entity xmi:id="_63"/>
-  <persistence:FinderMethod xmi:id="_64" base_Operation="org.andromda.timetracker-domain-Timecard-findByCriteria"/>
-  <persistence:FinderMethod xmi:id="_65" base_Operation="org.andromda.timetracker-domain-User-getUserDetails"/>
-  <persistence:Unique xmi:id="_66" base_Property="org.andromda.timetracker-domain-User-username"/>
-  <persistence:Entity xmi:id="_jOqt8MCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-User"/>
-  <persistence:Entity xmi:id="_km_LwMCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-Timecard"/>
-  <persistence:Entity xmi:id="_mGtSEMCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-TimeAllocation"/>
-  <persistence:Entity xmi:id="_nuwN8MCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-UserRole"/>
-  <persistence:Entity xmi:id="_pQS5MMCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-Task"/>
+  <persistence:FinderMethod xmi:id="_64"/>
+  <persistence:FinderMethod xmi:id="_65"/>
+  <persistence:Unique xmi:id="_66"/>
+  <persistence:Entity xmi:id="_jOqt8MCQEeKZWZZlWifqhA"/>
+  <persistence:Entity xmi:id="_km_LwMCQEeKZWZZlWifqhA"/>
+  <persistence:Entity xmi:id="_mGtSEMCQEeKZWZZlWifqhA"/>
+  <persistence:Entity xmi:id="_nuwN8MCQEeKZWZZlWifqhA"/>
+  <persistence:Entity xmi:id="_pQS5MMCQEeKZWZZlWifqhA"/>
   <persistence:Entity xmi:id="_q2DWEMCQEeKZWZZlWifqhA"/>
-  <persistence:Entity xmi:id="_z_V10MCQEeKZWZZlWifqhA" base_Class="org.andromda.timetracker-domain-User"/>
-  <common:ValueObject xmi:id="_zBCCkMqYEeKMt-GSHYtkEw" base_Class="org.andromda.timetracker-vo-TimecardVO"/>
-  <common:ValueObject xmi:id="_09jZoMqYEeKMt-GSHYtkEw" base_Class="org.andromda.timetracker-vo-TimecardSummaryVO"/>
-  <common:ValueObject xmi:id="_2i0HQMqYEeKMt-GSHYtkEw" base_Class="org.andromda.timetracker-vo-UserDetailsVO"/>
-  <common:ValueObject xmi:id="_4fa94MqYEeKMt-GSHYtkEw" base_Class="org.andromda.timetracker-vo-UserVO"/>
-  <common:ValueObject xmi:id="_rsBcgMqbEeKPe8Db68y_zA" base_Class="org.andromda.timetracker-vo-TimecardVO"/>
-  <service:Service xmi:id="_1MkwQMqcEeKPe8Db68y_zA" base_Class="org.andromda.timetracker-service-UserService"/>
-  <service:Service xmi:id="_6TRokNEkEeKEopWTwV7ZIg" base_Class="org.andromda.timetracker-service-UserService"/>
-  <persistence:Entity xmi:id="_HS1vINFNEeKlnujZko-prQ" base_Class="org.andromda.timetracker-domain-UserRole"/>
+  <persistence:Entity xmi:id="_z_V10MCQEeKZWZZlWifqhA"/>
+  <common:ValueObject xmi:id="_zBCCkMqYEeKMt-GSHYtkEw"/>
+  <common:ValueObject xmi:id="_09jZoMqYEeKMt-GSHYtkEw"/>
+  <common:ValueObject xmi:id="_2i0HQMqYEeKMt-GSHYtkEw"/>
+  <common:ValueObject xmi:id="_4fa94MqYEeKMt-GSHYtkEw"/>
+  <common:ValueObject xmi:id="_rsBcgMqbEeKPe8Db68y_zA"/>
+  <service:Service xmi:id="_1MkwQMqcEeKPe8Db68y_zA"/>
+  <service:Service xmi:id="_6TRokNEkEeKEopWTwV7ZIg"/>
+  <persistence:Entity xmi:id="_HS1vINFNEeKlnujZko-prQ"/>
   <persistence:Entity xmi:id="_2Tf24NIBEeKMPvTnAXQFfA" base_Class="_yOJLENIBEeKMPvTnAXQFfA"/>
   <persistence:Identifier xmi:id="_FZdwcNICEeKMPvTnAXQFfA" base_Property="_C7c14NICEeKMPvTnAXQFfA"/>
   <persistence:Entity xmi:id="_D5UW4NIDEeKMPvTnAXQFfA"/>
@@ -795,4 +395,6 @@ Comment:.
   <persistence:Identifier xmi:id="_8_os0NIDEeKMPvTnAXQFfA" base_Property="_0t11wNIDEeKMPvTnAXQFfA" _andromdapersistencegeneratorallocationsize="" _andromdapersistencegeneratorgenericStrategy=""/>
   <persistence:Entity xmi:id="_e-uWkNIGEeKMPvTnAXQFfA" base_Class="_cdYbMNIGEeKMPvTnAXQFfA"/>
   <persistence:Identifier xmi:id="_p35fkNIGEeKMPvTnAXQFfA" base_Property="_hBs68NIGEeKMPvTnAXQFfA"/>
+  <service:Service xmi:id="_mGJvcNR7EeKeq76eDJw7Rg" base_Class="_he6ekNR7EeKeq76eDJw7Rg"/>
+  <common:ValueObject xmi:id="_5A9zoNR7EeKeq76eDJw7Rg" base_Class="_1YaYkNR7EeKeq76eDJw7Rg"/>
 </xmi:XMI>
