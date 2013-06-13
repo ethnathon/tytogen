@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0" xmlns:common="http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:persistence="http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0" xmlns:presentation="http:///schemas/presentation/_cIzYsDxvEeCI66ZuyT0eiA/0" xmlns:service="http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0 ../generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_cJfWpTxvEeCI66ZuyT0eiA http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_cJeuyDxvEeCI66ZuyT0eiA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Standard="http://www.eclipse.org/uml2/schemas/Standard/1" xmlns:UMLStandardProfile="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0" xmlns:common="http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:persistence="http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0" xmlns:presentation="http:///schemas/presentation/_cIzYsDxvEeCI66ZuyT0eiA/0" xmlns:service="http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http:///schemas/UMLStandardProfile/_cJLMIDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 http:///schemas/common/_cI4RMDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.common.profile.uml#_cJfWNDxvEeCI66ZuyT0eiA http:///schemas/persistence/_cJBbIDxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.persistence.profile.uml#_cJfWpTxvEeCI66ZuyT0eiA http:///schemas/service/_cJcR4DxvEeCI66ZuyT0eiA/0 file:/local/users/dallolio/devel/workspace-iia/it.tyto.tytogen/generator/org/eclipse/acceleo/module/pim/uml30/profile/org.andromda.profile.service.profile.uml#_cJeuyDxvEeCI66ZuyT0eiA">
   <uml:Model xmi:id="_0" name="iia" viewpoint="">
     <ownedComment xmi:id="_ownedComment.0" annotatedElement="_0">
       <body>Author:Saratoga.
@@ -529,10 +529,10 @@ Comment:.
         </packagedElement>
         <packagedElement xmi:type="uml:Package" xmi:id="_SxtHcNIDEeKMPvTnAXQFfA" name="ranges">
           <packagedElement xmi:type="uml:Class" xmi:id="_UEng0NIDEeKMPvTnAXQFfA" name="Ean">
-            <ownedAttribute xmi:id="_X1PSwNIDEeKMPvTnAXQFfA" name="prefix" type="datatype-int"/>
+            <ownedAttribute xmi:id="_X1PSwNIDEeKMPvTnAXQFfA" name="prefix" type="datatype-Integer"/>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_pL7RwNIDEeKMPvTnAXQFfA" name="GroupPrefixRange">
-            <ownedAttribute xmi:id="_0t11wNIDEeKMPvTnAXQFfA" name="idGroupPrefixRange" type="datatype-int"/>
+            <ownedAttribute xmi:id="_0t11wNIDEeKMPvTnAXQFfA" name="idGroupPrefixRange" type="datatype-Integer"/>
             <ownedAttribute xmi:id="_fFPgMNIEEeKMPvTnAXQFfA" name="lower" type="datatype-long"/>
             <ownedAttribute xmi:id="_Lea1INIFEeKMPvTnAXQFfA" name="upper" type="datatype-long"/>
             <ownedAttribute xmi:id="_QJy_INIFEeKMPvTnAXQFfA" name="length" type="datatype-long"/>
@@ -548,7 +548,7 @@ Comment:.
             </ownedEnd>
           </packagedElement>
           <packagedElement xmi:type="uml:Class" xmi:id="_cdYbMNIGEeKMPvTnAXQFfA" name="GroupPrefix">
-            <ownedAttribute xmi:id="_hBs68NIGEeKMPvTnAXQFfA" name="groupPrefix" type="datatype-long"/>
+            <ownedAttribute xmi:id="_hBs68NIGEeKMPvTnAXQFfA" name="groupPrefix" type="datatype-Long"/>
             <ownedAttribute xmi:id="_-mUPYNIGEeKMPvTnAXQFfA" name="shared" type="datatype-boolean">
               <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_ByoaYNIHEeKMPvTnAXQFfA"/>
             </ownedAttribute>

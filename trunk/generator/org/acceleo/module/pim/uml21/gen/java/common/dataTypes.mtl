@@ -120,6 +120,9 @@ endif
 [getProperty('default.pk.type')/]
 [/template]
 
+[template public defaultPKName(element:Element)]
+[getProperty('default.pk.name')/]
+[/template]
 
 [template public defaultPKTypeWrapper(element:Element)]
 [getProperty('java.wrapper.' + element.defaultPKType())/]

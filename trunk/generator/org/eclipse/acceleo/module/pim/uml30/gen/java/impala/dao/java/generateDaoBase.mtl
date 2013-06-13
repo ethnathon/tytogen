@@ -284,10 +284,10 @@ public abstract class [aClass.name.toUpperFirst()/]DaoBase
      */
     
     public Object create(
-        final int transform[if (aClass.classAttributes()->notEmpty())], [aClass.classAttributes()->filter(Property)->select(not (isPK())).asParameter()->sep(', ')/][/if]
+        final int transform[if (aClass.classAttributes()->filter(Property)->select(not (isPK()))->notEmpty())], [aClass.classAttributes()->filter(Property)->select(not (isPK())).asParameter()->sep(', ')/][/if]
         ) {
         [aClass.genEntityClassName()/] entity = new [aClass.name/]Impl();
-		[for (aProp : Property | aClass.classAttributes())]
+		[for (aProp : Property | aClass.classAttributes()->filter(Property)->select(not (isPK())))]
 	    entity.set[aProp.name.toUpperFirst()/]([aProp.name.toLowerFirst()/]);
 		[/for]
         return this.create(transform, entity);

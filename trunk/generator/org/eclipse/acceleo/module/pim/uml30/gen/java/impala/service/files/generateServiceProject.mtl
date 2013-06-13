@@ -44,14 +44,14 @@
 	[aClass.generateServiceInterfaceJava()/]
 	[aClass.generateServiceBaseImplJava()/]
 	[aClass.generateServiceImplJava()/]
-	[aClass.generateServiceTestJava()/]
+	[comment]LD[aClass.generateServiceTestJava()/][/comment]
 [/template]
 
-[template public generateServiceProjectModel(aClass : Class) ? (aClass.isManageableEntity())] 
+[comment]LD[template public generateServiceProjectModel(aClass : Class) ? (aClass.isManageableEntity())] 
 	[aClass.generateManageableServiceInterfaceJava()/]
 	[aClass.generateManageableServiceBaseJava()/]
 	[aClass.generateManageableServiceImplJava()/]
 	[aClass.generateManageableServiceTestJava()/]
 	
-[/template]
+[/template][/comment]
 

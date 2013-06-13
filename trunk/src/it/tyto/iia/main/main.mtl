@@ -33,10 +33,10 @@
 	[comment @main/]
     [aClass.generateMainProject()/]
     [comment]LD already present in dto[aClass.generateValueObjects()/][/comment]
-    [comment]LD TODO uncomment when ready[aClass.generateServiceProjectModel()/][/comment]
-	[comment]LD TODO uncomment when ready[aClass.generateWebProjectClass()/]
+    [aClass.generateServiceProjectModel()/]
+	[aClass.generateWebProjectClass()/]
     [aClass.generateDaoProjectClass()/]
-	[aClass.generateDtoProjectClass()/][/comment]
+    [aClass.generateDtoProjectClass()/]
 [/template]
 
 [template public main(anEnumeration : Enumeration)]

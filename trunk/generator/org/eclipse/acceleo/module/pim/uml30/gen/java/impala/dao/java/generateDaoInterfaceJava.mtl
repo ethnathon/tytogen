@@ -169,7 +169,7 @@ public interface [aClass.name.toUpperFirst()/]Dao
      * @param id
      * @return [aClass.genEntityClassName()/]
      */
-    [aClass.genEntityClassName()/] load(Long id);
+    [aClass.genEntityClassName()/] load([aClass.getPrimaryTypeName(true)/] id);
 
     /**
      * <p>
@@ -185,7 +185,7 @@ public interface [aClass.name.toUpperFirst()/]Dao
      * @param id the identifier of the entity to load.
      * @return either the entity or the object transformed from the entity.
      */
-    Object load(int transform, Long id);
+    Object load(int transform, [aClass.getPrimaryTypeName(true)/] id);
 
     /**
      * Loads all entities of type {@link [aClass.genEntityClassName()/]}.
@@ -316,7 +316,7 @@ public interface [aClass.name.toUpperFirst()/]Dao
      * @return Object
      */
     Object create(
-        int transform[if (aClass.classAttributes()->notEmpty())], [aClass.classAttributes()->filter(Property)->select(not (isPK())).asParameter()->sep(', ')/][/if]
+        int transform[if (aClass.classAttributes()->filter(Property)->select(not (isPK()))->notEmpty())], [aClass.classAttributes()->filter(Property)->select(not (isPK())).asParameter()->sep(', ')/][/if]
         );
 
     /**
@@ -342,7 +342,7 @@ public interface [aClass.name.toUpperFirst()/]Dao
      * <code>identifier</code> from the persistent store.
      * @param id
      */
-    void remove(Long id);
+    void remove([aClass.getPrimaryTypeName(true)/] id);
 
     /**
      * Removes all entities in the given <code>entities</code> collection.
