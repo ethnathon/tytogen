@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project default="main" name="it.tyto.tytogen">
-    <property name="ECLIPSE_HOME" value="../../../bin/eclipse-indigo"/>
-    <property name="ECLIPSE_WORKSPACE" value="../../../work/workspace-iia"/>
+    <property name="ECLIPSE_HOME" value="../../../../Tools/eclipse-indigo"/>
+    <property name="ECLIPSE_WORKSPACE" value="../.."/>
 
     <!-- The classpath with only the dependencies used by the project -->
     <path id="it.tyto.tytogen.libraryclasspath">

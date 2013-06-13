@@ -60,7 +60,7 @@ public abstract class [aClass.name/][if (aClass.interfaceRealization->size() > 0
     /**
      * Constant representing the name of the automatic primary key field.
      */
-    public static final String PROP_ID = "id";
+    public static final String PROP_ID = "[aClass.getPKName()/]";
 
 [for (prop:Property|aClass.getAvailableProperties()->union(aClass.getOtherPKProperties()->asSequence()))]
     /**
@@ -74,7 +74,7 @@ public abstract class [aClass.name/][if (aClass.interfaceRealization->size() > 0
      * serialVersionUID is used for serialization.
      */
     private static final long serialVersionUID = 1L;
-	private [aClass.getPrimaryTypeName()/] id;
+	private [aClass.getPrimaryTypeName()/] [aClass.getPKName()/];
 [for (prop:Property|aClass.getAvailableProperties()->filter(Property)->select(not (isPK())))]
     /**
      * Field [prop.name/].
@@ -104,16 +104,16 @@ public abstract class [aClass.name/][if (aClass.interfaceRealization->size() > 0
      * Returns the primary key.
      * @return Returns id.
      */
-    public [aClass.getPrimaryTypeName()/] getId() {
-        return this.id;
+    public [aClass.getPrimaryTypeName()/] get[aClass.getPKName().toUpperFirst()/]() {
+        return this.[aClass.getPKName()/];
     }
 
     /**
      * Sets the primary key.
      * @param id Value to set.
      */
-    public void setId(final [aClass.getPrimaryTypeName()/] id) {
-        this.id = id;
+    public void set[aClass.getPKName().toUpperFirst()/](final [aClass.getPrimaryTypeName()/] id) {
+        this.[aClass.getPKName()/] = id;
     }
 [let props : Sequence(Property) = aClass.getAvailableProperties()->filter(Property)->select(not (isPK()))]
 	[if (props->size() > 0)]
@@ -328,12 +328,12 @@ public abstract class [aClass.name/][if (aClass.interfaceRealization->size() > 0
         // [protected ('hashCode')]
 		int result = 0;
 [if (aClass.hasPrimaryKey())]
-        result = new Long([aClass.getPKAttribute()->asSequence()->first().oclAsType(Property).name/]).hashCode();
+        result = [aClass.getPKName()/].hashCode();
 [elseif (aClass.defaultPKType().isPrimitiveType())]
-        result = new [aClass.defaultPKTypeWrapper()/](id).hashCode();
+        result = new [aClass.defaultPKTypeWrapper()/]([aClass.getPKName()/]).hashCode();
 [else]
         if (id != null) {
-            result = id.hashCode();
+            result = [aClass.getPKName()/].hashCode();
         } else {[comment  This else is required to be synchro with the equals() method, otherwise we could generate different hashCodes for equal objects ! /]
 	[for (prop:Property|aClass.ownedAttribute->select(not (isPK())))]
 		[if (prop.type.name = 'Boolean')]

@@ -34,3 +34,11 @@ else
 	endif
 endif
 /]
+
+[query public getPKName(anEntity: Class) : String = 
+if (anEntity.getPKAttribute()->size()=0 or anEntity.getPKAttribute()->size()>=2) then
+	anEntity.defaultPKName()
+else 
+	anEntity.getPKAttribute()->asSequence()->first().name
+endif
+/]
