@@ -177,6 +177,9 @@
                 <property name="customTypesPackage">${application.package}</property>
                 <property name="compositionDefinesEagerLoading">true</property>
                 <property name="cache">${core.generated.dir}</property>
+                <property name="listTypeImplementation">java.util.LinkedList</property>
+                <property name="setTypeImplementation">java.util.TreeSet</property>
+                <property name="mapTypeImplementation">java.util.LinkedHashMap</property>
             </properties>
         </namespace>
         <!-- See http://docs.andromda.org/andromda-cartridges/andromda-webservice-cartridge/namespace.html -->
