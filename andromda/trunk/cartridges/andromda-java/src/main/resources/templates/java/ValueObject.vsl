@@ -122,13 +122,9 @@ public#if($class.leaf) final#end#if($class.abstract) abstract#end class $umlUtil
 #set ($getterName = "${parameter.getterName}")
 #set ($setterName = "${parameter.setterName}")
 #end
-    /**
-$parameter.getDocumentation("     * ")
-     */
     protected $returnType $parameter.name#if (!$parameter.many && $parameter.defaultValuePresent) = ${parameter.defaultValue}#end;
 
     /**
-$parameter.getDocumentation("     * ")
      * Get the $parameter.name Template Parameter
      * @return $parameter.name $returnType
      */
@@ -137,7 +133,7 @@ $parameter.getDocumentation("     * ")
 #if ($parameter.many && !$parameter.type.arrayType)
         if (this.${parameter.name} == null)
         {
-            this.${parameter.name} = new $umlUtils.getImplCollection($returnType)(#if($parameter.upper>1)$parameter.upper#end);
+            this.${parameter.name} = new $umlUtils.getImplCollection($returnType)();
         }
 #end
         return this.$parameter.name;
@@ -403,7 +399,7 @@ $attribute.getDocumentation("     * ")
 #if ($attribute.many && !$attribute.type.arrayType)
         if (this.${attribute.name} == null)
         {
-            this.${attribute.name} = new $umlUtils.getImplCollection($returnType)(#if($attribute.upper>1)$attribute.upper#end);
+            this.${attribute.name} = new $umlUtils.getImplCollection($returnType)();
         }
 #end
         return this.$attribute.name;
@@ -480,7 +476,7 @@ $connectingEnd.getDocumentation("     * ")
 #if ($connectingEnd.many && !$connectingEnd.getterSetterTypeName.endsWith("[]"))
         if (this.${connectingEnd.name} == null)
         {
-            this.${connectingEnd.name} = new $umlUtils.getImplCollection($connectingEnd.getterSetterTypeName)(#if($connectingEnd.upper>1)$connectingEnd.upper#end);
+            this.${connectingEnd.name} = new $umlUtils.getImplCollection($connectingEnd.getterSetterTypeName)();
         }
 #end
         return this.${connectingEnd.name};
@@ -600,7 +596,7 @@ $connectingEnd.getDocumentation("     * ")
 #set ($target = $associationEnd.otherEnd)
 #if ($target.navigable)
 ## Do not append one of the two ends if bidirectional navigation. Comment out 1 end of 1:*, or end with lower alphabetical name.
-#if (!$umlUtils.isOwningEnd($target) && $associationEnd.navigable)
+#if (($associationEnd.many.compareTo($target.many)<0) || ($associationEnd.many.equals($target.many)) && $associationEnd.type.fullyQualifiedName.compareTo($target.type.fullyQualifiedName)<1)
             //Commented out to avoid commons-lang-2.4 recursion StackOverflowError: https://issues.apache.org/jira/browse/LANG-456
             //.append(this.${target.getterName}())
 #else
@@ -621,17 +617,8 @@ $connectingEnd.getDocumentation("     * ")
     public String toString()
     {
         return new ToStringBuilder(this)
-#foreach($attr in $class.getAttributes(true))
+#foreach($attr in $class.allProperties)
             .append("${attr.name}", this.${attr.getterName}())
-#end
-#foreach($associationEnd in $class.navigableConnectingEnds)
-## Do not append one of the two ends if bidirectional navigation. Comment out 1 end of 1:*, or end with lower alphabetical name.
-#if (!$umlUtils.isOwningEnd($associationEnd) && $associationEnd.otherEnd.navigable)
-            // Prevent recursive bidirectional relationship infinite loop
-            //.append("${associationEnd.name}", this.${associationEnd.getterName}())
-#else
-            .append("${associationEnd.name}", this.${associationEnd.getterName}())
-#end
 #end
             .toString();
     }
@@ -666,15 +653,14 @@ $connectingEnd.getDocumentation("     * ")
             return false;
         }
 
-#if ($class.generalization)
-        @SuppressWarnings("unchecked")
         final ${class.fullyQualifiedName} that = (${class.fullyQualifiedName})thatObject;
+
+#if ($class.generalization)
         return super.equalProperties(that)
 #set ($operator = "&& ")
 #elseif ($class.properties.empty)
         return true
 #else
-        final ${class.fullyQualifiedName} that = (${class.fullyQualifiedName})thatObject;
         return
 #set ($operator = "")
 #end
