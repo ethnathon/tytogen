@@ -12,24 +12,25 @@
 	<packaging>pom</packaging>
 	<name>Tyto AndroMDA Cartridges</name>
 	<scm>
+		<url>https://code.google.com/p/tytogen/source/browse/</url>
 		<connection>scm:svn:http://tytogen.googlecode.com/svn/andromda/cartridges/trunk</connection>
 		<developerConnection>scm:svn:https://tytogen.googlecode.com/svn/andromda/cartridges/trunk</developerConnection>
 	</scm>
 	<url>https://code.google.com/p/tytogen</url>
-	<!-- distributionManagement>
-		<repository>
-			<id>android-cartridge-deploy-repository</id>
-			<url>svn:https://android-cartridge-site.googlecode.com/svn/trunk/maven2</url>
-		</repository>
+	<distributionManagement>
 		<snapshotRepository>
-			<id>android-cartridge-snapshot-repository</id>
-			<url>svn:https://android-cartridge-site.googlecode.com/svn/trunk/maven2-snapshot</url>
+			<id>tytogen-nexus-snapshots</id>
+			<name>Sonatype Nexus Snapshots</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
 		</snapshotRepository>
-		<site>
-			<id>android-cartridge-site</id>
-			<url>svn:https://android-cartridge-site.googlecode.com/svn/trunk/site</url>
-		</site>
-	</distributionManagement-->
+		<repository>
+			<id>tytogen-nexus-staging</id>
+			<name>Nexus Release Repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+		<!-- <site> <id>android-cartridge-site</id> <url>svn:https://android-cartridge-site.googlecode.com/svn/trunk/site</url> 
+			</site> -->
+	</distributionManagement>
 	<issueManagement>
 		<system>GoogleIssues</system>
 		<url>https://code.google.com/p/tytogen/issues/list</url>
@@ -104,8 +105,40 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.4.1</version>
+				<configuration>
+					<releaseProfiles>release</releaseProfiles>
+					<!-- mavenExecutorId>forked-path</mavenExecutorId> <useReleaseProfile>false</useReleaseProfile> 
+						<arguments>-Psonatype-oss-release</arguments -->
+				</configuration>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
+				<plugin>
+					<artifactId>maven-clean-plugin</artifactId>
+					<version>${maven-clean-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${maven-compiler-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>${maven-gpg-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>${maven-javadoc-plugin.version}</version>
+				</plugin>
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>${maven-source-plugin.version}</version>
+				</plugin>
 				<plugin>
 					<groupId>org.andromda.maven.plugins</groupId>
 					<artifactId>andromda-maven-plugin</artifactId>
@@ -208,7 +241,13 @@
 		<module>andromda-webservice</module>
 	</modules>
 	<properties>
-	    <andromda.version>3.4</andromda.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<andromda.version>3.4</andromda.version>
+		<maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+		<maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+		<maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+		<maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
+		<maven-source-plugin.version>2.2.1</maven-source-plugin.version>
 		<maven.build.src>${project.basedir}/target/src</maven.build.src>
 		<java.src.dir>${project.build.sourceDirectory}</java.src.dir>
 		<test.src.dir>${project.basedir}/src/test</test.src.dir>
@@ -219,4 +258,51 @@
 		<downloadSources>true</downloadSources>
 		<createChecksum>true</createChecksum>
 	</properties>
+	<profiles>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar-no-fork</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<!-- version>1.1</version -->
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<prerequisites>
+		<maven>3.0.3</maven>
+	</prerequisites>
 </project>

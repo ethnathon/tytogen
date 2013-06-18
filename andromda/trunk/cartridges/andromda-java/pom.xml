@@ -2,7 +2,7 @@
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.andromda.cartridges</groupId>
+        <groupId>it.tyto.andromda.cartridges</groupId>
         <artifactId>andromda-cartridges</artifactId>
         <version>3.4.1-SNAPSHOT</version>
     </parent>
@@ -10,15 +10,6 @@
     <packaging>jar</packaging>
     <name>AndroMDA JavaCartridge</name>
     <description>Produces generic Java code, such as: value objects, enumerations, exceptions, interfaces, etc.</description>
-    <issueManagement>
-        <system>jira</system>
-        <url>http://www.andromda.org/jira/browse/JAVA</url>
-    </issueManagement>
-    <scm>
-        <connection>scm:svn:http://andromda.svn.sourceforge.net/svnroot/andromda/trunk/cartridges/andromda-java</connection>
-        <developerConnection>scm:svn:https://andromda.svn.sourceforge.net/svnroot/andromda/trunk/cartridges/andromda-java</developerConnection>
-        <url>http://andromda.svn.sourceforge.net/</url>
-    </scm>
     <dependencies>
         <!--XMLBindingAnnotations dependencies-->
         <dependency>
@@ -61,6 +52,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+
             <plugin>
                 <groupId>org.andromda.maven.plugins</groupId>
                 <artifactId>andromda-cartridge-plugin</artifactId>
@@ -91,9 +83,6 @@
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
