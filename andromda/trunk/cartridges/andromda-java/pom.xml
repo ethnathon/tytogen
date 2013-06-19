@@ -3,14 +3,19 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>it.tyto.andromda.cartridges</groupId>
-		<artifactId>andromda-cartridges</artifactId>
+		<groupId>it.tyto.tytogen.cartridges</groupId>
+		<artifactId>cartridges-parent</artifactId>
 		<version>3.4.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>andromda-java-cartridge</artifactId>
+	<artifactId>java-cartridge</artifactId>
 	<packaging>jar</packaging>
-	<name>AndroMDA JavaCartridge</name>
-	<description>Produces generic Java code, such as: value objects, enumerations, exceptions, interfaces, etc.</description>
+	<name>Tyto JavaCartridge</name>
+	<description>Produces generic Java code, such as: value objects, 
+	enumerations, exceptions, interfaces, etc.
+	This is a fork of the original project hosted at AndroMDA 
+    (http://www.andromda.org/). We kindly thank them for their wonderful job. 
+    If you're experiencing issues with our cartridge please post your 
+    problems here.</description>
 	<dependencies>
 		<!--XMLBindingAnnotations dependencies -->
 		<dependency>
