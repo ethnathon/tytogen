@@ -7,11 +7,11 @@
         <artifactId>andromda</artifactId>
 		<version>3.4</version>
     </parent>
-	<groupId>it.tyto.andromda.cartridges</groupId>
-    <artifactId>andromda-cartridges</artifactId>
+	<groupId>it.tyto.tytogen.cartridges</groupId>
+    <artifactId>cartridges-parent</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-	<name>Tyto AndroMDA Cartridges</name>
+	<name>Tyto Cartridges for AndroMDA</name>
     <scm>
 		<url>https://code.google.com/p/tytogen/source/browse/</url>
 		<connection>scm:svn:http://tytogen.googlecode.com/svn/andromda/cartridges/trunk</connection>
@@ -170,6 +170,7 @@
                                 <goal>test</goal>
                             </goals>
                             <configuration>
+                            	<skip>${skipTests}</skip>
                                 <configurationUri>file:${project.basedir}/conf/test/andromda.xml</configurationUri>
                             </configuration>
                         </execution>
@@ -247,8 +248,8 @@
         <module>andromda-java</module>
         <!-- module>andromda-jsf</module>
         <module>andromda-jsf/components</module -->
-        <!-- module>andromda-spring</module>
-        <module>andromda-webservice</module -->
+        <module>andromda-spring</module>
+        <module>andromda-webservice</module>
     </modules>
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
