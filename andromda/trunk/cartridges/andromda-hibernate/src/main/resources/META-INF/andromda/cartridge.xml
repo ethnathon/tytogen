@@ -12,7 +12,6 @@
     <templateObject name="stringUtils" className="org.apache.commons.lang.StringUtils"/>
     <templateObject name="collectionUtils" className="org.apache.commons.collections.CollectionUtils"/>
     <templateObject name="umlUtils" className="org.andromda.metafacades.uml.UMLMetafacadeUtils"/>
-    <templateObject name="entityUtils" className="org.andromda.metafacades.uml.EntityMetafacadeUtils"/>
     <templateObject name="hibernateUtils" className="org.andromda.cartridges.hibernate.HibernateUtils">
         <property reference="hibernateVersion"/>
         <property reference="hibernateXMLPersistence"/>
@@ -23,8 +22,6 @@
 
     <templatePostProcessor className="org.andromda.core.common.ImportBeautifierPostProcessorImpl"/>
 
-    <property reference="hibernateVersion"/>
-    <property reference="javaVersion"/>
     <property reference="securityRealm"/>
     <property reference="customTypesPackage"/>
     <!-- contains the package for the Hibernate user types -->
