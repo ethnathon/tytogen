@@ -2,23 +2,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>it.tyto.andromda.cartridges</groupId>
-        <artifactId>andromda-cartridges</artifactId>
+        <groupId>it.tyto.tytogen.cartridges</groupId>
+        <artifactId>cartridges-parent</artifactId>
         <version>3.4.1-SNAPSHOT</version>
     </parent>
-    <artifactId>andromda-hibernate-cartridge</artifactId>
+    <artifactId>hibernate-cartridge</artifactId>
     <packaging>jar</packaging>
-    <name>AndroMDA Hibernate Cartridge</name>
-    <description>Produces Hibernate entities optionally services implemented as Session EJB facades.</description>
-    <issueManagement>
-        <system>jira</system>
-        <url>http://www.andromda.org/jira/browse/HIB</url>
-    </issueManagement>
-    <scm>
-        <connection>scm:svn:http://andromda.svn.sourceforge.net/svnroot/andromda/trunk/cartridges/andromda-hibernate</connection>
-        <developerConnection>scm:svn:https://andromda.svn.sourceforge.net/svnroot/andromda/trunk/cartridges/andromda-hibernate</developerConnection>
-        <url>http://andromda.svn.sourceforge.net/</url>
-    </scm>
+    <name>Tyto Hibernate Cartridge</name>
+    <description>Produces Hibernate entities optionally services implemented 
+    as Session EJB facades.
+    This is a fork of the original project hosted at AndroMDA 
+    (http://www.andromda.org/). We kindly thank them for their wonderful job.</description>
     <dependencies>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
