@@ -139,20 +139,15 @@
 ##
 #macro (renderCompareToMethod $class $className $identifiers)
     /**
-     * @param other
-     * @return a negative integer, zero, or a positive integer as this object is less than, equal to, or greater than the specified object.
      * @see Comparable${esc.hash}compareTo
      */
-#if ($javaVersion.compareTo("1.6")>=0 && !$entity.generalization)
-    @Override
-#end
-    public int compareTo($className other)
+    public int compareTo($className o)
     {
         int cmp = 0;
 #if ($entity.compositeIdentifier)
         if (this.${entity.identifierGetterName}() != null)
         {
-            cmp = this.${entity.identifierGetterName}().compareTo(other.${entity.identifierGetterName}());
+            cmp = this.${entity.identifierGetterName}().compareTo(o.${entity.identifierGetterName}());
         }
 #elseif ($identifiers.size()==1)
 #set ($getter = "${identifiers.get(0).getterName}()")
@@ -160,13 +155,13 @@
 #if ($identifiers.get(0).type.primitive)
         if (this.$getter > 0)
         {
-         if ( this.${getter} == other.${getter} )
+         if ( this.${getter} == o.${getter} )
          {
             cmp = 0;
          }
          else
          {
-            if ( this.${getter} > other.${getter} )
+            if ( this.${getter} > o.${getter} )
             {
                cmp = 1;
             }
@@ -179,7 +174,7 @@
 #else
         if (this.$getter != null)
         {
-            cmp = this.${getter}.compareTo(other.${getter});
+            cmp = this.${getter}.compareTo(o.${getter});
         }
 #end
 #end
@@ -196,9 +191,9 @@
             {
 #if ($attribute.many)
                 // Compare Collection sizes for ordering
-                cmp = (cmp != 0 ? cmp : Math.abs(this.${attribute.getterName}().size()-other.${attribute.getterName}().size()));
+                cmp = (cmp != 0 ? cmp : Math.abs(this.${attribute.getterName}().size()-o.${attribute.getterName}().size()));
 #else
-                cmp = (cmp != 0 ? cmp : this.${attribute.getterName}().compareTo(other.${attribute.getterName}()));
+                cmp = (cmp != 0 ? cmp : this.${attribute.getterName}().compareTo(o.${attribute.getterName}()));
 #end
             }
 #*    *##end
@@ -292,10 +287,11 @@ $attribute.getDocumentation("     * ")
 ##
 ## Render AssociationOverrides for embedded object if associations exist on the embedded object
 ##
-#*        *##if (!$attribute.type.navigableConnectingEnds.empty)
+#*        *##if (!$attribute.type.associationEnds.empty)
     @javax.persistence.AssociationOverrides
     ({
-#*          *##foreach ($target in $attribute.type.navigableConnectingEnds)
+#*          *##foreach ($associationEnd in $attribute.type.associationEnds)
+#*            *##set ($target = $associationEnd.otherEnd)
 #*            *##if (!$target.type.compositePrimaryKeyPresent)
         @javax.persistence.AssociationOverride(name = "$target.name", joinColumns = @javax.persistence.JoinColumn(name = "${target.columnName}_$stringUtils.upperCase($target.name)"#if ($associationEnd.columnDefinition), columnDefinition = "${associationEnd.columnDefinition}"#end))#if($velocityCount != $attribute.type.associationEnds.size()),#end
 
@@ -504,15 +500,15 @@ $target.getDocumentation("     * ")
     )
 #*      *##end
 #*      *##if ($target.map)
-#set($collectionIndexName="")
-#set($collectionIndexName=$target.findTaggedValue("andromda_persistence_collection_index"))
-    @javax.persistence.MapKey#if ($stringUtils.isNotBlank($collectionIndexName))(name = "$collectionIndexName")#end
+    @javax.persistence.MapKey#if ($target.hasTaggedValue("andromda_persistence_collection_index"))(name = "$target.collectionIndexName")#end
 
 #*      *##else
-#set($orderBy="")
-#set($orderBy=$target.findTaggedValue("andromda_persistence_orderBy"))
-#*        *##if ($stringUtils.isNotBlank(${orderBy}))
-    @javax.persistence.OrderBy("${orderBy}")
+#*        *##if ($target.hasTaggedValue("andromda_persistence_orderBy"))
+#*          *##if ($stringUtils.isNotBlank(${target.orderByClause}))
+    @javax.persistence.OrderBy("${target.orderByClause}")
+#*          *##else
+    @javax.persistence.OrderBy
+#*          *##end
 #*        *##elseif ($hibernateExtensionEnabled)
 ##
 ## Override the Hibernate foreign key constraint name
@@ -639,15 +635,15 @@ $target.getDocumentation("     * ")
 #*        *##end
 #*      *##end
 #*      *##if ($target.map)
-#set($collectionIndexName="")
-#set($collectionIndexName=$target.findTaggedValue("andromda_persistence_collection_index"))
-    @javax.persistence.MapKey#if ($collectionIndexName)(name = "${collectionIndexName}")#end
+    @javax.persistence.MapKey#if ($target.hasTaggedValue("andromda_persistence_collection_index"))(name = "${target.collectionIndexName}")#end
 
 #*      *##else
-#set($orderBy="")
-#set($orderBy=$target.findTaggedValue("andromda_persistence_orderBy"))
-#*        *##if ($stringUtils.isNotBlank(${orderBy}))
-    @javax.persistence.OrderBy("${orderBy}")
+#*        *##if ($target.hasTaggedValue("andromda_persistence_orderBy"))
+#*          *##if ($stringUtils.isNotBlank(${target.orderByClause}))
+    @javax.persistence.OrderBy("${target.orderByClause}")
+#*          *##else
+    @javax.persistence.OrderBy
+#*          *##end
 #*        *##elseif ($hibernateExtensionEnabled)
 ##
 ## Only add the IndexColumn annotation if Hibernate extensions are enabled
