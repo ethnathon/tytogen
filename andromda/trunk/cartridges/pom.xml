@@ -11,7 +11,7 @@
     <artifactId>cartridges-parent</artifactId>
 	<version>3.4.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-	<name>Tyto Cartridges for AndroMDA</name>
+	<name>Tyto Cartridges for AndroMDA code generator</name>
     <scm>
 		<url>https://code.google.com/p/tytogen/source/browse/</url>
 		<connection>scm:svn:http://tytogen.googlecode.com/svn/andromda/cartridges/trunk</connection>
@@ -246,10 +246,10 @@
 		<!-- module>andromda-meta</module -->
         <module>andromda-hibernate</module>
         <module>andromda-java</module>
-        <!-- module>andromda-jsf</module>
-        <module>andromda-jsf/components</module -->
+        <!-- module>andromda-jsf</module-->
+        <module>jsf-components</module>
         <module>andromda-spring</module>
-        <module>andromda-webservice</module>
+        <!-- module>andromda-webservice</module -->
     </modules>
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

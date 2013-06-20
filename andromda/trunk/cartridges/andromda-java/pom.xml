@@ -46,7 +46,6 @@
 	<build>
 		<!-- UML2 test model output does not compile due to ParameterTemplateFacade 
 			issues -->
-		<sourceDirectory>src/main/java</sourceDirectory>
 		<testSourceDirectory>target/cartridge-test/actual</testSourceDirectory>
 		<plugins>
 			<plugin>
@@ -71,33 +70,6 @@
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-cartridge-plugin</artifactId>
-				<version>${andromda.version}</version>
-				<executions>
-					<execution>
-						<id>uml14</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<configuration>
-							<configurationUri>file:${project.basedir}/conf/test/andromda.xml</configurationUri>
-						</configuration>
-					</execution>
-					<execution>
-						<id>uml2</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-						<configuration>
-							<actualDirectory>${project.build.directory}/cartridge-test/actualUML2</actualDirectory>
-							<expectedDirectory>${project.build.directory}/cartridge-test/expectedUML2</expectedDirectory>
-							<expectedOutputArchive>${project.basedir}/src/test/expected/cartridge-uml2.zip</expectedOutputArchive>
-							<configurationUri>file:${project.basedir}/conf/test/andromdaUML2.xml</configurationUri>
-							<reportDirectory>${project.build.directory}/cartridge-test/reportsUML2</reportDirectory>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
