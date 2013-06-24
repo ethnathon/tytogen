@@ -9,18 +9,7 @@
     <repository name="netBeansMDR">
       <models>
         <model>
-          <uri>jar:file:${test.src.dir}/uml/HibernateCartridgeTestModel.xml.zip!/HibernateCartridgeTestModel.xml</uri>
-          <moduleSearchLocations>
-            <location patterns="**/src/main/uml/*.xml.zip">${project.basedir}/../../profiles/uml-1.4</location>
-            <location patterns="**/*.xml">jar:file:${settings.localRepository}/org/omg/profiles/uml14/UML_Standard_Profile/1.0.1/UML_Standard_Profile-1.0.1.jar!/</location>
-          </moduleSearchLocations>
-    <!--repository name="emf-uml22">
-      <models>
-         <model type="emf-uml22">
-           <uri>file:${test.src.dir}/uml/HibernateCartridgeTestModel.uml</uri>
-           <moduleSearchLocations>
-               <location patterns="*.uml,*.epx,*.emx">${project.basedir}/src/test/uml2</location>
-           </moduleSearchLocations-->
+          <uri>${test.model.uri}</uri>
         </model>
       </models>
     </repository>
