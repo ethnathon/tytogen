@@ -553,10 +553,6 @@ public class WebServiceUtils
                     }
                 }
             }
-            else if (element.getName().endsWith("[]"))
-            {
-                // Ignore modeled array types - assume non-array type is already in the package
-            }
             else
             {
                 // Log the type so we can extend this logic later...
@@ -837,10 +833,6 @@ public class WebServiceUtils
                                 }
                             }
                         }
-                    }
-                    else if (element.getValidationName() != null && element.getValidationName().endsWith("[]"))
-                    {
-                        // Ignore modeled array types - assume non-array type is already in the package
                     }
                     else
                     {
@@ -1404,7 +1396,7 @@ public class WebServiceUtils
                     }*/
                 }
                 // TODO remove 'else' and add ParameterFacade logic type
-                if (element instanceof ClassifierFacade)
+                else if (element instanceof ClassifierFacade)
                 {
                     ClassifierFacade type = (ClassifierFacade)element;
                     facade = getType(type);
@@ -1594,10 +1586,6 @@ public class WebServiceUtils
                             logger.debug("getPackageTypes packageName=" + packageName + " add NavOtherEnd " + type.getPackageName() + '.' + type.getName());
                         }
                     }
-                }
-                else if (facade != null && facade.getName().endsWith("[]"))
-                {
-                    // Ignore modeled array types - assume non-array type is already in the package
                 }
                 else
                 {
@@ -2068,8 +2056,7 @@ public class WebServiceUtils
                     if (literal instanceof EnumerationLiteralFacade)
                     {
                         EnumerationLiteralFacade enumLiteral = (EnumerationLiteralFacade) literal;
-                        // Use the literal name to retrieve the value with .valueOf(). XML version has only the name.
-                        defaultValue = enumLiteral.getName();
+                        defaultValue = enumLiteral.getValue();
                     }
                     else if (literal instanceof AttributeFacade)
                     {
@@ -2091,7 +2078,7 @@ public class WebServiceUtils
                 }
                 isEnumeration = true;
             }
-            if (useMany && (isMany==null || isMany.booleanValue()))
+            if (useMany && (isMany==null || isMany ))
             {
                 if (!typeName.startsWith("java.util"))
                 {
@@ -2143,10 +2130,6 @@ public class WebServiceUtils
             else if ("java.util.Calendar".equals(typeName))
             {
                 rtn = "java.util.Calendar.getInstance()";
-            }
-            else if ("org.joda.time.LocalTime".equals(typeName))
-            {
-                rtn = "new org.joda.time.LocalTime(1, 1)";
             }
             else if ("char".equals(typeName))
             {
