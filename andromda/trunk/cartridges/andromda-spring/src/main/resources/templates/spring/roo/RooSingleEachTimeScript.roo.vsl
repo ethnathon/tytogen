@@ -2,7 +2,7 @@
 #set ($generatedFile = "${projectId}SingleEachTime.roo")
 // Create AndroMDA ${projectId} sample using Spring Roo. This script should be run every time the model changes
 // To run: %ROO_HOME%\bin\roo.bat script --file $generatedFile
-// Generated on $springUtils.date
+// Generated
 
 #if (!$entities.empty)
 // Persistence scaffolding for $entities.size() entities

@@ -2,7 +2,7 @@
 #set ($generatedFile = "${projectId}SingleOnce.roo")
 // Create AndroMDA ${projectId} using Spring Roo. This file is one-time setup for a single project module containing persistence and web
 // To run: %ROO_HOME%\bin\roo.bat script --file $generatedFile
-// Generated on $springUtils.date
+// Generated
 
 // $entities.size() $entities.get(0) $model
 project --topLevelPackage $entityUtils.getTopLevelPackage($entities, false) --parent org.andromda.maven:maven-parent:3.5-SNAPSHOT  --packaging WAR
