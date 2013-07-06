@@ -8,11 +8,11 @@
 #set ($quote='"')
 #set ($base=$element.findTaggedValue("andromda_validation_baseType"))
 ##              <!-- type=$type base=$base element=$element -->
-#if ($stringUtils.isBlank($base))
+#if ($stringUtils.isEmpty($base))
 #set ($base=$type)
 #end
 #set ($fixed=$element.findTaggedValue("andromda_validation_fixed"))
-#if (!$stringUtils.isBlank($fixed))
+#if (!$stringUtils.isEmpty($fixed))
 #set ($fixed=" fixed=${quote}true${quote}")
 #end
 #set ($length=$element.findTaggedValue("andromda_validation_length"))
@@ -30,38 +30,38 @@
               <xs:simpleType>
                 <xs:restriction base="$base">
 ##if ($base.equals("xs:string"))
-#if (!$stringUtils.isBlank($length))
+#if (!$stringUtils.isEmpty($length))
                   <xs:length value="$length"$fixed/>
 #else
-#if (!$stringUtils.isBlank($minLength))
+#if (!$stringUtils.isEmpty($minLength))
                   <xs:minLength value="$minLength"/>
 #end
-#if (!$stringUtils.isBlank($maxLength))
+#if (!$stringUtils.isEmpty($maxLength))
                   <xs:maxLength value="$maxLength"/>
 #end
 #end
-#if (!$stringUtils.isBlank($pattern))
+#if (!$stringUtils.isEmpty($pattern))
                   <xs:pattern value="$pattern"/>
 #end
-#if (!$stringUtils.isBlank($whiteSpace) && ($whiteSpace.equals("preserve") || $whiteSpace.equals("replace") || $whiteSpace.equals("collapse")))
+#if (!$stringUtils.isEmpty($whiteSpace) && ($whiteSpace.equals("preserve") || $whiteSpace.equals("replace") || $whiteSpace.equals("collapse")))
                   <xs:whiteSpace value="$whiteSpace"/>
 #end
 ##else
-#if (!$stringUtils.isBlank($maxInclusive))
+#if (!$stringUtils.isEmpty($maxInclusive))
                   <xs:maxInclusive value="$maxInclusive"/>
-#elseif (!$stringUtils.isBlank($maxExclusive))
+#elseif (!$stringUtils.isEmpty($maxExclusive))
                   <xs:maxExclusive value="$maxExclusive"/>
 #end
-#if (!$stringUtils.isBlank($minExclusive))
+#if (!$stringUtils.isEmpty($minExclusive))
                   <xs:minExclusive value="$minExclusive"/>
 #end
-#if (!$stringUtils.isBlank($minInclusive))
+#if (!$stringUtils.isEmpty($minInclusive))
                   <xs:minInclusive value="$minInclusive"/>
 #end
-#if (!$stringUtils.isBlank($totalDigits))
+#if (!$stringUtils.isEmpty($totalDigits))
                   <xs:totalDigits value="$totalDigits"/>
 #end
-#if (!$stringUtils.isBlank($fractionDigits))
+#if (!$stringUtils.isEmpty($fractionDigits))
                   <xs:fractionDigits value="$fractionDigits"/>
 #end
 ##end
