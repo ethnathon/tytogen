@@ -2,14 +2,17 @@
          xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>it.tyto.andromda.cartridges</groupId>
-        <artifactId>andromda-cartridges</artifactId>
+        <groupId>it.tyto.tytogen.cartridges</groupId>
+        <artifactId>cartridges-parent</artifactId>
         <version>3.4.1-SNAPSHOT</version>
     </parent>
-    <artifactId>andromda-spring-cartridge</artifactId>
+    <artifactId>spring-cartridge</artifactId>
     <packaging>jar</packaging>
-    <name>AndroMDA Spring Cartridge</name>
-    <description>Generates Spring with Hibernate support</description>
+    <name>Tyto Spring Cartridge</name>
+    <description>Generates Spring with Hibernate support.    This is a fork of the original project hosted at AndroMDA 
+    (http://www.andromda.org/). We kindly thank them for their wonderful job. 
+    If you're experiencing issues with our cartridges please post your 
+    problems here.</description>
     <dependencies>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
@@ -94,8 +97,8 @@
     <properties>
         <uml2.model.uri>file:${src.dir}/uml2/SpringMetafacadeModel.uml</uml2.model.uri>
         <uml2.test.model.uri>file:${test.src.dir}/uml2/SpringCartridgeTestModel.uml</uml2.test.model.uri>
-        <model.uri>jar:file:${src.dir}/uml/SpringMetafacadeModel.xml.zip!/SpringMetafacadeModel.xml</model.uri>
-        <test.model.uri>jar:file:${test.src.dir}/uml/SpringCartridgeTestModel.xml.zip!/SpringCartridgeTestModel.xml</test.model.uri>
+        <model.uri>jar:file:${src.dir}/uml/SpringMetafacadeModel.zargo!/SpringMetafacadeModel.xmi</model.uri>
+        <test.model.uri>jar:file:${test.src.dir}/uml/SpringCartridgeTestModel.zargo!/SpringCartridgeTestModel.xmi</test.model.uri>
         <!--maven.test.failure.ignore>true</maven.test.failure.ignore-->
     </properties>
 </project>
