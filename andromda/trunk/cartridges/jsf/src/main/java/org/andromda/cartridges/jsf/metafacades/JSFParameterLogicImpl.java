@@ -1298,4 +1298,12 @@ public class JSFParameterLogicImpl
         }
         return result;
     }
+
+	@Override
+	protected String handleGetZone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+    
+    
 }
