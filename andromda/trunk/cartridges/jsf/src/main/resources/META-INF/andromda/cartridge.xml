@@ -88,6 +88,7 @@
     <property reference="controllerScope"/>
     <property reference="navigationBeanScope"/>
     <property reference="jsfVersion"/>
+    <property reference="horizontalMenu"/>
 
     <!-- cartridge-property merge-point -->
 
@@ -128,6 +129,8 @@
     </condition>
     <condition name="navigationUsesRedirect">$navigationUsesRedirect.equalsIgnoreCase("true")</condition>
     <condition name="jsfVersion1">$jsfVersion.trim().equalsIgnoreCase('1.x')</condition>
+    <condition name="horizontalMenu">#if ($horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
+    <condition name="verticalMenu">#if (not $horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
 
     <!-- condition merge-point-->
 
@@ -667,6 +670,28 @@
         generateEmptyFiles="true"
         outputCondition="standalone"/>
 
+	<template
+        path="templates/jsf/views/facelets/layout/verticalMenu.xhtml.vsl"
+        outputPattern="layout/verticalMenu.xhtml"
+        outlet="views"
+        overwrite="true"
+        generateEmptyFiles="true"
+        outputCondition="verticalMenu"/>
+        
+	<template
+        path="templates/jsf/views/facelets/layout/horizontalMenu.xhtml.vsl"
+        outputPattern="layout/horizontalMenu.xhtml"
+        outlet="views"
+        overwrite="true"
+        outputToSingleFile="true"
+        outputCondition="horizontalMenu">
+        <modelElements>
+            <modelElement variable="useCases">
+                <type name="org.andromda.metafacades.uml.FrontEndUseCase"/>
+            </modelElement>
+        </modelElements>
+    </template>
+    
     <template
         path="templates/jsf/views/facelets/layout/registration-layout.xhtml.vsl"
         outputPattern="layout/registration-layout.xhtml"
@@ -1130,7 +1155,7 @@
         overwrite="true"
         generateEmptyFiles="true"
         outputCondition="portlet"/>
-
+    
     <template
         path="templates/jsf/views/portlet/messages.xhtml.vsl"
         outputPattern="layout/messages.xhtml"

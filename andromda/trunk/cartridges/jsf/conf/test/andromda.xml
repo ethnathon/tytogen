@@ -54,6 +54,7 @@
         <property name="custom-resources">${test.output.dir}</property>
         <property name="paginationResultClassName">org.andromda.spring.cartridge.PaginationResult</property>
         <property name="validationExtension">commons-validator</property>
+        
       </properties>
     </namespace>
   </namespaces>
