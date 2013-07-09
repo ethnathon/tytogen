@@ -78,6 +78,8 @@ public class JSFProfile
     public static final String TAGGEDVALUE_TABLE_EXPORT = PROFILE.get("TABLE_EXPORT");
     /** TABLE_SORTABLE */
     public static final String TAGGEDVALUE_TABLE_SORTABLE = PROFILE.get("TABLE_SORTABLE");
+    /** ZONE */
+    public static final String TAGGEDVALUE_ZONE = PROFILE.get("ZONE");
 
     /* ----------------- Data Types -------------------- */
     /** CHARACTER_TYPE */

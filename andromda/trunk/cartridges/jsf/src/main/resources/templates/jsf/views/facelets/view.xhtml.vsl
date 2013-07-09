@@ -29,7 +29,7 @@
 #end
 #foreach ($action in $view.actions)
 #if (!$action.tableLink)
-        <ui:include src="${action.viewFragmentPath}.xhtml"/>
+        #viewAction($action 'ciao')
 #end
 #end
 #foreach ($variable in $view.variables)

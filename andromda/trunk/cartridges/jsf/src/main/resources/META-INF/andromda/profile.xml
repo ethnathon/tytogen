@@ -511,6 +511,12 @@
                     <value>false</value>
                 </allowedValues>
             </element>
+            <element name="ZONE">
+                <documentation>
+                    Name of the zone in the webpage, where the element will be printed
+                </documentation>
+                <value>andromda_presentation_web_view_zone</value>
+            </element>
         </elementGroup>
         <elementGroup name="Data Types">
             <element name="CHARACTER_TYPE">

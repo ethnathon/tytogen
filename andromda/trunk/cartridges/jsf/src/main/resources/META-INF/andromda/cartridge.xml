@@ -12,6 +12,7 @@
         <macrolibrary name="templates/jsf/configuration/validation.xml.vm"/>
         <macrolibrary name="templates/jsf/flow/ViewPopulator.java.vm"/>
         <macrolibrary name="templates/jsf/views/portlet/renderPortletActionFormInput.vm"/>
+        <macrolibrary name="templates/jsf/views/facelets/view-action.vm"/>
         <!-- cartridge-macrolibrary merge-point-->
     </templateEngine>
 
@@ -784,7 +785,7 @@
             </modelElement>
         </modelElements>
     </template>
-
+<!-- 
     <template
         path="templates/jsf/views/facelets/view-action.xhtml.vsl"
         outputPattern="${action.viewFragmentPath}.xhtml"
@@ -800,7 +801,7 @@
             </modelElement>
         </modelElements>
     </template>
-
+-->
     <template
         path="templates/jsf/views/facelets/view-table.xhtml.vsl"
         outputPattern="${table.view.path}-${table.name}.xhtml"
