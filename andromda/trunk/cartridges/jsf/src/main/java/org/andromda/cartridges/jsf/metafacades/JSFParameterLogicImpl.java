@@ -1301,8 +1301,11 @@ public class JSFParameterLogicImpl
 
 	@Override
 	protected String handleGetZone() {
-		// TODO Auto-generated method stub
-		return null;
+		String zone=(String)this.findTaggedValue(JSFProfile.TAGGEDVALUE_ZONE);
+		if(zone!=null){
+			return zone;
+		}
+		return "";
 	}
     
     
