@@ -279,7 +279,7 @@
                 onkeydown="return #{autocompleteVarName}.editKeydown(event);"
                 onchange="#{autocompleteVarName}.checkChangeEdit(); return true;"
                 onblur="window.clearTimeout(#{autocompleteVarName}.timeout); #{autocompleteVarName}.checkEmptyEdit();#{autocompleteVarName}.timeout=window.setTimeout('#{autocompleteVarName}.hideResultTable();',100);#{autocompleteVarName}.resetOrgValues();"
-                value="#{value}" converter="#{ajsfc:getConverter(itemConverterId)}">
+                value="#{value}" converter="#{ajsfc.getConverter(itemConverterId)}">
             </h:inputText>
             <tr:commandButton blocking="true" id="action" styleClass="autocomplete-button"
                 actionListener="#{locateBackingBean[locateActionListenerName]}" partialSubmit="true"
@@ -325,7 +325,7 @@
             
         </trh:script>
     </tr:subform>
-    <trh:script partialTriggers="#{ajsfc:splitPartialTriggers(partialTriggers)}">
+    <trh:script partialTriggers="#{ajsfc.splitPartialTriggers(partialTriggers)}">
         if(typeof #{flagIsPPR} == 'undefined'){//only occurs if the page was refreshed
             #{flagIsPPR} = true;
         } else { //PPR

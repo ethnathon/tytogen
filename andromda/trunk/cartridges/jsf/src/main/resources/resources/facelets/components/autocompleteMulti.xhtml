@@ -230,7 +230,7 @@
                 <f:facet name="footer">
                     <tr:selectManyListbox id="visibleList" simple="true" contentStyle="width:100%;border-top-width:0px;" valuePassThru="true">                
                         <c:forEach var="item" items="#{value}">
-                            <f:selectItem itemValue="#{item}" itemLabel="#{ajsfc:valueFromConverter(item,itemConverterId)}" />
+                            <f:selectItem itemValue="#{item}" itemLabel="#{ajsfc.valueFromConverter(item,itemConverterId)}" />
                         </c:forEach>
                     </tr:selectManyListbox>
                 </f:facet>

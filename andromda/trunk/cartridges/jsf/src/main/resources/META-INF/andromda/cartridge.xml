@@ -12,7 +12,11 @@
         <macrolibrary name="templates/jsf/configuration/validation.xml.vm"/>
         <macrolibrary name="templates/jsf/flow/ViewPopulator.java.vm"/>
         <macrolibrary name="templates/jsf/views/portlet/renderPortletActionFormInput.vm"/>
-        <macrolibrary name="templates/jsf/views/facelets/view-action.vm"/>
+        <macrolibrary name="templates/jsf/views/facelets/viewAction.vm"/>
+        <macrolibrary name="templates/jsf/views/facelets/viewHiddenParameters.vm"/>
+        <macrolibrary name="templates/jsf/views/facelets/viewTable.vm"/>
+        <macrolibrary name="templates/jsf/views/facelets/viewVariables.vm"/>
+        
         <!-- cartridge-macrolibrary merge-point-->
     </templateEngine>
 
@@ -785,7 +789,7 @@
             </modelElement>
         </modelElements>
     </template>
-<!-- 
+<!--  CONVERTITE IN MACRO CHIAMATE DA view.xhtml.vsl
     <template
         path="templates/jsf/views/facelets/view-action.xhtml.vsl"
         outputPattern="${action.viewFragmentPath}.xhtml"
@@ -801,7 +805,7 @@
             </modelElement>
         </modelElements>
     </template>
--->
+
     <template
         path="templates/jsf/views/facelets/view-table.xhtml.vsl"
         outputPattern="${table.view.path}-${table.name}.xhtml"
@@ -847,7 +851,7 @@
             </modelElement>
         </modelElements>
     </template>
-
+-->
     <template
         path="templates/jsf/views/facelets/preferences/preferences.xhtml.vsl"
         outputPattern="preferences/preferences.xhtml"
