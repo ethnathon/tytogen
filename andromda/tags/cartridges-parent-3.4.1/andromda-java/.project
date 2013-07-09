@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+  <name>java-cartridge</name>
+  <comment>Produces generic Java code, such as: value objects, 
+	enumerations, exceptions, interfaces, etc.
+	This is a fork of the original project hosted at AndroMDA 
+    (http://www.andromda.org/). We kindly thank them for their wonderful job. 
+    If you&apos;re experiencing issues with our cartridge please post your 
+    problems here. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects/>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>

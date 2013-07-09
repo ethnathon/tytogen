@@ -1,0 +1,71 @@
+<andromda xmlns="http://andromda.org/core/configuration">
+  <properties>
+    <property name="failOnValidationErrors">false</property>
+  </properties>
+  <repositories>
+    <repository name="emf-uml22">
+      <models>
+        <model type="emf-uml22">
+          <uri>${uml2.test.model.uri}</uri>
+          <moduleSearchLocations>
+            <location patterns="*.uml,*.epx,*.emx">${project.basedir}/src/test/uml2</location>
+          </moduleSearchLocations>
+        </model>
+      </models>
+    </repository>
+  </repositories>
+  <namespaces>
+    <!--namespace property values used by ALL cartridges-->
+    <!--Variable references refer to properties defined in root pom.xml or mda/pom.xml files-->
+    <!--See http://www.andromda.org/docs/andromda-metafacades/andromda-uml-metafacades/andromda-metafacades-emf-uml2/namespace.html-->
+    <namespace name="default">
+      <properties>
+        <property name="languageMappingsUri">Java</property>
+        <property name="wrapperMappingsUri">JavaWrapper</property>
+        <!--Use enums, strongly typed collections with templates, and @annotation markups-->
+        <property name="enableTemplating">true</property>
+        <property name="enableAnnotations">true</property>
+        <property name="typeSafeEnumsEnabled">true</property>
+        <property name="overwrite">true</property>
+        <!--Automatically makes English names plural (generally adds s if missing). 
+        Set to false if using Jaxb/CXF 2.0 or simpleBindingMode=false.-->
+        <property name="pluralizeAssociationEndNames">true</property>
+        <property name="pluralizeAttributeNames">true</property>
+        <property name="pluralizeParameterNames">true</property>
+        <!--Output WSDL XSD and JAXB object attributes as XML attributes instead of XML Elements-->
+        <property name="xmlAttributes">true</property>
+        <!--Jaxb2 Adapter classes for customized parse/print, non-standard Java datatypes-->
+        <property name="XMLDateAdapter"></property>
+        <property name="XMLDateTimeAdapter"></property>
+        <property name="XMLTimeAdapter"></property>
+        <!--property name="XMLIntegerAdapter"></property>
+        <property name="XMLLongAdapter"></property-->
+        <property name="XMLBooleanAdapter"></property>
+        <property name="persistenceContainerName">jboss</property>
+        <!--Override default @todo to set to Eclipse default>
+        <property name="toDoTag">TODO</property-->
+      </properties>
+    </namespace>
+    <namespace name="java">
+      <properties>
+        <property name="overwrite">true</property>
+        <!--ValueObjects have JAXB2 XmlAttribute/XmlElement annotations. Default false-->
+        <property name="XMLBindingAnnotations">true</property>
+        <!--Return reference to 'this' from set() methods, to chain .set() methods when creating object. Default false.
+        <property name="generateChainedSetters">true</property-->
+        <property name="useArraysForMultiplicitiesOfTypeMany">false</property>
+        <property name="generateEqualPropertiesMethod">true</property>
+        <property name="services">${uml2.output.dir}</property>
+        <property name="service-impls">${uml2.output.dir}</property>
+        <property name="value-objects">${uml2.output.dir}</property>
+        <property name="exceptions">${uml2.output.dir}</property>
+        <property name="enumerations">${uml2.output.dir}</property>
+        <property name="interfaces">${uml2.output.dir}</property>
+        <property name="interface-impls">${uml2.output.dir}</property>
+        <property name="mergeMappingsUri">file:${test.src.dir}/mappings/MergeMappings.xml</property>
+        <property name="useArraysForMultiplicitiesOfTypeMany">false</property>
+        <property name="generateEqualPropertiesMethod">true</property>
+      </properties>
+    </namespace>
+  </namespaces>
+</andromda>
