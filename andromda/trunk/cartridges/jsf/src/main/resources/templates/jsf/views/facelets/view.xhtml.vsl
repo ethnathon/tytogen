@@ -4,7 +4,8 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:c="http://java.sun.com/jstl/core">
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:tr="http://myfaces.apache.org/trinidad">
 
 #if ($view.useCase.registrationUseCase)
 #set ($layout = "/layout/registration-layout.xhtml")
@@ -25,16 +26,16 @@
     </ui:define>
     <ui:define name="content">
 #if ($view.nonTableVariablesPresent)
-        <ui:include src="${view.path}-vars.xhtml"/>
+        #viewVariables($view 'variables')
 #end
 #foreach ($action in $view.actions)
 #if (!$action.tableLink)
-        #viewAction($action 'ciao')
+        #viewAction($action 'action')
 #end
 #end
 #foreach ($variable in $view.variables)
 #if ($variable.table)
-        <ui:include src="${view.path}-${variable.name}.xhtml"/>
+        #viewTable($variable 'tables')
 #end
 #end
     </ui:define>

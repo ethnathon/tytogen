@@ -56,7 +56,7 @@
 #end
         <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="false" readOnly="false"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end>
             <f:converter converterId="${parameter.type.fullyQualifiedName}"/>
-            <f:selectItems value="#{ajsfc:getEnumSelectItems('${parameter.type.messageKey}.','${parameter.type.fullyQualifiedName}')}"/>
+            <f:selectItems value="#{ajsfc.getEnumSelectItems('${parameter.type.messageKey}.','${parameter.type.fullyQualifiedName}')}"/>
         </tr:$selectBoxType>
 #elseif(!$parameter.inputFile && !$parameter.inputHidden)
         <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="false" readOnly="false"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end>
@@ -193,7 +193,7 @@
                     <tr:outputText value="#{messages['$member.messageKey']}"/>
                 </f:facet>
 #if($member.type.enumeration)
-                <tr:outputText value="#{ajsfc:getEnumMessage('${member.type.messageKey}.',row.${member.name})}">
+                <tr:outputText value="#{ajsfc.getEnumMessage('${member.type.messageKey}.',row.${member.name})}">
 #else
                 <tr:outputText value="#{row.${member.name}}">
 #end
@@ -241,7 +241,7 @@
 #end
             <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$field.messageKey']}:" required="$field.required" readOnly="$field.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end>
                 <f:converter converterId="${field.type.fullyQualifiedName}"/>
-                <f:selectItems value="#{ajsfc:getEnumSelectItems('${field.type.messageKey}.','${field.type.fullyQualifiedName}')}"/>
+                <f:selectItems value="#{ajsfc.getEnumSelectItems('${field.type.messageKey}.','${field.type.fullyQualifiedName}')}"/>
             </tr:$selectBoxType>
 #else
 #renderActionInput($field "")
