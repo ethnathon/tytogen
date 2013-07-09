@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.andromda</groupId>
@@ -7,13 +8,13 @@
 	</parent>
 	<groupId>it.tyto.tytogen.cartridges</groupId>
 	<artifactId>cartridges-parent</artifactId>
-	<version>3.4.1</version>
+	<version>3.4.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Tyto Cartridges for AndroMDA code generator</name>
 	<scm>
-		<url>https://code.google.com/p/tytogen/source/browse/tags/cartridges-parent-3.4.1</url>
-		<connection>scm:svn:http://tytogen.googlecode.com/svn/andromda/cartridges/tags/cartridges-parent-3.4.1</connection>
-		<developerConnection>scm:svn:https://tytogen.googlecode.com/svn/andromda/cartridges/tags/cartridges-parent-3.4.1</developerConnection>
+		<url>https://code.google.com/p/tytogen/source/browse/</url>
+		<connection>scm:svn:http://tytogen.googlecode.com/svn/andromda/trunk/cartridges</connection>
+		<developerConnection>scm:svn:https://tytogen.googlecode.com/svn/andromda/trunk/cartridges</developerConnection>
 	</scm>
 	<url>https://code.google.com/p/tytogen</url>
 	<distributionManagement>
