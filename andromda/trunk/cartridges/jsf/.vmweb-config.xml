@@ -1,0 +1,8 @@
+<config>
+	<context-values>
+		<resource path="src/main/resources/templates/jsf/views/facelets/view.xhtml.vsl">
+			<value key="action" object-class="org.andromda.cartridges.jsf.metafacades.JSFActionLogicImpl"/>
+			<value key="view" object-class="org.andromda.cartridges.jsf.metafacades.JSFViewLogicImpl"/>
+		</resource>
+	</context-values>
+</config>
