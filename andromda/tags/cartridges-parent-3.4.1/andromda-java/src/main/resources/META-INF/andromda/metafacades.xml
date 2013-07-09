@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<metafacades>
+    <property reference="interfaceImplementationNamePattern"/>
+    <metafacade class="org.andromda.cartridges.java.metafacades.JavaClassLogicImpl"/>
+</metafacades>

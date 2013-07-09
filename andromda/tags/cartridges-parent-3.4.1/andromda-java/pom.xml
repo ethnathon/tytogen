@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.tyto.tytogen.cartridges</groupId>
+		<artifactId>cartridges-parent</artifactId>
+		<version>3.4.1</version>
+	</parent>
+	<artifactId>java-cartridge</artifactId>
+	<packaging>jar</packaging>
+	<name>Tyto JavaCartridge</name>
+	<description>Produces generic Java code, such as: value objects, 
+	enumerations, exceptions, interfaces, etc.
+	This is a fork of the original project hosted at AndroMDA 
+    (http://www.andromda.org/). We kindly thank them for their wonderful job. 
+    If you're experiencing issues with our cartridge please post your 
+    problems here.</description>
+	<dependencies>
+		<!--XMLBindingAnnotations dependencies -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.7.1</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+			<version>2.2.7</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
+	<build>
+		<!-- UML2 test model output does not compile due to ParameterTemplateFacade 
+			issues -->
+		<testSourceDirectory>target/cartridge-test/actual</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.andromda.maven.plugins</groupId>
+				<artifactId>andromda-maven-plugin</artifactId>
+				<dependencies>
+					<dependency>
+						<groupId>org.andromda.cartridges</groupId>
+						<artifactId>andromda-meta-cartridge</artifactId>
+						<version>${andromda.version}</version>
+						<exclusions>
+							<exclusion>
+								<groupId>org.andromda.cartridges</groupId>
+								<artifactId>andromda-java-cartridge</artifactId>
+							</exclusion>
+						</exclusions>
+					</dependency>
+					<!-- dependency> <groupId>org.andromda.cartridges</groupId> <artifactId>andromda-java-cartridge</artifactId> 
+						<version>${andromda.version}</version> </dependency -->
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>org.andromda.maven.plugins</groupId>
+				<artifactId>andromda-cartridge-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>xml-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+	<properties>
+		<uml2.output.dir>${project.basedir}/target/cartridge-test/actualUML2</uml2.output.dir>
+		<uml2.model.uri>file:${src.dir}/uml2/JavaMetafacadeModel.uml</uml2.model.uri>
+		<uml2.test.model.uri>file:${test.src.dir}/uml2/JavaCartridgeTestModel.uml</uml2.test.model.uri>
+		<!--uml2.test.model.uri>jar:file:${test.src.dir}/uml2/JavaCartridgeTestModel.xml.zip!/JavaCartridgeTestModel.xml</uml2.test.model.uri -->
+		<uml14.output.dir>${project.basedir}/target/cartridge-test/actualUML14</uml14.output.dir>
+		<model.uri>jar:file:${src.dir}/uml/JavaMetafacadeModel.zargo!/JavaMetafacadeModel.xmi</model.uri>
+		<test.model.uri>jar:file:${test.src.dir}/uml/JavaCartridgeTestModel.xml.zip!/JavaCartridgeTestModel.xml</test.model.uri>
+	</properties>
+</project>
