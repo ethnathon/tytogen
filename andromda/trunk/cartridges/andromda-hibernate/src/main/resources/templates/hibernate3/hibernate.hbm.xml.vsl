@@ -72,7 +72,7 @@
             <meta attribute="field-description">$doc</meta>
 #end
             <key-many-to-one name="$sourceEnd.otherEnd.name" class="$sourceEnd.otherEnd.type.fullyQualifiedEntityImplementationName" >
-#foreach ($identifier in ${sourceEnd.otherEnd.type.identifiers})
+#foreach ($identifier in ${sourceEnd.otherEnd.type.identifierAttributes})
                 <column name="$identifier.columnName"#if ($generateDatabaseDependentCode) sql-type="$identifier.sqlType"#end#if ($stringUtils.isBlank($doc))/>#else>
                     <comment>$doc</comment>
                 </column>#end

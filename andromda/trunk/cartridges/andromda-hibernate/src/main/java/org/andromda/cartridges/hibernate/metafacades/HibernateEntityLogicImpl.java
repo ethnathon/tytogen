@@ -4,10 +4,12 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import org.andromda.cartridges.hibernate.HibernateProfile;
 import org.andromda.cartridges.hibernate.HibernateUtils;
-import org.andromda.core.metafacade.MetafacadeFactory;
+import org.andromda.cartridges.hibernate.PatchEntityUtils;
 import org.andromda.metafacades.uml.AssociationEndFacade;
+import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.Entity;
 import org.andromda.metafacades.uml.EntityAttribute;
 import org.andromda.metafacades.uml.EntityMetafacadeUtils;
@@ -48,29 +50,6 @@ public class HibernateEntityLogicImpl extends HibernateEntityLogic {
 	 */
 	public HibernateEntityLogicImpl(Object metaObject, String context) {
 		super(metaObject, context);
-		Entity superEntity =
-		           (Entity)
-		            MetafacadeFactory.getInstance().createFacadeImpl(
-		                    "org.andromda.metafacades.uml.Entity",
-		                    metaObject,
-		                    getContext(context));
-		System.out.println("*****************"+superEntity.getClass());
-	}
-
-    private static String getContext(String context)
-    {
-        if (context == null)
-        {
-            context = "org.andromda.cartridges.hibernate.metafacades.HibernateEntity";
-        }
-        return context;
-    }
-	/**
-	 * 
-	 * @see Entity#getIdentifiers()
-	 */
-	public Collection<EntityAttribute> getIdentifiers() {
-		return super.getIdentifiers();
 	}
 
 	/**
@@ -853,5 +832,14 @@ public class HibernateEntityLogicImpl extends HibernateEntityLogic {
 	private String getSequenceSuffix() {
 		return ObjectUtils.toString(this
 				.getConfiguredProperty(SEQUENCE_IDENTIFIER_SUFFIX));
+	}
+
+	@Override
+	protected Collection<EntityAttribute> handleGetIdentifierAttributes() {
+		Collection<EntityAttribute> identifiers = PatchEntityUtils
+				.getIdentifierAttributes(this, true);
+		System.out
+				.println("**********" + this.getName() + "****" + identifiers);
+		return identifiers;
 	}
 }
