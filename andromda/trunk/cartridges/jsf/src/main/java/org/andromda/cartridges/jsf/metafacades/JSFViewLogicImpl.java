@@ -409,6 +409,8 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 				zones.add(jsffp.getZone());
 			}
 		}
+		zones.add("default");
+		System.out.println("[JAVA] "+zones);
 		return (String[]) zones.toArray(new String[zones.size()]);
 	}
 
