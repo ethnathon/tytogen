@@ -1302,10 +1302,10 @@ public class JSFParameterLogicImpl
 	@Override
 	protected String handleGetZone() {
 		String zone=(String)this.findTaggedValue(JSFProfile.TAGGEDVALUE_ZONE);
-		if(zone!=null){
+		if(StringUtils.isNotBlank(zone)){
 			return zone;
 		}
-		return "";
+		return "default";
 	}
     
     
