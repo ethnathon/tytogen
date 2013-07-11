@@ -402,6 +402,10 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 					zones.add(jsffp.getZone());
 				}
 			}
+			if (fp instanceof JSFAction) {
+				JSFAction jsfa = (JSFAction) fp;
+				zones.add(jsfa.getZone());
+			}
 		}
 		for (FrontEndParameter fp : this.getVariables()) {
 			if (fp instanceof JSFParameter) {
