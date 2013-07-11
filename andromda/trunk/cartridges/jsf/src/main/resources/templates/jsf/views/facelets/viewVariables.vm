@@ -4,7 +4,11 @@
         #set($partialTriggers = "")
         #setViewPartialTriggers($view $partialTriggers)
         #foreach ($variable in $view.variables)
-            #if ($variable.getZone()==$zone)
+            #set($realZone=$variable.action.getZone())
+            #if($variable.getZone()!="default")
+                #set($realZone=$variable.getZone())
+            #end
+            #if ($realZone==$zone)
                 #if (!$variable.table)
                     #if ($variable.attributes.empty)
                         <tr:outputText value="#{messages['$variable.messageKey']} :"/>
