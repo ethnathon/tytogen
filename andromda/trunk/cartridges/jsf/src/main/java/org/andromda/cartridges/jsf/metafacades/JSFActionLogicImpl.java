@@ -848,4 +848,13 @@ public class JSFActionLogicImpl
         }
         return "_"+methodName.toString();
     }
+
+	@Override
+	protected String handleGetZone() {
+		String zone=(String)this.findTaggedValue(JSFProfile.TAGGEDVALUE_ZONE);
+		if(StringUtils.isNotBlank(zone)){
+			return zone;
+		}
+		return "default";
+	}
 }
