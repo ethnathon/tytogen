@@ -1307,6 +1307,18 @@ public class JSFParameterLogicImpl
 		}
 		return "default";
 	}
+
+	@Override
+	protected boolean handleIsEnable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected boolean handleIsRenderable() {
+		// TODO Auto-generated method stub
+		return false;
+	}
     
     
 }

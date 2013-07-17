@@ -2,6 +2,7 @@
 ## A macro that renders the appropriate action commandLink parameter
 ##
 #macro(renderActionCommandLinkParameter $parameter $ownerParameter)
+<!--BEGIN renderTableCommandLinkParameters -->
 #if ($parameter.backingListName)
 #set ($propertyId = $parameter.name)
 #set ($valuePropertyName = $parameter.name)
@@ -10,4 +11,5 @@
 #set ($valuePropertyName = ${parameter.getFormPropertyName($ownerParameter)})
 #end
         <f:param name="$valuePropertyName" value="#{${formName}.${valuePropertyName}}"/>
+<!--END renderTableCommandLinkParameters -->
 #end
