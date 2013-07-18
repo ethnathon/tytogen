@@ -1,11 +1,12 @@
 #macro(viewTable $table $zone)
-    <!-- generated from viewTable-->
+    <!-- generated from viewTable (BEGIN)-->
     #set ($targetColumns = $table.targettedTableColumnNames)
     #if($trinidad)
         #set($partialTriggers = "")
         #setTablePartialTriggers($table $partialTriggers)
     #end
-    <tr:table id="$table.name" allDetailsEnabled="true" var="row" rowBandingInterval="1" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
+    $table.setRenderable(false)
+    <tr:table rendered="${table.isRenderable()}" disabled="#if(${table.isEnable()}) false #else true #end" id="$table.name" allDetailsEnabled="true" var="row" rowBandingInterval="1" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
         width="90%"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
             #if (!$table.tableColumns.empty)
                 #foreach ($column in $table.tableColumns)
@@ -21,7 +22,7 @@
                         #set ($tableColumnActions = $table.getTableColumnActions($columnName))
                         #if (!$tableColumnActions.empty)
                             #set ($action = $tableColumnActions.iterator().next())
-                            <tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
+                            <tr:commandLink rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
                                     <tr:outputText value="#{row.${columnName}}">
                                         #if ($column.type.dateType)
                                             <f:convertDateTime pattern="$defaultDateFormat"/>
@@ -60,7 +61,7 @@
                 </h:panelGroup>
             </f:facet>
             <h:panelGroup styleClass="actionColumn">
-                <tr:commandLink id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
+                <tr:commandLink rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
                         #renderTableCommandLinkParameters(false)
                 </tr:commandLink>
             </h:panelGroup>
@@ -85,4 +86,5 @@
     #end
 #end
     </tr:table>
+    <!-- generated from viewTable (END)-->
 #end
