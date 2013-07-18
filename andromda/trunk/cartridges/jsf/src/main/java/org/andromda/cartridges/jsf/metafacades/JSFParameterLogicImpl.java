@@ -1308,16 +1308,26 @@ public class JSFParameterLogicImpl
 		return "default";
 	}
 
+	protected boolean enabled=true;
 	@Override
 	protected boolean handleIsEnable() {
-		// TODO Auto-generated method stub
-		return false;
+		return enabled;
+	}
+
+	protected boolean rendered=true;
+	@Override
+	protected boolean handleIsRenderable() {
+		return rendered;
 	}
 
 	@Override
-	protected boolean handleIsRenderable() {
-		// TODO Auto-generated method stub
-		return false;
+	protected void handleSetEnable(boolean isEnable) {
+		enabled=isEnable;		
+	}
+
+	@Override
+	protected void handleSetRenderable(boolean isRenderable) {
+		rendered=isRenderable;		
 	}
     
     
