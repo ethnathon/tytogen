@@ -1,15 +1,15 @@
 #macro(viewAction $action $zone)
-    <!-- generated from viewAction-->
+    <!-- generated from viewAction (BEGIN)-->
     #if($action.getZone()==$zone)
         #set($formName = $action.formBeanName)
         #if ($action.hyperlink || $action.popup)
             <tr:subform id="${formName}">
                 #if ($action.hyperlink)
-                    <tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end>
+                    <tr:commandLink rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end>
                 #else
                     <a:popup scrolling="yes" height="350px" width="550px" actionOpen="#{${action.controller.beanName}.${action.triggerName}}" center="false">
                 #end
-                <tr:outputText value="#{messages['$action.messageKey']}"/>
+                <tr:outputText rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" value="#{messages['$action.messageKey']}"/>
                 #foreach ($parameter in $action.parameters)
                     #if (!$parameter.complex || $parameter.type.enumeration)
                         #renderActionCommandLinkParameter($parameter "")
@@ -29,7 +29,7 @@
         #else
             #set ($clientValidation = $clientValidation && $action.validationRequired)
             #set ($formValidateName = "validate$stringUtils.capitalize($formName)")
-            <tr:subform id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end>
+            <tr:subform rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end>
                     #if (!$action.hiddenParameters.empty)
                         #viewHiddenParameters($action 'hidden')
                     #end
@@ -58,7 +58,8 @@
             </tr:subform>
         #end
     #else
-    <!--Action.zone=${action.getZone()} & zone=${zone}-->
+        <!--Action.zone=${action.getZone()} & zone=${zone}-->
     #end
+    <!-- generated from viewAction (END)-->
 #end
     
