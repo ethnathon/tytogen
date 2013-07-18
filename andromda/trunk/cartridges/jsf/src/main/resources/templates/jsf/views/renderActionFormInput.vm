@@ -8,6 +8,7 @@
 ##
 #macro(renderActionInput $parameter $ownerParameter)
     <!--BEGIN renderActionFormInput.vm -->
+    $parameter.setRenderable(false)
     #if ($parameter.backingListName)
         #if ($ownerParameter.type.hasStereotype('Entity'))
             #set ($propertyId = $parameter.getFormPropertyId($ownerParameter))
@@ -30,21 +31,21 @@
     #if (!$parameter.table && !($parameter.inputHidden || $ownerParameter.inputHidden))
         #if ($parameter.type.dateType)
             #if ($parameter.readOnly)
-                <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" readOnly="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end/>
+                <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" readOnly="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" />
             #else
-                <tr:inputDate id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
+                <tr:inputDate  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
                         <f:convertDateTime pattern="$parameter.format"/>
                 </tr:inputDate>
             #end
         #elseif ($parameter.inputCheckbox)
-            <tr:selectBooleanCheckbox id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($trinidad) partialTriggers="$actionId"#end/>
+            <tr:selectBooleanCheckbox  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($trinidad) partialTriggers="$actionId"#end/>
         #elseif ($parameter.inputSelect || $parameter.type.enumeration)
             #set ($multiSelect = $parameter.many || $parameter.type.collectionType || $parameter.type.arrayType)
             #set ($selectBoxType = "selectOneChoice")
             #if ($multiSelect)
                 #set ($selectBoxType = "selectManyListbox")
             #end
-            <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" valuePassThru="true"#if ($multiSelect) size="$defaultMultiSelectSize"#end#if($trinidad) partialTriggers="$actionId"#end>
+            <tr:$selectBoxType  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" valuePassThru="true"#if ($multiSelect) size="$defaultMultiSelectSize"#end#if($trinidad) partialTriggers="$actionId"#end>
                         #if ($parameter.type.enumeration)
                             <f:selectItems value="#{ajsfc.getEnumSelectItems('${parameter.type.messageKey}.','${parameter.type.fullyQualifiedName}')}"/>
                         #else
@@ -54,15 +55,15 @@
                         #end
             </tr:$selectBoxType>
         #elseif ($parameter.inputFile)
-            <tr:inputFile id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" columns="50"#if($trinidad) partialTriggers="$actionId"#end/>
+            <tr:inputFile  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" columns="50"#if($trinidad) partialTriggers="$actionId"#end/>
         #elseif ($parameter.inputMultibox)
-            <tr:selectManyCheckbox id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
+            <tr:selectManyCheckbox  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
                     <c:if test="${!empty ${backingListName}}">
                         <f:selectItems value="#{${backingListName}}" />
                     </c:if>
             </tr:selectManyCheckbox>
         #elseif ($parameter.inputRadio)
-            <tr:selectOneRadio id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
+            <tr:selectOneRadio  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
                     <c:if test="${!empty ${backingListName}}">
                         <f:selectItems value="#{${backingListName}}" />
                     </c:if>
@@ -70,20 +71,20 @@
         #elseif ($parameter.inputTable)
             #renderInputTable($parameter)
         #elseif ($parameter.plainText)
-            <tr:outputText value="#{${formValuePropertyName}}"#if($trinidad) partialTriggers="$actionId"#end/>
+            <tr:outputText  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" value="#{${formValuePropertyName}}"#if($trinidad) partialTriggers="$actionId"#end/>
         #elseif ($parameter.inputSecret)
-            <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" secret="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end/>
+            <tr:inputText  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" secret="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end/>
         #else
 ##if the widget type is not defined explicit ...
 #if($parameter.inputFile)
-    <tr:inputFile id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" columns="50"#if($trinidad) partialTriggers="$actionId"#end/>
+    <tr:inputFile  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" columns="50"#if($trinidad) partialTriggers="$actionId"#end/>
 #elseif($parameter.type.enumeration)
     #set ($multiSelect = $parameter.many || $parameter.type.collectionType || $parameter.type.arrayType)
     #set ($selectBoxType = "selectOneChoice")
     #if ($multiSelect)
         #set ($selectBoxType = "selectManyListbox")
     #end
-    <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
+    <tr:$selectBoxType  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
                     #foreach ($literal in $field.type.literals)
 ##To be reviewed: actually this is done this way because $literal.value does not work
 #set($literalValue = $literal.defaultValue.replace("'","").replace('"',''))
@@ -94,7 +95,7 @@
                     #end
     </tr:$selectBoxType>
 #else
-    <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end>
+    <tr:inputText  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end>
                     #if ($parameter.type.timeType)
                         <f:convertDateTime pattern="$parameter.format"/>
                     #end
@@ -127,25 +128,25 @@
                     #if ($column.readOnly)
                         <h:inputText id="$columnId" value="#{item.${column.name}}" readonly="true">
                     #else
-                        <tr:inputDate id="$columnId" value="#{item.${column.name}}" required="$column.required">
+                        <tr:inputDate  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$columnId" value="#{item.${column.name}}" required="$column.required">
                             <f:convertDateTime pattern="$parameter.format"/>
                         </tr:inputDate>
                     #end
                 #elseif ($column.inputCheckbox)
-                    <h:selectBooleanCheckbox id="$columnId" value="#{item.${column.name}}" required="$column.required" readonly="$column.readOnly"/>
+                    <h:selectBooleanCheckbox  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$columnId" value="#{item.${column.name}}" required="$column.required" readonly="$column.readOnly"/>
                 #elseif ($column.inputRadio)
-                    <h:selectOneRadio id="$columnId" value="#{item.${column.name}}" layout="pageDirection" styleClass="selectOneRadio"/>
+                    <h:selectOneRadio  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$columnId" value="#{item.${column.name}}" layout="pageDirection" styleClass="selectOneRadio"/>
                 #elseif ($column.inputText)
-                    <h:inputText id="$columnId" value="#{item.${column.name}}" required="$column.required" readonly="$column.readOnly">
+                    <h:inputText  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" id="$columnId" value="#{item.${column.name}}" required="$column.required" readonly="$column.readOnly">
                         #if ($column.type.timeType)
                             <f:convertDateTime pattern="$column.format"/>
                         #end
                     </h:inputText>
                 #else
-                    <tr:outputText value="#{item.${column.name}}"/>
+                    <tr:outputText  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" value="#{item.${column.name}}"/>
                 #end
                 #if ($column.inputTypePresent)
-                    <t:message for="$columnId" styleClass="error" showDetail="true" showSummary="false"/>
+                    <t:message  rendered="${parameter.isRenderable()}" disabled="#if(${parameter.isEnable()}) false #else true #end" for="$columnId" styleClass="error" showDetail="true" showSummary="false"/>
                 #end
 </h:column>
         #end
