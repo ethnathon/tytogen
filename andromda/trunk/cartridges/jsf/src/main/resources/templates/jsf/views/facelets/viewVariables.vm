@@ -4,7 +4,7 @@
         #set($partialTriggers = "")
         #setViewPartialTriggers($view $partialTriggers)
         #foreach ($variable in $view.variables)
-        	$variable.setRenderable(false)
+        	##$variable.setRenderable(false)
             #set($realZone=$variable.action.getZone())
             #if($variable.getZone()!="default")
                 #set($realZone=$variable.getZone())

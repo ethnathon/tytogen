@@ -19,7 +19,7 @@
 ##
 ##    This xhtml composition stores all hidden parameters for an action.
 ##
-<!-- generated from viewHiddenParameters-->
+<!-- generated from viewHiddenParameters (BEGIN)-->
 #foreach ($field in $action.hiddenParameters)
     #if (!$field.complex || $field.type.enumeration)
         #renderHiddenInputField($field "")
@@ -31,5 +31,6 @@
         #end
     #end
 #end
+<!-- generated from viewHiddenParameters (END)-->
 #end
     

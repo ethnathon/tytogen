@@ -8,7 +8,7 @@
 ##
 #macro(renderActionInput $parameter $ownerParameter)
     <!--BEGIN renderActionFormInput.vm -->
-    $parameter.setRenderable(false)
+    ##$parameter.setRenderable(false)
     #if ($parameter.backingListName)
         #if ($ownerParameter.type.hasStereotype('Entity'))
             #set ($propertyId = $parameter.getFormPropertyId($ownerParameter))

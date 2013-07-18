@@ -12,7 +12,7 @@
             #foreach ($variable in $view.variables)
                 #if ($variable.table)
                     #if ($variable.getZone()==$actualZone)
-                    	$variable.setRenderable(false)
+                    	##$variable.setRenderable(false)
                         #viewTable($variable $actualZone)
                     #end
                 #end
