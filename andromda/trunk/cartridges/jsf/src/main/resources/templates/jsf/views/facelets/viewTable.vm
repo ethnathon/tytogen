@@ -78,7 +78,7 @@
                 </h:panelGroup>
             </f:facet>
             <h:panelGroup styleClass="actionColumn">
-                <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
+                <tr:commandButton rendered="${action.isRenderable()}" disabled="#if(${action.isEnable()}) false #else true #end" id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"#end>
                         #renderTableCommandLinkParameters(true)
                 </tr:commandButton>
             </h:panelGroup>
