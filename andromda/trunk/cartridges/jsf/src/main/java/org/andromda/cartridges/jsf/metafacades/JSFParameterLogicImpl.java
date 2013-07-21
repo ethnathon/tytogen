@@ -1308,27 +1308,4 @@ public class JSFParameterLogicImpl
 		return "default";
 	}
 
-	protected boolean enabled=true;
-	@Override
-	protected boolean handleIsEnable() {
-		return enabled;
-	}
-
-	protected boolean rendered=true;
-	@Override
-	protected boolean handleIsRenderable() {
-		return rendered;
-	}
-
-	@Override
-	protected void handleSetEnable(boolean isEnable) {
-		enabled=isEnable;		
-	}
-
-	@Override
-	protected void handleSetRenderable(boolean isRenderable) {
-		rendered=isRenderable;		
-	}
-    
-    
 }
