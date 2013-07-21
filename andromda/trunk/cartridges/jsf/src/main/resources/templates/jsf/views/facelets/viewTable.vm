@@ -6,7 +6,7 @@
         #setTablePartialTriggers($table $partialTriggers)
     #end
     ##$table.setRenderable(false)
-    <tr:table rendered="${table.isRenderable()}" disabled="#if(${table.isEnable()}) false #else true #end" id="$table.name" allDetailsEnabled="true" var="row" rowBandingInterval="1" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
+    <tr:table id="$table.name" allDetailsEnabled="true" var="row" rowBandingInterval="1" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
         width="90%"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
             #if (!$table.tableColumns.empty)
                 #foreach ($column in $table.tableColumns)

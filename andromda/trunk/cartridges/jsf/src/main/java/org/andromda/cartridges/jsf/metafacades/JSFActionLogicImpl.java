@@ -858,25 +858,4 @@ public class JSFActionLogicImpl
 		return "default";
 	}
 
-	protected boolean renderable=true;
-	@Override
-	protected boolean handleIsRenderable() {
-		return renderable;
-	}
-
-	protected boolean enable=true;
-	@Override
-	protected boolean handleIsEnable() {
-		return enable;
-	}
-
-	@Override
-	protected void handleSetRenderable(boolean isRendrable) {
-		renderable=isRendrable;		
-	}
-
-	@Override
-	protected void handleSetEnable(boolean isEnable) {
-		enable=isEnable;
-	}
 }
