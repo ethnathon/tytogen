@@ -100,17 +100,17 @@ return this.${field.name};
 }
 
 /*methods to render or enable the component*/
-    protected boolean ${field.name}Renderable=true;
+    protected boolean ${field.name}Rendered=true;
     protected boolean ${field.name}Enable=true;
     
-	public boolean get${field.name}Renderable(){
-		return ${field.name}Renderable;
+	public boolean get${field.name}Rendered(){
+		return ${field.name}Rendered;
 	};
 	public boolean get${field.name}Enable(){
 		return ${field.name}Enable;
 	};
-	public void set${field.name}Renderable(boolean renderable){
-		${field.name}Renderable=renderable;
+	public void set${field.name}Rendered(boolean rendered){
+		${field.name}Rendered=rendered;
 	};
 	public void set${field.name}Enable(boolean enable){
 		${field.name}Enable=enable;
