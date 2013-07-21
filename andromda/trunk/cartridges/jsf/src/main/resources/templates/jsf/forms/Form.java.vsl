@@ -50,6 +50,15 @@ $field.getDocumentation("     * ")
      * @return $field.name
      */
     public $fieldTypeName ${field.getterName}();
+    /*methods to render and enable components*/
+    public boolean get${field.name}Renderable();
+    
+    public boolean get${field.name}Enable();
+    
+    public void set${field.name}Renderable(boolean renderable);
+    
+    public void set${field.name}Enable(boolean enable);
+    
 ## - don't allow fields with default values to be set
 #if (!$field.defaultValuePresent)
 
