@@ -51,11 +51,11 @@ $field.getDocumentation("     * ")
      */
     public $fieldTypeName ${field.getterName}();
     /*methods to render and enable components*/
-    public boolean get${field.name}Renderable();
+    public boolean get${field.name}Rendered();
     
     public boolean get${field.name}Enable();
     
-    public void set${field.name}Renderable(boolean renderable);
+    public void set${field.name}Rendered(boolean rendered);
     
     public void set${field.name}Enable(boolean enable);
     
