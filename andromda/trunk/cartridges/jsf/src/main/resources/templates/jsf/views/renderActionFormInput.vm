@@ -63,7 +63,7 @@
                     </c:if>
             </tr:selectManyCheckbox>
         #elseif ($parameter.inputRadio)
-            <tr:selectOneRadio  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end>
+            <tr:selectOneRadio  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end layout="horizontal">
                     <c:if test="${!empty ${backingListName}}">
                         <f:selectItems value="#{${backingListName}}" />
                     </c:if>
