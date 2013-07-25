@@ -129,7 +129,7 @@ $member.getDocumentation("     * ")
     {
         this.enumValue = value;
 #foreach ($memberVariable in $enumeration.memberVariables)
-        ${memberVariable.setterName}(${memberVariable.name});
+        this.${memberVariable.name} = ${memberVariable.name};
 #end
     }
 
