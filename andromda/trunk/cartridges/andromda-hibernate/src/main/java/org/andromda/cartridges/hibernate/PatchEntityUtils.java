@@ -14,7 +14,6 @@ import org.apache.commons.lang.StringUtils;
 
 public class PatchEntityUtils {
 
-
 	/**
 	 * Gets all identifier attributes for an entity. If 'follow' is true, and if
 	 * no identifiers can be found on the entity, a search up the inheritance
@@ -38,20 +37,23 @@ public class PatchEntityUtils {
 				.getIdentifiers(entity, follow);
 		identifierAttributes.addAll(identifiers);
 		// Find identifiers of association identifiers otherEnd
-        final Collection<AssociationEndFacade> associations = new ArrayList<AssociationEndFacade>(entity.getAssociationEnds());
-        MetafacadeUtils.filterByStereotype(
-                associations,
-                UMLProfile.STEREOTYPE_IDENTIFIER);
+		final Collection<AssociationEndFacade> associations = new ArrayList<AssociationEndFacade>(
+				entity.getAssociationEnds());
+		MetafacadeUtils.filterByStereotype(associations,
+				UMLProfile.STEREOTYPE_IDENTIFIER);
 		for (AssociationEndFacade identifier : associations) {
 
-				AssociationEndFacade associationEnd = identifier.getOtherEnd();
-				ClassifierFacade classifier = associationEnd.getType();
-				if (classifier instanceof Entity) {
-					Collection<EntityAttribute> entityIdentifiers = getIdentifierAttributes(
-							(Entity) classifier, true);
-					identifierAttributes.addAll(entityIdentifiers);
-				}
-		
+			AssociationEndFacade associationEnd = identifier.getOtherEnd();
+			ClassifierFacade classifier = associationEnd.getType();
+			// don't follow auto associations
+			if (classifier instanceof Entity
+					&& classifier.getFullyQualifiedName() != entity
+							.getFullyQualifiedArrayName()) {
+				Collection<EntityAttribute> entityIdentifiers = getIdentifierAttributes(
+						(Entity) classifier, true);
+				identifierAttributes.addAll(entityIdentifiers);
+			}
+
 		}
 		if (identifiers.isEmpty() && follow
 				&& entity.getGeneralization() instanceof Entity) {
@@ -91,8 +93,6 @@ public class PatchEntityUtils {
 					}
 				}
 			}
-			// System.out.println(entity.getName() + " getIdentifierAttributes "
-			// + joinOrder + identifiers.size());
 			// Add remaining identifiers not found in joincolumn ordered list
 			if (sortedIdentifiers.size() < identifierAttributes.size())
 				for (EntityAttribute facade : identifierAttributes) {
