@@ -838,8 +838,6 @@ public class HibernateEntityLogicImpl extends HibernateEntityLogic {
 	protected Collection<EntityAttribute> handleGetIdentifierAttributes() {
 		Collection<EntityAttribute> identifiers = PatchEntityUtils
 				.getIdentifierAttributes(this, true);
-		System.out
-				.println("**********" + this.getName() + "****" + identifiers);
 		return identifiers;
 	}
 }
