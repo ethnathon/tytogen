@@ -51,13 +51,13 @@ $field.getDocumentation("     * ")
      */
     public $fieldTypeName ${field.getterName}();
     /*methods to render and enable components*/
-    public boolean get${field.name}Rendered();
-    
-    public boolean get${field.name}Enable();
-    
-    public void set${field.name}Rendered(boolean rendered);
-    
-    public void set${field.name}Enable(boolean enable);
+	public boolean is${stringUtils.upperCamelCaseName($field.name)}Rendered();
+	
+	public boolean is${stringUtils.upperCamelCaseName($field.name)}Disabled();
+	
+	public void ${field.setterName}Rendered(boolean rendered);
+	
+	public void ${field.setterName}Disabled(boolean disabled);
     
 ## - don't allow fields with default values to be set
 #if (!$field.defaultValuePresent)
