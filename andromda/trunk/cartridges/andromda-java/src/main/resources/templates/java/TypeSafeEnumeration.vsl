@@ -82,9 +82,8 @@ $literal.getDocumentation("     * ")
 #if ($XMLBindingAnnotations)
     @XmlEnumValue("$literal.name")
 #end
-    ${literal.name}($literal.enumerationValue)$separator
+    ${literal.name}#if ($literal.enumerationLiteralParametersExist)($literal.enumerationValue, ${literal.enumerationLiteralParameters})#else($literal.enumerationValue)#end$separator
 #end
-
 #set ($nbMembers = ${enumeration.memberVariables.size()})
 #set ($i = 0)
 #foreach ($member in $enumeration.memberVariables)
@@ -110,6 +109,7 @@ $member.getDocumentation("     * ")
 
     private final $literalTypeName enumValue;
 
+#if ($enumeration.memberVariables.empty)
     /**
      * The constructor with enumeration literal value allowing
      * super classes to access it.
@@ -118,8 +118,7 @@ $member.getDocumentation("     * ")
     {
         this.enumValue = value;
     }
-
-#if (!$enumeration.memberVariables.empty)
+#else
 ## From EJB3 cartridge. Need valueIn to avoid compiler error - initialized static final attribute
     /**
      * $enumeration.name constructor with list of member variables
@@ -132,7 +131,6 @@ $member.getDocumentation("     * ")
         this.${memberVariable.name} = ${memberVariable.name};
 #end
     }
-
 #end
     /*
      * Do not override this method directly. Use an alternate name
