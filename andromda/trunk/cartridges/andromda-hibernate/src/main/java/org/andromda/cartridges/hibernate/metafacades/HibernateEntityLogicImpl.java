@@ -42,6 +42,7 @@ import org.apache.commons.lang.StringUtils;
  * @author Bob Fields
  */
 public class HibernateEntityLogicImpl extends HibernateEntityLogic {
+	
 	private static final long serialVersionUID = 34L;
 
 	/**
