@@ -19,9 +19,9 @@
                     #end
                 #end
                 #if ($action.hyperlink)
-</tr:commandLink>
+					</tr:commandLink>
                 #else
-</a:popup>
+					</a:popup>
                 #end
             </tr:subform>
             <br/>

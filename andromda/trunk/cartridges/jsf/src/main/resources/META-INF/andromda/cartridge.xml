@@ -89,6 +89,7 @@
     <property reference="defaultRole"/>
     <property reference="ajaxLibrary"/>
     <property reference="loginConfigAuthMethod"/>
+    <property reference="idpProviderUrl"/>
     <property reference="facesConfigFiles"/>
     <property reference="controllerScope"/>
     <property reference="navigationBeanScope"/>
@@ -140,6 +141,20 @@
     <!-- condition merge-point-->
 
     <!-- cartridge-resource merge-point -->
+    
+    <resource
+        path="resources/auth/saml/security/*"
+        outputPattern="WEB-INF/security/{0}"
+        outlet="configuration"
+        outputCondition="securityEnabled"
+        overwrite="true" />
+    <resource
+        path="resources/auth/saml/*"
+        outputPattern="WEB-INF/{0}"
+        outlet="configuration"
+        outputCondition="securityEnabled"
+        overwrite="true" />
+        
     <resource
         path="resources/views/skins/beach/*"
         outputPattern="skins/beach/{0}"
@@ -243,6 +258,29 @@
         outlet="configuration"
         overwrite="true"
         outputToSingleFile="true">
+        <modelElements>
+            <modelElement variable="useCases">
+                <type name="org.andromda.metafacades.uml.FrontEndUseCase"/>
+            </modelElement>
+            <modelElement variable="manageables">
+                <type name="org.andromda.cartridges.jsf.metafacades.JSFManageableEntity">
+                    <property name="needsUserInterface"/>
+                </type>
+            </modelElement>
+            <modelElement variable="roles">
+                <type name="org.andromda.metafacades.uml.Role"/>
+            </modelElement>
+        </modelElements>
+    </template>
+    
+    <template
+        path="templates/jsf/configuration/applicationContext-security.xml.vsl"
+        outputPattern="WEB-INF/applicationContext-security.xml"
+        outlet="configuration"
+        overwrite="true"
+        outputToSingleFile="true"
+        outputCondition="securityEnabled"
+        outputOnEmptyElements="true">
         <modelElements>
             <modelElement variable="useCases">
                 <type name="org.andromda.metafacades.uml.FrontEndUseCase"/>

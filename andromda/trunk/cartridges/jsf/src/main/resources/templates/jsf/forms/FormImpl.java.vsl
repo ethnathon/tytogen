@@ -99,21 +99,25 @@ public $fieldTypeName ${field.getterName}()
 return this.${field.name};
 }
 
-/*methods to render or enable the component*/
-    protected boolean ${field.name}Rendered=true;
-    protected boolean ${field.name}Enable=true;
+	/*methods to render or enable the component*/
+    protected boolean ${field.name}Rendered = true;
     
-	public boolean get${field.name}Rendered(){
+    protected boolean ${field.name}Disabled = false;
+    
+	public boolean is${stringUtils.upperCamelCaseName($field.name)}Rendered(){
 		return ${field.name}Rendered;
 	};
-	public boolean get${field.name}Enable(){
-		return ${field.name}Enable;
+	
+	public boolean is${stringUtils.upperCamelCaseName($field.name)}Disabled(){
+		return ${field.name}Disabled;
 	};
-	public void set${field.name}Rendered(boolean rendered){
-		${field.name}Rendered=rendered;
+	
+	public void ${field.setterName}Rendered(boolean rendered){
+		${field.name}Rendered = rendered;
 	};
-	public void set${field.name}Enable(boolean enable){
-		${field.name}Enable=enable;
+	
+	public void ${field.setterName}Disabled(boolean disabled){
+		${field.name}Disabled = disabled;
 	};
 
 

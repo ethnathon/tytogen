@@ -10,6 +10,20 @@
     <distributable/>
 
 #end
+##https://code.google.com/p/tytogen/issues/detail?id=14 (securityEnabled || springServices)
+#if ($securityEnabled)
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			classpath:applicationContext.xml,
+			classpath:applicationContext-dataSource.xml
+#if ($securityEnabled)
+			/WEB-INF/applicationContext-security.xml
+#end
+		</param-value>
+	</context-param>
+#end
+
 #if ($standalone)
     <context-param>
         <!-- Maximum memory per request (in bytes) -->
@@ -274,12 +288,21 @@
 #end
     <!-- context-param merge-point -->
     <!-- filter merge-point -->
-#if ($securityEnabled && !$roles.empty)
+
+#if ($securityEnabled)
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+## Maybe Remove ??? ----------------------------
+#if (!$roles.empty)
     <filter>
         <filter-name>User Role Filter</filter-name>
         <filter-class>${managedBeansPackage}.UserRoleFilter</filter-class>
     </filter>
 #end
+#end
+
     <!-- Extensions Filter -->
     <filter>
         <filter-name>MyFaces Extensions Filter</filter-name>
@@ -399,6 +422,12 @@
     </filter-mapping>
 #end
 #end
+#if ($securityEnabled)
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+#end
 
     <filter-mapping>
         <filter-name>MyFaces Extensions Filter</filter-name>
@@ -414,9 +443,26 @@
         <listener-class>com.liferay.portal.kernel.servlet.PortletContextListener</listener-class>
     </listener>
 #end
+
+##https://code.google.com/p/tytogen/issues/detail?id=14
+#if ($securityEnabled)
+  	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  	</listener>
+#end
+
     <!-- listener merge-point -->
 
     <!-- servlet merge-point -->
+## TODO: && security authentication method == SAML
+#if ($securityEnabled)
+    <servlet>
+		<servlet-name>saml</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+#end
+
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -473,6 +519,14 @@
 
     <!-- precompilation merge-point -->
     <!-- servlet-mapping merge-point -->
+    
+## TODO: && security authentication method == SAML
+#if ($securityEnabled)
+    <servlet-mapping>
+		<servlet-name>saml</servlet-name>
+		<url-pattern>/saml/web/*</url-pattern>
+	</servlet-mapping>
+#end
     <servlet-mapping>
         <servlet-name>AndroMDA JSF Servlet</servlet-name>
         <url-pattern>/jsf/*</url-pattern>
@@ -556,7 +610,7 @@
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
     <!-- security-constraint merge-point -->
-
+#if ($securityEnabled)
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Raw-JSF-Pages</web-resource-name>
@@ -573,69 +627,6 @@
         </user-data-constraint>
     </security-constraint>
 
-#if ($securityEnabled)
-#foreach ($useCase in $useCases)
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>$useCase.name resources</web-resource-name>
-            <description>
-                This collection secures all views and resources
-                as well as the actions called in the "$useCase.name" use-case
-            </description>
-            <url-pattern>${useCase.pathRoot}/*</url-pattern>
-        </web-resource-collection>
-#if ($useCase.secured || ($stringUtils.isNotBlank($defaultRole) && !$useCase.registrationUseCase))
-        <auth-constraint>
-#if ($stringUtils.isNotBlank($defaultRole))
-            <role-name>${defaultRole}</role-name>
-#end
-#foreach ($user in $useCase.roles)
-            <role-name>$user.name</role-name>
-#end
-        </auth-constraint>
-#end
-        <user-data-constraint>
-            <transport-guarantee>NONE</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-
-#end
-#foreach ($manageable in $manageables)
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Manage ${manageable.name} resources</web-resource-name>
-            <description>
-                This collection secures all views and resources
-                as well as the actions called in the "Manage ${manageable.name}" use-case
-            </description>
-            <url-pattern>${manageable.viewFullPath}.${facesServletExtension}</url-pattern>
-        </web-resource-collection>
-#if (!$manageable.roles.empty || $stringUtils.isNotBlank($defaultRole))
-        <auth-constraint>
-#if ($stringUtils.isNotBlank($defaultRole))
-            <role-name>${defaultRole}</role-name>
-#end
-#foreach ($role in $manageable.roles)
-            <role-name>${role.name}</role-name>
-#end
-        </auth-constraint>
-#end
-        <user-data-constraint>
-            <transport-guarantee>NONE</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-
-#end
-    <login-config>
-        <auth-method>$loginConfigAuthMethod</auth-method>
-        <realm-name>$securityRealm</realm-name>
-#if ($loginConfigAuthMethod == 'FORM')
-        <form-login-config>
-            <form-login-page>/${loginFileName}.${facesServletExtension}</form-login-page>
-            <form-error-page>/${loginFileName}.${facesServletExtension}?action=error</form-error-page>
-        </form-login-config>
-#end
-    </login-config>
 
 #foreach ($user in $roles)
     <security-role>
