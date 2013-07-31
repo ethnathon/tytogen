@@ -10,16 +10,11 @@
     <distributable/>
 
 #end
-##https://code.google.com/p/tytogen/issues/detail?id=14 (securityEnabled || springServices)
 #if ($securityEnabled)
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath:applicationContext.xml,
-			classpath:applicationContext-dataSource.xml
-#if ($securityEnabled)
 			/WEB-INF/applicationContext-security.xml
-#end
 		</param-value>
 	</context-param>
 #end
@@ -602,10 +597,10 @@
         <error-code>408</error-code>
         <location>/index.jsp</location>
     </error-page>
-    <error-page>
+    <!-- error-page>
         <error-code>403</error-code>
         <location>/403.jsp</location>
-    </error-page>
+    </error-page -->
     <!-- error-page merge-point -->
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
