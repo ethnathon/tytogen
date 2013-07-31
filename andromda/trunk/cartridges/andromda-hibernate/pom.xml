@@ -44,6 +44,7 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<!-- to update tests mvn org.andromda.maven.plugins:andromda-cartridge-plugin:update -->
 			<plugin>
 				<groupId>org.andromda.maven.plugins</groupId>
 				<artifactId>andromda-cartridge-plugin</artifactId>
