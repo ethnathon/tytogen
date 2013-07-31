@@ -329,11 +329,18 @@
             <property name="loginConfigAuthMethod">
                 <default>SAML</default>
                 <documentation>
-                    The auth-method. Possible values:
+                    A comma separated list of authentication methods supported 
+                    by the application. Possible values are:
                     <ul>
                     	<li>SAML</li>
                     	<li>(Not yet implemented) FORM</li>
+                    	<li>TEST : a basic authentication form will be enabled 
+                    		when the user try to access an url with the query parameter "test=true".
+                    		users are configured in a classpath resource: 
+                    		test-users.properties (usually deployed in 
+                    		web/src/test/resources/test-users.properties)</li>
                     </ul>
+                    ex: &lt;loginConfigAuthMethod&gt;SAML,TEST&lt;/loginConfigAuthMethod&gt;
                 </documentation>
             </property>
             <property name="idpProviderUrl" required="false">

@@ -95,7 +95,7 @@
     <property reference="navigationBeanScope"/>
     <property reference="jsfVersion"/>
     <property reference="horizontalMenu"/>
-
+	
     <!-- cartridge-property merge-point -->
 
     <condition name="outputCustomResources">$stringUtils.isNotBlank($custom-resources)</condition>
@@ -137,7 +137,7 @@
     <condition name="jsfVersion1">$jsfVersion.trim().equalsIgnoreCase('1.x')</condition>
     <condition name="horizontalMenu">#if ($horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
     <condition name="verticalMenu">#if (not $horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
-
+	<condition name="samlAuthentication">$loginConfigAuthMethod.toUpperCase().contains('SAML')</condition>
     <!-- condition merge-point-->
 
     <!-- cartridge-resource merge-point -->
@@ -146,13 +146,13 @@
         path="resources/auth/saml/security/*"
         outputPattern="WEB-INF/security/{0}"
         outlet="configuration"
-        outputCondition="securityEnabled"
+        outputCondition="samlAuthentication"
         overwrite="true" />
     <resource
         path="resources/auth/saml/*"
         outputPattern="WEB-INF/{0}"
         outlet="configuration"
-        outputCondition="securityEnabled"
+        outputCondition="samlAuthentication"
         overwrite="true" />
         
     <resource
@@ -426,7 +426,7 @@
             </modelElement>
         </modelElements>
     </template>
-
+        
     <template
         path="templates/jsf/controllers/Controller.java.vsl"
         outputPattern="$generatedFile"
@@ -508,8 +508,7 @@
         path="templates/jsf/flow/ViewPopulator.java.vsl"
         outputPattern="${view.populatorPath}.java"
         outlet="controllers"
-        overwrite="true"
-        >
+        overwrite="true">
         <modelElements variable="view">
             <modelElement>
                 <type name="org.andromda.metafacades.uml.FrontEndView">
@@ -518,7 +517,14 @@
             </modelElement>
         </modelElements>
     </template>
-
+    
+    <template
+        path="templates/jsf/utils/SamlUserDetailsServiceImpl.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
+        outlet="controller-impls"
+        outputCondition="samlAuthentication"
+        overwrite="true"/>
+        
     <template
         path="templates/jsf/converters/EnumerationConverter.java.vsl"
         outputPattern="${enumeration.converterPath}.java"
