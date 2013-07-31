@@ -67,6 +67,7 @@
             <stereotype>FRONT_END_APPLICATION</stereotype>
         </mapping>
         <property reference="actionFormKey"/>
+        <property reference="defaultRole"/>
     </metafacade>
     <metafacade class="org.andromda.cartridges.jsf.metafacades.JSFUseCaseLogicImpl">
         <mapping>
@@ -106,7 +107,7 @@
         <mapping>
             <property name="containedInFrontEndUseCase"/>
         </mapping>
-        <property reference="defaultDateFormat"/>
+        <property reference="defaultDateFormat" />
         <property reference="defaultTimeFormat"/>
         <property reference="backingListPattern"/>
         <property reference="backingValuePattern"/>

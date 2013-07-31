@@ -327,9 +327,19 @@
                 </documentation>
             </property>
             <property name="loginConfigAuthMethod">
-                <default>FORM</default>
+                <default>SAML</default>
                 <documentation>
-                    The auth-method of the login-config section.
+                    The auth-method. Possible values:
+                    <ul>
+                    	<li>SAML</li>
+                    	<li>(Not yet implemented) FORM</li>
+                    </ul>
+                </documentation>
+            </property>
+            <property name="idpProviderUrl" required="false">
+                <documentation>
+ 					When the loginConfigAuthMethod is SAML the url of the
+ 					identity provider.
                 </documentation>
             </property>
             <property name="defaultRole" required="false">

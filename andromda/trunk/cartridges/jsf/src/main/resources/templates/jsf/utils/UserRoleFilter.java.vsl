@@ -44,9 +44,9 @@ public class $className
 #foreach ($role in $roles)
 #set ($userIsInRoleName = "userIs${stringUtils.upperCamelCaseName($role.name.toLowerCase())}")
 #set ($specializedRoles = $role.generalizedByActors)
-        final boolean $userIsInRoleName = httpRequest.isUserInRole("$role.name")
+        final boolean $userIsInRoleName = httpRequest.isUserInRole("$jsfUtils.toSpringSecurityRoleName($role.name)")
 #foreach ($specializedRole in $role.generalizedByActors)
-            || httpRequest.isUserInRole("$specializedRole.name")
+            || httpRequest.isUserInRole("$jsfUtils.toSpringSecurityRoleName($specializedRole.name)")
 #end
         ;
         httpRequest.setAttribute("$userIsInRoleName",  Boolean.valueOf($userIsInRoleName));

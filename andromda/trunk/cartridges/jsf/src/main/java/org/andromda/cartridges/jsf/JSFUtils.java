@@ -812,6 +812,18 @@ public class JSFUtils
         }
         return validatorTypesList;
     }
+    
+    /**
+     * Transform an UML RoleName into a Spring Security like role name
+     * "ROLE_ + uppercase(underscore_separated(UML Role))"
+     * @param role
+     * @return
+     */
+	public static String toSpringSecurityRoleName(String role) {
+		return "ROLE_"
+				+ StringUtils.upperCase(StringUtilsHelper.separate(role, "_"));
+	}
+
 
     /**
      * Gets the validator variables for the given <code>element</code> (if they can

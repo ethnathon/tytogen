@@ -4,31 +4,34 @@
         #set($partialTriggers = "")
         #setViewPartialTriggers($view $partialTriggers)
         #foreach ($variable in $view.variables)
-        	
-<!--PROVA ${variable.action}-->
             #set($realZone=$variable.action.getZone())
             #if($variable.getZone()!="default")
                 #set($realZone=$variable.getZone())
             #end
             #if ($realZone==$zone)
                 #if (!$variable.table)
+                	<c:if test="#{${variable.action.formBeanName}.${variable.name}Rendered}">
                     #if ($variable.attributes.empty)
-                        <tr:outputText value="#{messages['$variable.messageKey']} :" rendered="${variable.isRenderable()}" disabled="#if(${variable.isEnable()}) false #else true #end"/>
+                        <tr:outputText value="#{messages['$variable.messageKey']} :" 
+                        	disabled="#{${variable.action.formBeanName}.${variable.name}Disabled}"/>
                         #if ($variable.many || $variable.type.collectionType || $variable.type.arrayType)
                             <c:forEach var="item" items="${${variable.name}}" varStatus="status">
                                 ${item} <c:if test="${!status.last}">,</c:if>
                             </c:forEach>
                         #else
-                            <tr:outputText id="${variable.name}" value="#{${variable.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end rendered="${variable.isRenderable()}" disabled="#if(${variable.isEnable()}) false #else true #end">
+                            <tr:outputText id="${variable.name}" value="#{${variable.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end 
+                            		disabled="#{${variable.action.formBeanName}.${variable.name}Disabled}">
                                     #if ($variable.type.dateType)
                                         <f:convertDateTime pattern="$variable.format"/>
                                     #end
                             </tr:outputText>
                         #end
                     #else
-                        #foreach ($attribute in $variable.attributes)
+                        #foreach ($attribute in $variable.attributes)                        	
                             <tr:outputText value="#{messages['$attribute.messageKey']} :"/>
-                            <tr:outputText id="$attribute.getFormPropertyId($variable)" value="#{${variable.name}.${attribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+                            <tr:outputText id="$attribute.getFormPropertyId($variable)" 
+                            		value="#{${variable.name}.${attribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end
+                            		disabled="#{${variable.action.formBeanName}.${variable.name}Disabled}">
                                     #if ($attribute.type.dateType)
                                         <f:convertDateTime pattern="$attribute.format"/>
                                     #end
@@ -40,7 +43,8 @@
                                     <c:set var="item" value="${item}" scope="request"/>
                                     #foreach ($itemAttribute in $associationEnd.type.getAttributes(true))
                                         <tr:outputText value="#{messages['$itemAttribute.messageKey']} :"/>
-                                        <tr:outputText id="$itemAttribute.getFormPropertyId($variable)" value="#{item.${itemAttribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+                                        <tr:outputText id="$itemAttribute.getFormPropertyId($variable)" value="#{item.${itemAttribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end
+                                        disabled="#{${variable.action.formBeanName}.${variable.name}Disabled}">
                                                 #if ($itemAttribute.type.dateType)
                                                     <f:convertDateTime pattern="$itemAttribute.format"/>
                                                 #end
@@ -50,7 +54,8 @@
                             #else
                                 #foreach ($itemAttribute in $associationEnd.type.getAttributes(true))
                                     <tr:outputText value="#{messages['$itemAttribute.messageKey']} :"/>
-                                    <tr:outputText id="$itemAttribute.getFormPropertyId($variable)" value="#{item.${itemAttribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+                                    <tr:outputText id="$itemAttribute.getFormPropertyId($variable)" value="#{item.${itemAttribute.name}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end
+                                    disabled="#{${variable.action.formBeanName}.${variable.name}Disabled}">
                                             #if ($itemAttribute.type.dateType)
                                                 <f:convertDateTime pattern="$itemAttribute.format"/>
                                             #end
@@ -59,6 +64,7 @@
                             #end
                         #end
                     #end
+                	</c:if>
                 #end
             #end
         #end
