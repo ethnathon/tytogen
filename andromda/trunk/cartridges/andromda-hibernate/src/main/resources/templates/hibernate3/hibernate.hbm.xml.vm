@@ -101,11 +101,18 @@ ${indent}    <meta attribute="field-description">$doc</meta>
 ${indent}    <cache usage="$sourceEnd.association.hibernateCacheType" />
 #end
 ${indent}    <key#if ($generateDatabaseDependentCode) foreign-key="$sourceEnd.foreignKeyConstraintName"#end#if ($otherEnd.list) not-null="$otherEnd.required"#end>
+## TODO handle composite identifier foreign keys, maybe swap the two following ifs
 #if (!$entity.compositeIdentifier)
+#if ($otherEnd.identifiersPresent)
+#set ($identifier = $entity.identifiers.iterator().next())
+${indent}        <column name="$identifier.columnName"#if ($generateDatabaseDependentCode) sql-type="$identifier.sqlType"#end#if($sourceEnd.uniqueGroup) unique-key="$identifier.uniqueGroup"#end#if ($stringUtils.isBlank($doc))/>#else>
+${indent}            <comment>$doc</comment>
+${indent}        </column>#end
+#else
 ${indent}        <column name="$sourceEnd.columnName"#if ($generateDatabaseDependentCode) sql-type="$sourceEnd.sqlType"#end#if($sourceEnd.uniqueGroup) unique-key="$sourceEnd.uniqueGroup"#end#if ($stringUtils.isBlank($doc))/>#else>
 ${indent}            <comment>$doc</comment>
 ${indent}        </column>#end
-
+#end
 #else
 #foreach ($identifier in $entity.identifiers)
 #set ($doc=$stringUtils.replaceChars($identifier.getDocumentation("",999,false), "\"'&<>", ""))
