@@ -23,7 +23,7 @@ public class SamlUser extends User {
 	public SamlUser(String username,
 			Collection<? extends GrantedAuthority> authorities, 
 			Object customAttributes,Map<String,String> samlAttributes) {
-		super(username, null, authorities);
+		super(username, " ", authorities);
 		this.customAttributes = customAttributes;
 		this.samlAttributes = samlAttributes;
 	}
