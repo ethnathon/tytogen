@@ -102,7 +102,6 @@ $operation.getDocumentation("     * ")
     }
 
 #foreach ($action in $controller.useCase.actions)
-#if (!$action.formFields.empty)
     /**
      * Retrieves the {@link $action.fullyQualifiedFormImplementationName} form instance (normally you wont't
      * need to call this method explicitly, however this is here for times when you need to access the
@@ -118,7 +117,6 @@ $operation.getDocumentation("     * ")
         return ($action.fullyQualifiedFormImplementationName)this.resolveVariable("$action.formBeanName");
     }
 
-#end
 #set ($formPopulationOperationRequired = !$action.formFields.empty)
     /**
 #if($action.exitingInitialState)
@@ -132,7 +130,7 @@ $action.trigger.getDocumentation("     * ")
      * @param form
 #end
      */
-    protected void ${action.triggerMethodName}(#if($formPopulationOperationRequired)$action.fullyQualifiedFormImplementationName form#end)
+    protected void ${action.triggerMethodName}($action.fullyQualifiedFormImplementationName form)
     {
         //this method can be overridden
     }
@@ -181,12 +179,10 @@ $action.trigger.getDocumentation("     * ")
         final Object currentForm = this.resolveVariable("$action.formKey");
         try
         {
-#if ($formPopulationOperationRequired)
             final $action.fullyQualifiedFormImplementationName form =
                 this.$action.formImplementationGetter;
             form.setEvent(event);
             this.setForm("$action.formKey", form, true);
-#end
 ## - For now we'll just have the transaction checking in portlets (might be worth while to add to standalone at some point)
 #set($indent = "")
 #if ($portlet)
@@ -218,7 +214,7 @@ $action.trigger.getDocumentation("     * ")
             ${indent}    form, form.getDateTimeFormatters(), this.getContext().getExternalContext().getRequestParameterMap());
 #end
             //trigger method execution
-            ${indent}${action.triggerMethodName}(#if($formPopulationOperationRequired)form#end);
+            ${indent}${action.triggerMethodName}(form);
 
             ${indent}forward = #processTransition($action)
 #if ($portlet)
@@ -291,13 +287,11 @@ $action.trigger.getDocumentation("     * ")
 #foreach ($actionState in $action.actionStates)
     /**
 $actionState.getDocumentation("     * ")
-#if (!$action.formFields.empty)
      * @param form
-#end
      * @return forward
      * @throws Throwable
      */
-    protected String ${actionState.actionMethodName}(#if (!$action.formFields.empty)final $action.fullyQualifiedFormImplementationName form#end)
+    protected String ${actionState.actionMethodName}(final $action.fullyQualifiedFormImplementationName form)
         throws Throwable
     {
         String forward = null;
@@ -702,7 +696,6 @@ $decisionTransition.getDocumentation("     * ")
     {
         ${managedBeansPackage}.${formPopulatorName}.populateForm(fromForm, toForm, true);
     }
-#if ($formPopulationOperationRequired)
 
     /**
      * Finds the form (if one is present) on the given <code>component</code> having the given
@@ -775,7 +768,7 @@ $decisionTransition.getDocumentation("     * ")
             }
         }
     }
-#end
+
 #foreach ($sessionObjectRef in $controller.sessionObjectReferences)
 #set ($targetElement = $sessionObjectRef.targetElement)
 
