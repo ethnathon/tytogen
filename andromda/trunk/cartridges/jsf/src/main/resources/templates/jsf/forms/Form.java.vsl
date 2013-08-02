@@ -54,13 +54,16 @@ $field.getDocumentation("     * ")
 	public boolean is${stringUtils.upperCamelCaseName($field.name)}Rendered();
 	
 	public boolean is${stringUtils.upperCamelCaseName($field.name)}Disabled();
-	
+	/**
+	* if called with <code>false</code> on a form skip the rendering of the 
+	* element in the frontEndView.
+	* 	
+	* @param rendered
+	**/
 	public void ${field.setterName}Rendered(boolean rendered);
 	
 	public void ${field.setterName}Disabled(boolean disabled);
     
-## - don't allow fields with default values to be set
-#if (!$field.defaultValuePresent)
 
     /**
 $field.getDocumentation("     * ")
@@ -70,12 +73,11 @@ $field.getDocumentation("     * ")
 #if ($field.selectable || $field.type.enumeration)
 #renderBackingListSupport($field "")
 #end
-#foreach ($attribute in $field.attributes)
+#foreach ($attribute in $field.attributes)	
 #if ($attribute.isSelectable($field) || $attribute.type.enumeration || $attribute.isBackingValueRequired($field))
 #renderBackingListSupport($attribute $field)
 #end
 #end
 #end
 
-#end
 }

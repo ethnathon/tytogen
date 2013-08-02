@@ -164,7 +164,9 @@ this.$field.formAttributeSetProperty = true;
 ## - Chad Brandon - we ALWAYS render the backing list for attributes in the form
 ##   impl (because there are complex conditions where they might not show up and cause
 ##   uncompilable code; if we always render, we don't need to figure out what they are)
+#if ($attribute.isSelectable($field) || $attribute.type.enumeration || $attribute.isBackingValueRequired($field))
 #renderBackingListImplSupport($attribute $field)
+#end
 #end
 #end
 #end
