@@ -12,6 +12,13 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import ${managedBeansPackage}.JsfUtils;
+import java.util.Collection;
+import java.util.HashSet;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.saml.web.SamlUser;
 
 /**
 $controller.getDocumentation(" * ")
@@ -1136,4 +1143,44 @@ $decisionTransition.getDocumentation("     * ")
         }
     }
 #end
+
+	protected boolean isAuthenticated() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		boolean authenticated = false;
+		if (auth != null) {
+			authenticated = auth.isAuthenticated();
+		}
+		return authenticated;
+	}
+
+	protected User getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		Object princ = auth.getPrincipal();
+		return (User) princ;
+	}
+
+	protected String[] getRoles() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		Collection<? extends GrantedAuthority> authorities=auth.getAuthorities();
+		Collection<String> authoritiesStr=new HashSet<String>();
+		for (GrantedAuthority grantedAuthority : authorities) {
+			authoritiesStr.add(grantedAuthority.getAuthority());
+		}
+		return (String[]) authoritiesStr.toArray(new String[authoritiesStr.size()]);
+	}
+
+	protected Object getAuthenticationDetails() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		Object details = null;
+		Object princ = auth.getPrincipal();
+		if (princ instanceof SamlUser) {
+			SamlUser samlUser = (SamlUser) princ;
+			details = samlUser.getCustomAttributes();
+		}
+		return details;
+	}
 }
