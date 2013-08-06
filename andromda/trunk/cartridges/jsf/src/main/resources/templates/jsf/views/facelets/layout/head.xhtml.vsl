@@ -16,8 +16,11 @@
 #if ($outputCustomResources)
     <link rel="stylesheet" type="text/css" href="${facesContext.externalContext.request.contextPath}/css/custom.css" />
 #end
+	<!-- Page Head merge-point -->
     <trh:script source="/js/common.js"/>
     <trh:script source="/js/key-events.js"/>
+    <trh:script source="/js/jquery-1.10.2.js" />
+	<trh:script source="/js/jquery-ui-1.10.3.custom.js" />
 </trh:head>
 </ui:composition>
 </html>

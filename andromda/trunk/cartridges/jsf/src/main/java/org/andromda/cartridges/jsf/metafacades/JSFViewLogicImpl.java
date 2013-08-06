@@ -21,6 +21,7 @@ import org.andromda.metafacades.uml.FrontEndParameter;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.UseCaseFacade;
 import org.andromda.utils.StringUtilsHelper;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -387,7 +388,7 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 	}
 
 	@Override
-	protected String[] handleGetZones() {
+	protected Collection<String> handleGetZones() {
 		Set<String> zones = new HashSet<String>();
 		for (FrontEndParameter fp : this.getTables()) {
 			if (fp instanceof JSFParameter) {
@@ -413,15 +414,37 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 				zones.add(jsffp.getZone());
 			}
 		}
-		zones.add("default");
-		System.out.println("[JAVA] "+zones);
-		return (String[]) zones.toArray(new String[zones.size()]);
+		return zones;
+	}
+
+
+	@Override
+	protected Collection<String> handleGetTabLabels() {
+		Object tabLabelsObj = this
+				.findTaggedValue(JSFProfile.TAGGEDVALUE_TAB_LABELS);
+		Collection<String> result = null;
+		if (tabLabelsObj instanceof String) {
+			String tabLabels = (String) tabLabelsObj;
+			if (StringUtils.isNotBlank(tabLabels)) {
+				result =new ArrayList<String>();
+				String[] tabLabelArray = tabLabels.split(",");
+				for (String tabLabel : tabLabelArray) {
+					result.add(tabLabel.trim());
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
-	protected List handleFilterTableByZone(String zone) {
-		List<JSFParameter> lista=new ArrayList<JSFParameter>();
-		//TODO da implementare
-		return lista;
+	protected List handleFilterByZone(String zone) {
+		return null;
 	}
+
+	@Override
+	protected Integer handleGetTabs() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

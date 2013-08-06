@@ -274,6 +274,21 @@
     </template>
     
     <template
+        path="templates/jsf/security/roles.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/Roles.java"
+        outlet="forms"
+        overwrite="true"
+        outputToSingleFile="true"
+        outputCondition="securityEnabled"
+        outputOnEmptyElements="false">
+        <modelElements>
+            <modelElement variable="roles">
+                <type name="org.andromda.metafacades.uml.Role"/>
+            </modelElement>
+        </modelElements>
+    </template>
+    
+    <template
         path="templates/jsf/configuration/applicationContext-security.xml.vsl"
         outputPattern="WEB-INF/applicationContext-security.xml"
         outlet="configuration"
