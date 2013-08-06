@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.andromda.cartridges.jsf.JSFGlobals;
 import org.andromda.cartridges.jsf.JSFProfile;
 import org.andromda.cartridges.jsf.JSFUtils;
@@ -773,6 +774,12 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 			return zone;
 		}
 		return "default";
+	}
+
+	@Override
+	protected Integer handleGetTabNumber() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

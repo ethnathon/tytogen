@@ -47,13 +47,11 @@
     <!-- forms -->
 #foreach ($useCase in $useCases)
 #foreach ($action in $useCase.actions)
-#if (!$action.formFields.empty)
     <managed-bean>
         <managed-bean-name>$action.formBeanName</managed-bean-name>
         <managed-bean-class>$action.fullyQualifiedFormImplementationName</managed-bean-class>
         <managed-bean-scope>$action.formScope</managed-bean-scope>
     </managed-bean>
-#end
 #end
 #end
     <!-- controllers -->

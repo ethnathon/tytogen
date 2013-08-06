@@ -10,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import org.andromda.cartridges.jsf.JSFGlobals;
 import org.andromda.cartridges.jsf.JSFProfile;
 import org.andromda.cartridges.jsf.JSFUtils;
@@ -1306,6 +1307,12 @@ public class JSFParameterLogicImpl
 			return zone;
 		}
 		return "default";
+	}
+
+	@Override
+	protected Integer handleGetTabNumber() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
