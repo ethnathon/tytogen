@@ -2,14 +2,13 @@ package org.andromda.cartridges.jsf.metafacades;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import javax.swing.text.ZoneView;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.andromda.cartridges.jsf.JSFGlobals;
 import org.andromda.cartridges.jsf.JSFProfile;
@@ -21,7 +20,6 @@ import org.andromda.metafacades.uml.FrontEndParameter;
 import org.andromda.metafacades.uml.ModelElementFacade;
 import org.andromda.metafacades.uml.UseCaseFacade;
 import org.andromda.utils.StringUtilsHelper;
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang.StringUtils;
 
@@ -389,7 +387,7 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 
 	@Override
 	protected Collection<String> handleGetZones() {
-		Set<String> zones = new HashSet<String>();
+		Set<String> zones = new TreeSet<String>();
 		for (FrontEndParameter fp : this.getTables()) {
 			if (fp instanceof JSFParameter) {
 				JSFParameter jsffp = (JSFParameter) fp;
@@ -417,34 +415,64 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 		return zones;
 	}
 
-
 	@Override
-	protected Collection<String> handleGetTabLabels() {
+	protected Map handleGetTabLabelsById() {
 		Object tabLabelsObj = this
 				.findTaggedValue(JSFProfile.TAGGEDVALUE_TAB_LABELS);
-		Collection<String> result = null;
+		SortedSet<String> tabNames = new TreeSet<String>();
+		Collection<String> zones = this.getZones();
+		for (String zoneName : zones) {
+			if (zoneName.trim().toLowerCase().startsWith("tab")) {
+				tabNames.add(zoneName.trim().toLowerCase());
+			}
+		}
+
+		Collection<String> tabLabelColl = new ArrayList<String>();
 		if (tabLabelsObj instanceof String) {
 			String tabLabels = (String) tabLabelsObj;
 			if (StringUtils.isNotBlank(tabLabels)) {
-				result =new ArrayList<String>();
+
 				String[] tabLabelArray = tabLabels.split(",");
 				for (String tabLabel : tabLabelArray) {
-					result.add(tabLabel.trim());
+					tabLabelColl.add(tabLabel.trim());
 				}
 			}
 		}
-		return result;
+		Map<String, String> tabLabelsById = new LinkedHashMap<String, String>();
+		Iterator<String> labelIterator = tabLabelColl.iterator();
+
+		for (String tabName : tabNames) {
+			String tabLabel;
+			if (labelIterator.hasNext()) {
+				tabLabel = labelIterator.next();
+			} else {
+				tabLabel = tabName;
+			}
+			tabLabelsById.put(tabName, tabLabel);
+		}
+
+		return tabLabelsById;
 	}
 
 	@Override
-	protected List handleFilterByZone(String zone) {
-		return null;
-	}
+	protected List handleFilterTablesByZone(String zone) {
+		List<FrontEndParameter> tables = this.getTables();
+		List<FrontEndParameter> filtered_table = new ArrayList<FrontEndParameter>();
+		for (FrontEndParameter frontEndParameter : tables) {
+			if (frontEndParameter instanceof JSFParameter) {
+				JSFParameter jsfParameter = (JSFParameter) frontEndParameter;
+				if (StringUtils.isBlank(zone)) {
+					if (jsfParameter.getZone().equals("default")) {
+						filtered_table.add(jsfParameter);
+					}
+				} else if (jsfParameter.getZone().trim()
+						.equalsIgnoreCase(zone.trim())) {
+					filtered_table.add(jsfParameter);
+				}
 
-	@Override
-	protected Integer handleGetTabs() {
-		// TODO Auto-generated method stub
-		return null;
+			}
+		}
+		return filtered_table;
 	}
 
 }

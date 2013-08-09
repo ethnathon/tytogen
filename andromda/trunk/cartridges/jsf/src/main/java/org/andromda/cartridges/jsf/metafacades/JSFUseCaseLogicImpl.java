@@ -161,8 +161,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic {
 							this.collectAssociationEndMessages(messages,
 									parameter.getNavigableAssociationEnds(),
 									resolvingTypes);
-							messages.put(parameter.getMessageKey(),
-									parameter.getMessageValue());
+							addMessageIfRequired(messages, parameter);
 
 							// - table
 							if (parameter.isTable()) {
@@ -243,8 +242,8 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic {
 											.iterator(); iterator.hasNext();) {
 										final JSFAttribute attribute = (JSFAttribute) iterator
 												.next();
-										messages.put(attribute.getMessageKey(),
-												attribute.getMessageValue());
+										addMessageIfRequired(messages,
+												attribute);
 									}
 								}
 								final Collection associationEnds = parameter
@@ -265,19 +264,16 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic {
 														.hasNext();) {
 													final JSFAttribute attribute = (JSFAttribute) attributeIterator
 															.next();
-													messages.put(
-															attribute
-																	.getMessageKey(),
-															attribute
-																	.getMessageValue());
+													addMessageIfRequired(
+															messages, attribute);
 												}
 											}
 										}
 									}
 								}
-								messages.put(parameter.getMessageKey(),
-										parameter.getMessageValue());
-								messages.put(parameter.getDocumentationKey(),
+								addMessageIfRequired(messages, parameter);
+								addMessageIfRequired(messages,
+										parameter.getDocumentationKey(),
 										parameter.getDocumentationValue());
 
 								// - submittable input table
@@ -336,8 +332,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic {
 										.iterator(); iterator.hasNext();) {
 									final JSFAttribute attribute = (JSFAttribute) iterator
 											.next();
-									messages.put(attribute.getMessageKey(),
-											attribute.getMessageValue());
+									addMessageIfRequired(messages, attribute);
 								}
 							}
 						}
@@ -391,16 +386,39 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic {
 			Collection attributes,
 			final Collection<ClassifierFacade> resolvingTypes) {
 		if (attributes != null && !attributes.isEmpty()) {
-			for (final Iterator iterator = attributes.iterator(); iterator
+			for (final Iterator<?> iterator = attributes.iterator(); iterator
 					.hasNext();) {
 				final JSFAttribute attribute = (JSFAttribute) iterator.next();
-				messages.put(attribute.getMessageKey(),
-						attribute.getMessageValue());
+				addMessageIfRequired(messages, attribute);
 				// - lets go another level for nested attributes
 				this.collectTypeMessages(messages, attribute.getType(),
 						resolvingTypes);
 			}
 		}
+	}
+
+	private void addMessageIfRequired(Map<String, String> messages,
+			final JSFAttribute attribute) {
+		String messageKey = attribute.getMessageKey();
+		String messageValue = attribute.getMessageValue();
+		addMessageIfRequired(messages, messageKey, messageValue);
+	}
+
+	private void addMessageIfRequired(Map<String, String> messages,
+			String messageKey, String messageValue) {
+		if (StringUtils.isNotBlank(messageKey)) {
+			if (!messages.containsKey(messageKey)
+					|| StringUtils.isNotBlank(messageValue)) {
+				messages.put(messageKey, messageValue);
+			}
+		}
+	}
+
+	private void addMessageIfRequired(Map<String, String> messages,
+			final JSFParameter attribute) {
+		String messageKey = attribute.getMessageKey();
+		String messageValue = attribute.getMessageValue();
+		addMessageIfRequired(messages, messageKey, messageValue);
 	}
 
 	/**
