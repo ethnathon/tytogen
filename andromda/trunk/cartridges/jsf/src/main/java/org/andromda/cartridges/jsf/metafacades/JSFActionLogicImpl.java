@@ -776,10 +776,4 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 		return "default";
 	}
 
-	@Override
-	protected Integer handleGetTabNumber() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
