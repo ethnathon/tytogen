@@ -1,14 +1,16 @@
 #macro(viewAction $action $zone)
-    <!-- generated from viewAction (BEGIN)-->
-    #if($action.getZone()==$zone)
+##    <!-- generated from viewAction (BEGIN)-->
+    #if($action.zone==$zone)
         #set($formName = $action.formBeanName)
         #if ($action.hyperlink || $action.popup)
             <tr:subform id="${formName}">
-                #if ($action.hyperlink)
-                    <tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end>
-                #else
-                    <a:popup scrolling="yes" height="350px" width="550px" actionOpen="#{${action.controller.beanName}.${action.triggerName}}" center="false">
-                #end
+#if ($action.hyperlink)
+            	<tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end##
+rendered="#{${action.controller.beanName}.${action.triggerName}}Rendered" #if($stringUtils.isNotEmpty($action.documentationValue)) shortDesc="#{messages['$action.documentationKey']}"#end >
+#else
+                <a:popup scrolling="yes" height="350px" width="550px" actionOpen="#{${action.controller.beanName}.${action.triggerName}}" center="false" ##
+rendered="#{${action.controller.beanName}.${action.triggerName}}Rendered" >
+#end
                 <tr:outputText value="#{messages['$action.messageKey']}"/>
                 #foreach ($parameter in $action.parameters)
                     #if (!$parameter.complex || $parameter.type.enumeration)
@@ -19,9 +21,9 @@
                     #end
                 #end
                 #if ($action.hyperlink)
-					</tr:commandLink>
+				</tr:commandLink>
                 #else
-					</a:popup>
+				</a:popup>
                 #end
             </tr:subform>
             <br/>
@@ -46,20 +48,20 @@
                         <f:facet name="footer">
                             <tr:panelButtonBar>
                                 <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end/>
-                                    #if ($action.resettable)
-                                        <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
-                                    #end
+#if ($action.resettable)
+                                <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
+#end
                             </tr:panelButtonBar>
                         </f:facet>
                     </tr:panelFormLayout>
-                    #if($commonsValidator)
+#if($commonsValidator)
                         <a:validator#if(!$clientValidation) client="false"#end/>
-                    #end
+#end
             </tr:subform>
-        #end
-    #else
-        <!--Action.zone=${action.getZone()} & zone=${zone}-->
+#end
+#else
+##<!--Action.zone=${action.getZone()} & zone=${zone}-->
     #end
-    <!-- generated from viewAction (END)-->
+##<!-- generated from viewAction (END)-->
 #end
     

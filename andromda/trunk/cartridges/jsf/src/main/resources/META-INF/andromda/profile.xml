@@ -146,6 +146,10 @@
                 </documentation>
                 <value>andromda_presentation_web_view_type</value>
                 <appliedOnElement>A <![CDATA[<<FrontEndView>>]]></appliedOnElement>
+                <allowedValues>
+                    <value default="true">regular</value>
+                    <value>popup</value>
+                </allowedValues>
             </element>
             <element name="INPUT_TYPE">
                 <documentation>

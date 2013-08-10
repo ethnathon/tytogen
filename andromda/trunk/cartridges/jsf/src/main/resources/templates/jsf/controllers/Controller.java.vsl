@@ -12,6 +12,9 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import ${managedBeansPackage}.JsfUtils;
+
+#if ($securityEnabled)
+import ${managedBeansPackage}.Roles;
 import java.util.Collection;
 import java.util.HashSet;
 import org.springframework.security.core.Authentication;
@@ -19,6 +22,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.saml.web.SamlUser;
+#end
 
 /**
 $controller.getDocumentation(" * ")
@@ -232,7 +236,13 @@ $action.trigger.getDocumentation("     * ")
             ${indent}if("$action.source.fromOutcome".equals(forward))
             ${indent}{
             ${indent}    forward = null; //the destination form is the same, stay on the current view
+            ${indent}} ##
+#if($action.popup) else {
+            ${indent}    org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog("close", null); //close the dialog
             ${indent}}
+#else
+
+#end
 #end
 #end
             ${indent}final FacesMessage.Severity messageSeverity = this.getMaximumMessageSeverity();
@@ -1161,15 +1171,20 @@ $decisionTransition.getDocumentation("     * ")
 		return (User) princ;
 	}
 
-	protected String[] getRoles() {
+	protected Collection<Roles> getRoles() {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		Collection<? extends GrantedAuthority> authorities=auth.getAuthorities();
-		Collection<String> authoritiesStr=new HashSet<String>();
+		Collection<Roles> authoritiesMDA=new HashSet<Roles>();
 		for (GrantedAuthority grantedAuthority : authorities) {
-			authoritiesStr.add(grantedAuthority.getAuthority());
+			String roleString = grantedAuthority.getAuthority();
+			authoritiesMDA.add(Roles.valueOf(roleString));
 		}
-		return (String[]) authoritiesStr.toArray(new String[authoritiesStr.size()]);
+		return authoritiesMDA;
+	}
+	
+	protected boolean isUserInRole(Roles role){
+		return getRoles().contains(role);
 	}
 
 	protected Object getAuthenticationDetails() {
