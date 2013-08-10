@@ -15,6 +15,7 @@
         </mapping>
         <property reference="viewPopulatorPattern"/>
         <property reference="actionFormKey"/>
+        <property reference="ajaxLibrary"/>     
     </metafacade>
     <metafacade class="org.andromda.cartridges.jsf.metafacades.JSFSessionObjectLogicImpl">
         <mapping>
@@ -67,7 +68,7 @@
             <stereotype>FRONT_END_APPLICATION</stereotype>
         </mapping>
         <property reference="actionFormKey"/>
-        <property reference="defaultRole"/>
+        <property reference="defaultRole"/>   
     </metafacade>
     <metafacade class="org.andromda.cartridges.jsf.metafacades.JSFUseCaseLogicImpl">
         <mapping>

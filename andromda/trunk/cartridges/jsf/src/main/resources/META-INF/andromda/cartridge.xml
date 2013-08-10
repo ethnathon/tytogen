@@ -6,6 +6,7 @@
         <macrolibrary name="templates/jsf/views/renderActionFormInput.vm"/>
         <macrolibrary name="templates/jsf/views/renderActionCommandLinkParameter.vm"/>
         <macrolibrary name="templates/jsf/views/renderTableCommandLinkParameters.vm"/>
+        <macrolibrary name="templates/jsf/views/renderZone.vm"/>
         <macrolibrary name="templates/jsf/views/trinidadMacros.vm"/>
         <macrolibrary name="templates/jsf/forms/formMacros.vm"/>
         <macrolibrary name="templates/jsf/forms/formImplMacros.vm"/>
@@ -95,7 +96,7 @@
     <property reference="navigationBeanScope"/>
     <property reference="jsfVersion"/>
     <property reference="horizontalMenu"/>
-	
+	<property reference="normalizeMessages"/>
     <!-- cartridge-property merge-point -->
 
     <condition name="outputCustomResources">$stringUtils.isNotBlank($custom-resources)</condition>
@@ -282,8 +283,10 @@
         outputCondition="securityEnabled"
         outputOnEmptyElements="false">
         <modelElements>
-            <modelElement variable="roles">
-                <type name="org.andromda.metafacades.uml.Role"/>
+            <modelElement variable="applicationUseCases">
+                <type name="org.andromda.metafacades.uml.FrontEndUseCase">
+                    <property name="entryUseCase"/>
+                </type>
             </modelElement>
         </modelElements>
     </template>
@@ -828,17 +831,18 @@
         <modelElements variable="view">
             <modelElement>
                 <type name="org.andromda.metafacades.uml.FrontEndView">
-                    <property name="popup">false</property>
+                    <!-- property name="popup">false</property -->
                 </type>
             </modelElement>
         </modelElements>
     </template>
 
     <template
-        path="templates/jsf/views/facelets/view-popup.xhtml.vsl"
-        outputPattern="${view.path}.xhtml"
+        path="templates/jsf/views/facelets/layout/popup-layout.xhtml.vsl"
+        outputPattern="/layout/popup-layout.xhtml"
         outlet="views"
         overwrite="true"
+        outputOnEmptyElements="false"
         outputCondition="standalone">
         <modelElements variable="view">
             <modelElement>

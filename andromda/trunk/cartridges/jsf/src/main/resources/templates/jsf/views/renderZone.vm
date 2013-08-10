@@ -1,0 +1,21 @@
+#a macro that renders a full zone of the FrontendView. The name of the zone
+#is passed as a parameter.
+
+#macro(drawZone $actualZone)
+#if ($view.nonTableVariablesPresent)
+#viewVariables($view $actualZone)
+#end
+
+#foreach ($action in $view.actions)
+    #if (!$action.tableLink)
+        #viewAction($action $actualZone)
+    #end
+#end
+#foreach ($variable in $view.variables)
+    #if ($variable.table)
+        #if ($variable.getZone()==$actualZone)
+#viewTable($variable $actualZone)
+        #end
+    #end
+#end
+#end

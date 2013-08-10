@@ -214,7 +214,12 @@
         <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
         <param-value>false</param-value>
     </context-param>
-
+    
+	<context-param>
+		<param-name>org.apache.myfaces.trinidad.ENABLE_LIGHTWEIGHT_DIALOGS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
     <context-param>
         <description>
             If true, a javascript function will be rendered that is able to restore the
@@ -392,6 +397,10 @@
         <filter-name>TrinidadDialogFilter</filter-name>
         <url-pattern>/__ADFv__</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>TrinidadDialogFilter</filter-name>
+        <url-pattern>/__*</url-pattern>
+    </filter-mapping>
 
 #if ($securityEnabled && !$roles.empty)
     <filter-mapping>
@@ -405,6 +414,10 @@
     <filter-mapping>
         <filter-name>$view.fullyQualifiedPopulator</filter-name>
         <url-pattern>${view.path}.${facesServletExtension}</url-pattern>
+#if (!$navigationUsesRedirect)
+        <dispatcher>REQUEST</dispatcher>  
+    	<dispatcher>FORWARD</dispatcher>
+#end
     </filter-mapping>
 #end
 #end
@@ -414,6 +427,10 @@
     <filter-mapping>
         <filter-name>$manageable.populatorType</filter-name>
         <url-pattern>${manageable.viewFullPath}.${facesServletExtension}</url-pattern>
+#if (!$navigationUsesRedirect)
+        <dispatcher>REQUEST</dispatcher>  
+    	<dispatcher>FORWARD</dispatcher> 
+#end
     </filter-mapping>
 #end
 #end

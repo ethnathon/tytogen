@@ -11,5 +11,5 @@
 #set ($valuePropertyName = ${parameter.getFormPropertyName($ownerParameter)})
 #end
         <f:param name="$valuePropertyName" value="#{${formName}.${valuePropertyName}}"/>
-<!--END renderTableCommandLinkParameters -->
+<!--END renderActionCommandLinkParameters -->
 #end
