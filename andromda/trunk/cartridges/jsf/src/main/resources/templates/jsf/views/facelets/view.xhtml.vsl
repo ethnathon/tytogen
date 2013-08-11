@@ -62,24 +62,27 @@
 #end
 			</div>
 #end
+#set ( $zones = $view.tabLabelsById )
+#if($zones.contains('top') || $zones.contains('column1')||$zones.contains('column2')||$zones.contains('bottom'))
             <table class="zoneTable">
-                #if($view.zones.contains('top'))
+                #if($zones.contains('top'))
                     <tr class="zoneRow">
                         <td class="zoneCell" colspan="2">#drawZone('top')</td>
                     </tr>
                 #end
-                #if($view.zones.contains('column1')||$view.zones.contains('column2'))
+                #if($zones.contains('column1')||$zones.contains('column2'))
                     <tr class="zoneRow">
                         <td id="zoneColumn1" class="zoneCell" width="50%">#drawZone('column1')</td>
 						<td id="zoneColumn2" class="zoneCell" width="50%">#drawZone('column2')</td>
                     </tr>
                 #end
-                #if($view.zones.contains('bottom'))
+                #if($zones.contains('bottom'))
                     <tr class="zoneRow">
                         <td class="zoneCell" colspan="2">#drawZone('bottom')</td>
                     </tr>
                 #end
             </table>
+#end
         </ui:define>
     </ui:composition>
 </html>
