@@ -1,67 +1,65 @@
-#macro(viewAction $action $zone)
+#macro(viewAction $action $currentViewPopup)
 ##    <!-- generated from viewAction (BEGIN)-->
-    #if($action.zone==$zone)
-        #set($formName = $action.formBeanName)
-        #if ($action.hyperlink || $action.popup)
+#set($formName = $action.formBeanName)
+##Disable partialSubmit if the current view is a popup to allow popup to close correctly
+#set($needPartialSubmit = $trinidad && !$currentViewPopup) 
+#if ($action.hyperlink || $action.popup)
             <tr:subform id="${formName}">
 #if ($action.hyperlink)
-            	<tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end##
-rendered="#{${action.controller.beanName}.${action.triggerName}}Rendered" #if($stringUtils.isNotEmpty($action.documentationValue)) shortDesc="#{messages['$action.documentationKey']}"#end >
+                    <tr:commandLink id="${action.triggerName}Action" 
+                        action="#{${action.controller.beanName}.${action.triggerName}}" ##
+#*                      *##if($needPartialSubmit) partialSubmit="true" #if($action.popup) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" #end#end ##
+#*                      *##if($stringUtils.isNotEmpty($action.documentation)) shortDesc="#{messages['$action.documentationKey']}"#end >
 #else
-                <a:popup scrolling="yes" height="350px" width="550px" actionOpen="#{${action.controller.beanName}.${action.triggerName}}" center="false" ##
-rendered="#{${action.controller.beanName}.${action.triggerName}}Rendered" >
+                    <a:popup scrolling="yes" height="350px" width="550px" actionOpen="#{${action.controller.beanName}.${action.triggerName}}" center="false">
 #end
-                <tr:outputText value="#{messages['$action.messageKey']}"/>
-                #foreach ($parameter in $action.parameters)
-                    #if (!$parameter.complex || $parameter.type.enumeration)
-                        #renderActionCommandLinkParameter($parameter "")
-                    #end
-                    #foreach ($attribute in $parameter.attributes)
-                        #renderActionCommandLinkParameter($attribute $parameter)
-                    #end
-                #end
-                #if ($action.hyperlink)
-				</tr:commandLink>
-                #else
-				</a:popup>
-                #end
+                	<tr:outputText value="#{messages['$action.messageKey']}"/>
+#foreach ($parameter in $action.parameters)
+#if (!$parameter.complex || $parameter.type.enumeration)
+        #renderActionCommandLinkParameter($parameter "")
+#end
+#foreach ($attribute in $parameter.attributes)
+        #renderActionCommandLinkParameter($attribute $parameter)
+#end
+#end ##end for
+#if ($action.hyperlink)
+					</tr:commandLink>
+#else
+					</a:popup>
+#end
             </tr:subform>
-            <br/>
-            <br/>
-        #else
+#else ##action !($action.hyperlink || $action.popup)
             #set ($clientValidation = $clientValidation && $action.validationRequired)
             #set ($formValidateName = "validate$stringUtils.capitalize($formName)")
             <tr:subform id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end>
-                    #if (!$action.hiddenParameters.empty)
-                        #viewHiddenParameters($action 'hidden')
-                    #end
-                    <tr:panelFormLayout>
-                        #foreach ($parameter in $action.parameters)
-                            #if (!$parameter.complex || $parameter.type.enumeration)
-                                #renderActionInput($parameter "")
-                            #else
-                                #foreach ($attribute in $parameter.attributes)
-                                    #renderActionInput($attribute $parameter)
-                                #end
-                            #end
-                        #end
-                        <f:facet name="footer">
+#*          	*##if (!$action.hiddenParameters.empty)
+#*                    *##viewHiddenParameters($action 'hidden')
+#*              *##end
+				<tr:panelFormLayout>
+#*              	*##foreach ($parameter in $action.parameters)
+#*              		*##if (!$parameter.complex || $parameter.type.enumeration)
+#*              			*##renderActionInput($parameter "")
+#*              		*##else
+#*              			*##foreach ($attribute in $parameter.attributes)
+#*              				*##renderActionInput($attribute $parameter)
+#*              			*##end
+#*              		*##end
+#*                  *##end
+					<f:facet name="footer">
                             <tr:panelButtonBar>
-                                <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}"#if($trinidad) partialSubmit="true"#end/>
-#if ($action.resettable)
+                                <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" 
+                                #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" #end#end/>
+#*              				*##if ($action.resettable)
                                 <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
-#end
+#*              				*##end
                             </tr:panelButtonBar>
-                        </f:facet>
-                    </tr:panelFormLayout>
+                    </f:facet>
+              </tr:panelFormLayout>
 #if($commonsValidator)
-                        <a:validator#if(!$clientValidation) client="false"#end/>
+				<a:validator#if(!$clientValidation) client="false"#end/>
 #end
             </tr:subform>
 #end
-#else
-##<!--Action.zone=${action.getZone()} & zone=${zone}-->
-    #end
 ##<!-- generated from viewAction (END)-->
 #end
     
