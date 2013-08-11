@@ -169,6 +169,18 @@ $action.trigger.getDocumentation("     * ")
     {
         this.${action.triggerName}((javax.faces.event.FacesEvent)event);
     }
+    
+#if($action.popup)
+    /**
+     * Forces a full refresh of the page returning from a dialog.
+     * This is required to avoid old values on the page
+     * @param event
+     */
+    public void ${action.triggerName}DialogReturn(final org.apache.myfaces.trinidad.event.ReturnEvent event)
+    {
+        ${managedBeansPackage}.JsfUtils.redirectToSelf();
+    }
+#end   
 
     /**
      * @param event
@@ -233,12 +245,12 @@ $action.trigger.getDocumentation("     * ")
 #end
 #if($trinidad)
 #if(!$action.exitingInitialState)
-            ${indent}if("$action.source.fromOutcome".equals(forward))
-            ${indent}{
+            ${indent}if("$action.source.fromOutcome".equals(forward)) {
             ${indent}    forward = null; //the destination form is the same, stay on the current view
             ${indent}} ##
-#if($action.popup) else {
-            ${indent}    org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog("close", null); //close the dialog
+#if($action.source.popup) else {
+            ${indent}    org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog(forward, null); //close the dialog
+            ${indent}    forward = null;
             ${indent}}
 #else
 

@@ -76,7 +76,8 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 	 * @return true/false
 	 */
 	private boolean isNormalizeMessages() {
-		final String normalizeMessages = (String) getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
+		final String normalizeMessages = 
+				(String) getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
 		return Boolean.valueOf(normalizeMessages).booleanValue();
 	}
 
@@ -352,8 +353,18 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 	 * @see org.andromda.cartridges.jsf.metafacades.JSFView#getFromOutcome()
 	 */
 	protected String handleGetFromOutcome() {
-		return JSFUtils.toWebResourceName(this.getUseCase().getName() + "-"
-				+ this.getName());
+		String prefix="";
+		if (isPopup()) {
+			final String ajaxLibrary = (String) getConfiguredProperty("ajaxLibrary");
+			if("trinidad".equalsIgnoreCase(ajaxLibrary)){
+				prefix = "dialog:";
+			}
+		}
+		StringBuilder formOutcome =new StringBuilder();
+		formOutcome.append(this.getUseCase().getName());
+		formOutcome.append("-");
+		formOutcome.append(this.getName());
+		return prefix + JSFUtils.toWebResourceName(formOutcome.toString());
 	}
 
 	/**
