@@ -31,17 +31,17 @@ public class MetadataValidator implements Validator {
 
 	MetadataManager manager;
 
-	public MetadataValidator(MetadataManager manager) {
+	public MetadataValidator(final MetadataManager manager) {
 		this.manager = manager;
 	}
 
 	@Override
-	public boolean supports(Class<?> clazz) {
+	public boolean supports(final Class<?> clazz) {
 		return clazz.equals(MetadataForm.class);
 	}
 
 	@Override
-	public void validate(Object target, Errors errors) {
+	public void validate(final Object target, final Errors errors) {
 
 		final MetadataForm metadata = (MetadataForm) target;
 
@@ -122,14 +122,14 @@ public class MetadataValidator implements Validator {
 
 		try {
 			if (!errors.hasErrors() && metadata.isStore()) {
-				final EntityDescriptor entityDescriptor = this.manager
+				final EntityDescriptor entityDescriptor = manager
 						.getEntityDescriptor(metadata.getEntityId());
 				if (entityDescriptor != null) {
 					errors.rejectValue("entityId", null,
 							"Selected entity ID is already used.");
 				}
-				final String idForAlias = this.manager
-						.getEntityIdForAlias(metadata.getAlias());
+				final String idForAlias = manager.getEntityIdForAlias(metadata
+						.getAlias());
 				if (idForAlias != null) {
 					errors.rejectValue("alias", null,
 							"Selected alias is already used.");

@@ -58,12 +58,12 @@ import org.w3c.dom.Element;
 @RequestMapping("/metadata")
 public class MetadataController {
 
-	private final Logger log = LoggerFactory
-			.getLogger(MetadataController.class);
-
 	public static enum AllowedSSOBindings {
 		SSO_POST, SSO_PAOS, SSO_ARTIFACT, HOKSSO_POST, HOKSSO_ARTIFACT
 	}
+
+	private final Logger log = LoggerFactory
+			.getLogger(MetadataController.class);
 
 	@Autowired
 	MetadataManager metadataManager;
@@ -71,86 +71,15 @@ public class MetadataController {
 	@Autowired
 	JKSKeyManager keyManager;
 
-	@RequestMapping
-	public ModelAndView metadataList() throws MetadataProviderException {
-
-		final ModelAndView model = new ModelAndView(new InternalResourceView(
-				"/WEB-INF/security/metadataList.jsp", true));
-
-		model.addObject("hostedSP", this.metadataManager.getHostedSPName());
-		model.addObject("spList", this.metadataManager.getSPEntityNames());
-		model.addObject("idpList", this.metadataManager.getIDPEntityNames());
-		model.addObject("metadata",
-				this.metadataManager.getAvailableProviders());
-
-		return model;
-
-	}
-
-	@RequestMapping(value = "/refresh")
-	public ModelAndView refreshMetadata() throws MetadataProviderException {
-
-		this.metadataManager.refreshMetadata();
-		return metadataList();
-
-	}
-
-	@RequestMapping(value = "/provider")
-	public ModelAndView displayProvider(
-			@RequestParam("providerIndex") int providerIndex) {
-
-		final ModelAndView model = new ModelAndView(new InternalResourceView(
-				"/WEB-INF/security/providerView.jsp", true));
-		final ExtendedMetadataDelegate delegate = this.metadataManager
-				.getAvailableProviders().get(providerIndex);
-		model.addObject("provider", delegate);
-		model.addObject("providerIndex", providerIndex);
-		return model;
-
-	}
-
-	@RequestMapping(value = "/removeProvider")
-	public ModelAndView removeProvider(@RequestParam int providerIndex)
-			throws MetadataProviderException {
-
-		final ExtendedMetadataDelegate delegate = this.metadataManager
-				.getAvailableProviders().get(providerIndex);
-		this.metadataManager.removeMetadataProvider(delegate);
-		return metadataList();
-
-	}
-
-	@RequestMapping(value = "/generate")
-	public ModelAndView generateMetadata(HttpServletRequest request)
-			throws KeyStoreException {
-
-		final ModelAndView model = new ModelAndView(new InternalResourceView(
-				"/WEB-INF/security/metadataGenerator.jsp", true));
-		final MetadataForm defaultForm = new MetadataForm();
-
-		model.addObject("availableKeys", getAvailablePrivateKeys());
-		defaultForm.setBaseURL(getBaseURL(request));
-		defaultForm.setEntityId(getEntityId(request));
-		defaultForm.setAlias(getEntityId(request));
-		defaultForm.setNameID(MetadataGenerator.defaultNameID
-				.toArray(new String[MetadataGenerator.defaultNameID.size()])); // TODO
-																				// array
-																				// vs
-																				// collection
-
-		model.addObject("metadata", defaultForm);
-		return model;
-
-	}
-
 	@RequestMapping(value = "/create")
 	public ModelAndView createMetadata(
-			@ModelAttribute("metadata") MetadataForm metadata,
-			BindingResult bindingResult) throws MetadataProviderException,
-			MarshallingException, KeyStoreException {
+			@ModelAttribute("metadata") final MetadataForm metadata,
+			final BindingResult bindingResult)
+			throws MetadataProviderException, MarshallingException,
+			KeyStoreException {
 
-		new MetadataValidator(this.metadataManager).validate(metadata,
-				bindingResult);
+		new MetadataValidator(metadataManager)
+				.validate(metadata, bindingResult);
 
 		if (bindingResult.hasErrors()) {
 			final ModelAndView modelAndView = new ModelAndView(
@@ -161,7 +90,7 @@ public class MetadataController {
 		}
 
 		final MetadataGenerator generator = new MetadataGenerator();
-		generator.setKeyManager(this.keyManager);
+		generator.setKeyManager(keyManager);
 
 		generator.setEntityId(metadata.getEntityId());
 		generator.setEntityAlias(metadata.getAlias());
@@ -257,10 +186,10 @@ public class MetadataController {
 			memoryProvider.initialize();
 			final MetadataProvider metadataProvider = new ExtendedMetadataDelegate(
 					memoryProvider, extendedMetadata);
-			this.metadataManager.addMetadataProvider(metadataProvider);
-			this.metadataManager.setHostedSPName(descriptor.getEntityID());
-			this.metadataManager.setRefreshRequired(true);
-			this.metadataManager.refreshMetadata();
+			metadataManager.addMetadataProvider(metadataProvider);
+			metadataManager.setHostedSPName(descriptor.getEntityID());
+			metadataManager.setRefreshRequired(true);
+			metadataManager.refreshMetadata();
 
 		}
 
@@ -268,38 +197,10 @@ public class MetadataController {
 
 	}
 
-	/**
-	 * Displays stored metadata.
-	 * 
-	 * @param entityId
-	 *            entity ID of metadata to display
-	 * @return model and view
-	 * @throws MetadataProviderException
-	 *             in case metadata can't be located
-	 * @throws MarshallingException
-	 *             in case de-serialization into string fails
-	 */
-	@RequestMapping(value = "/display")
-	public ModelAndView displayMetadata(
-			@RequestParam("entityId") String entityId)
-			throws MetadataProviderException, MarshallingException {
-
-		final EntityDescriptor entityDescriptor = this.metadataManager
-				.getEntityDescriptor(entityId);
-		final ExtendedMetadata extendedMetadata = this.metadataManager
-				.getExtendedMetadata(entityId);
-
-		if (entityDescriptor == null) {
-			throw new MetadataProviderException("Metadata with ID " + entityId
-					+ " not found");
-		}
-
-		return displayMetadata(entityDescriptor, extendedMetadata);
-
-	}
-
-	protected ModelAndView displayMetadata(EntityDescriptor entityDescriptor,
-			ExtendedMetadata extendedMetadata) throws MarshallingException {
+	protected ModelAndView displayMetadata(
+			final EntityDescriptor entityDescriptor,
+			final ExtendedMetadata extendedMetadata)
+			throws MarshallingException {
 
 		final MetadataForm metadata = new MetadataForm();
 		final String fileName = getFileName(entityDescriptor);
@@ -332,19 +233,96 @@ public class MetadataController {
 
 	}
 
-	protected String getMetadataAsString(EntityDescriptor descriptor)
-			throws MarshallingException {
+	/**
+	 * Displays stored metadata.
+	 * 
+	 * @param entityId
+	 *            entity ID of metadata to display
+	 * @return model and view
+	 * @throws MetadataProviderException
+	 *             in case metadata can't be located
+	 * @throws MarshallingException
+	 *             in case de-serialization into string fails
+	 */
+	@RequestMapping(value = "/display")
+	public ModelAndView displayMetadata(
+			@RequestParam("entityId") final String entityId)
+			throws MetadataProviderException, MarshallingException {
 
-		final MarshallerFactory marshallerFactory = org.opensaml.xml.Configuration
-				.getMarshallerFactory();
-		final Marshaller marshaller = marshallerFactory
-				.getMarshaller(descriptor);
-		final Element element = marshaller.marshall(descriptor);
-		return XMLHelper.nodeToString(element);
+		final EntityDescriptor entityDescriptor = metadataManager
+				.getEntityDescriptor(entityId);
+		final ExtendedMetadata extendedMetadata = metadataManager
+				.getExtendedMetadata(entityId);
+
+		if (entityDescriptor == null) {
+			throw new MetadataProviderException("Metadata with ID " + entityId
+					+ " not found");
+		}
+
+		return displayMetadata(entityDescriptor, extendedMetadata);
 
 	}
 
-	protected String getBaseURL(HttpServletRequest request) {
+	@RequestMapping(value = "/provider")
+	public ModelAndView displayProvider(
+			@RequestParam("providerIndex") final int providerIndex) {
+
+		final ModelAndView model = new ModelAndView(new InternalResourceView(
+				"/WEB-INF/security/providerView.jsp", true));
+		final ExtendedMetadataDelegate delegate = metadataManager
+				.getAvailableProviders().get(providerIndex);
+		model.addObject("provider", delegate);
+		model.addObject("providerIndex", providerIndex);
+		return model;
+
+	}
+
+	@RequestMapping(value = "/generate")
+	public ModelAndView generateMetadata(final HttpServletRequest request)
+			throws KeyStoreException {
+
+		final ModelAndView model = new ModelAndView(new InternalResourceView(
+				"/WEB-INF/security/metadataGenerator.jsp", true));
+		final MetadataForm defaultForm = new MetadataForm();
+
+		model.addObject("availableKeys", getAvailablePrivateKeys());
+		defaultForm.setBaseURL(getBaseURL(request));
+		defaultForm.setEntityId(getEntityId(request));
+		defaultForm.setAlias(getEntityId(request));
+		defaultForm.setNameID(MetadataGenerator.defaultNameID
+				.toArray(new String[MetadataGenerator.defaultNameID.size()])); // TODO
+																				// array
+																				// vs
+																				// collection
+
+		model.addObject("metadata", defaultForm);
+		return model;
+
+	}
+
+	protected Map<String, String> getAvailablePrivateKeys()
+			throws KeyStoreException {
+		final Map<String, String> availableKeys = new HashMap<String, String>();
+		final Set<String> aliases = keyManager.getAvailableCredentials();
+		for (final String key : aliases) {
+			try {
+				log.debug("Found key {}", key);
+				final Credential credential = keyManager.getCredential(key);
+				if (credential.getPrivateKey() != null) {
+					log.debug(
+							"Adding private key with alias {} and entityID {}",
+							key, credential.getEntityId());
+					availableKeys.put(key,
+							key + " (" + credential.getEntityId() + ")");
+				}
+			} catch (final Exception e) {
+				log.debug("Error loading key", e);
+			}
+		}
+		return availableKeys;
+	}
+
+	protected String getBaseURL(final HttpServletRequest request) {
 
 		final StringBuffer sb = new StringBuffer();
 		sb.append(request.getScheme()).append("://")
@@ -353,56 +331,13 @@ public class MetadataController {
 		sb.append(request.getContextPath());
 
 		final String baseURL = sb.toString();
-		this.log.debug("Base URL {}", baseURL);
+		log.debug("Base URL {}", baseURL);
 		return baseURL;
 
 	}
 
-	protected String getEntityId(HttpServletRequest request) {
-		this.log.debug("Server name used as entity id {}",
-				request.getServerName());
-		return request.getServerName();
-	}
-
-	protected Map<String, String> getAvailablePrivateKeys()
-			throws KeyStoreException {
-		final Map<String, String> availableKeys = new HashMap<String, String>();
-		final Set<String> aliases = this.keyManager.getAvailableCredentials();
-		for (final String key : aliases) {
-			try {
-				this.log.debug("Found key {}", key);
-				final Credential credential = this.keyManager
-						.getCredential(key);
-				if (credential.getPrivateKey() != null) {
-					this.log.debug(
-							"Adding private key with alias {} and entityID {}",
-							key, credential.getEntityId());
-					availableKeys.put(key,
-							key + " (" + credential.getEntityId() + ")");
-				}
-			} catch (final Exception e) {
-				this.log.debug("Error loading key", e);
-			}
-		}
-		return availableKeys;
-	}
-
-	protected String getFileName(EntityDescriptor entityDescriptor) {
-		final StringBuilder fileName = new StringBuilder();
-		for (final Character c : entityDescriptor.getEntityID().toCharArray()) {
-			if (Character.isJavaIdentifierPart(c)) {
-				fileName.append(c);
-			}
-		}
-		if (fileName.length() > 0) {
-			fileName.append("_sp.xml");
-			return fileName.toString();
-		} else {
-			return "default_sp.xml";
-		}
-	}
-
-	protected String getConfiguration(String fileName, ExtendedMetadata metadata) {
+	protected String getConfiguration(final String fileName,
+			final ExtendedMetadata metadata) {
 		final StringBuilder sb = new StringBuilder();
 		sb.append(
 				"<bean class=\"org.springframework.security.saml.metadata.ExtendedMetadataDelegate\">\n"
@@ -459,6 +394,72 @@ public class MetadataController {
 		}
 		sb.append("        </bean>\n" + "    </constructor-arg>\n" + "</bean>");
 		return sb.toString();
+	}
+
+	protected String getEntityId(final HttpServletRequest request) {
+		log.debug("Server name used as entity id {}", request.getServerName());
+		return request.getServerName();
+	}
+
+	protected String getFileName(final EntityDescriptor entityDescriptor) {
+		final StringBuilder fileName = new StringBuilder();
+		for (final Character c : entityDescriptor.getEntityID().toCharArray()) {
+			if (Character.isJavaIdentifierPart(c)) {
+				fileName.append(c);
+			}
+		}
+		if (fileName.length() > 0) {
+			fileName.append("_sp.xml");
+			return fileName.toString();
+		} else {
+			return "default_sp.xml";
+		}
+	}
+
+	protected String getMetadataAsString(final EntityDescriptor descriptor)
+			throws MarshallingException {
+
+		final MarshallerFactory marshallerFactory = org.opensaml.xml.Configuration
+				.getMarshallerFactory();
+		final Marshaller marshaller = marshallerFactory
+				.getMarshaller(descriptor);
+		final Element element = marshaller.marshall(descriptor);
+		return XMLHelper.nodeToString(element);
+
+	}
+
+	@RequestMapping
+	public ModelAndView metadataList() throws MetadataProviderException {
+
+		final ModelAndView model = new ModelAndView(new InternalResourceView(
+				"/WEB-INF/security/metadataList.jsp", true));
+
+		model.addObject("hostedSP", metadataManager.getHostedSPName());
+		model.addObject("spList", metadataManager.getSPEntityNames());
+		model.addObject("idpList", metadataManager.getIDPEntityNames());
+		model.addObject("metadata", metadataManager.getAvailableProviders());
+
+		return model;
+
+	}
+
+	@RequestMapping(value = "/refresh")
+	public ModelAndView refreshMetadata() throws MetadataProviderException {
+
+		metadataManager.refreshMetadata();
+		return metadataList();
+
+	}
+
+	@RequestMapping(value = "/removeProvider")
+	public ModelAndView removeProvider(@RequestParam final int providerIndex)
+			throws MetadataProviderException {
+
+		final ExtendedMetadataDelegate delegate = metadataManager
+				.getAvailableProviders().get(providerIndex);
+		metadataManager.removeMetadataProvider(delegate);
+		return metadataList();
+
 	}
 
 }

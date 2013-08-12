@@ -60,222 +60,225 @@ public class MetadataForm {
 	public MetadataForm() {
 	}
 
-	public String getEntityId() {
-		return this.entityId;
-	}
-
-	public void setEntityId(String entityId) {
-		this.entityId = entityId;
-	}
-
 	public String getAlias() {
-		return this.alias;
-	}
-
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
-
-	public boolean isSignMetadata() {
-		return this.signMetadata;
-	}
-
-	public void setSignMetadata(boolean signMetadata) {
-		this.signMetadata = signMetadata;
-	}
-
-	public boolean isRequestSigned() {
-		return this.requestSigned;
-	}
-
-	public void setRequestSigned(boolean requestSigned) {
-		this.requestSigned = requestSigned;
-	}
-
-	public boolean isWantAssertionSigned() {
-		return this.wantAssertionSigned;
-	}
-
-	public void setWantAssertionSigned(boolean wantAssertionSigned) {
-		this.wantAssertionSigned = wantAssertionSigned;
-	}
-
-	public boolean isRequireLogoutRequestSigned() {
-		return this.requireLogoutRequestSigned;
-	}
-
-	public void setRequireLogoutRequestSigned(boolean requireLogoutRequestSigned) {
-		this.requireLogoutRequestSigned = requireLogoutRequestSigned;
-	}
-
-	public boolean isRequireLogoutResponseSigned() {
-		return this.requireLogoutResponseSigned;
-	}
-
-	public void setRequireLogoutResponseSigned(
-			boolean requireLogoutResponseSigned) {
-		this.requireLogoutResponseSigned = requireLogoutResponseSigned;
-	}
-
-	public boolean isRequireArtifactResolveSigned() {
-		return this.requireArtifactResolveSigned;
-	}
-
-	public void setRequireArtifactResolveSigned(
-			boolean requireArtifactResolveSigned) {
-		this.requireArtifactResolveSigned = requireArtifactResolveSigned;
-	}
-
-	public boolean isStore() {
-		return this.store;
-	}
-
-	public void setStore(boolean store) {
-		this.store = store;
-	}
-
-	public String getSerializedMetadata() {
-		return this.serializedMetadata;
-	}
-
-	public void setSerializedMetadata(String serializedMetadata) {
-		this.serializedMetadata = serializedMetadata;
-	}
-
-	public String getSigningKey() {
-		return this.signingKey;
-	}
-
-	public void setSigningKey(String signingKey) {
-		this.signingKey = signingKey;
-	}
-
-	public String getEncryptionKey() {
-		return this.encryptionKey;
-	}
-
-	public void setEncryptionKey(String encryptionKey) {
-		this.encryptionKey = encryptionKey;
+		return alias;
 	}
 
 	public String getBaseURL() {
-		return this.baseURL;
-	}
-
-	public void setBaseURL(String baseURL) {
-		this.baseURL = baseURL;
+		return baseURL;
 	}
 
 	public String getConfiguration() {
-		return this.configuration;
-	}
-
-	public void setConfiguration(String configuration) {
-		this.configuration = configuration;
-	}
-
-	public boolean isLocal() {
-		return this.local;
-	}
-
-	public void setLocal(boolean local) {
-		this.local = local;
-	}
-
-	public String getSecurityProfile() {
-		return this.securityProfile;
-	}
-
-	public void setSecurityProfile(String securityProfile) {
-		this.securityProfile = securityProfile;
-	}
-
-	public String getSslSecurityProfile() {
-		return this.sslSecurityProfile;
-	}
-
-	public void setSslSecurityProfile(String sslSecurityProfile) {
-		this.sslSecurityProfile = sslSecurityProfile;
-	}
-
-	public String getTlsKey() {
-		return this.tlsKey;
-	}
-
-	public void setTlsKey(String tlsKey) {
-		this.tlsKey = tlsKey;
-	}
-
-	public boolean isIncludeDiscovery() {
-		return this.includeDiscovery;
-	}
-
-	public void setIncludeDiscovery(boolean includeDiscovery) {
-		this.includeDiscovery = includeDiscovery;
-	}
-
-	public boolean isIncludeDiscoveryExtension() {
-		return this.includeDiscoveryExtension;
-	}
-
-	public void setIncludeDiscoveryExtension(boolean includeDiscoveryExtension) {
-		this.includeDiscoveryExtension = includeDiscoveryExtension;
-	}
-
-	public boolean isIncludeHokSSO() {
-		return this.includeHokSSO;
-	}
-
-	public void setIncludeHokSSO(boolean includeHokSSO) {
-		this.includeHokSSO = includeHokSSO;
-	}
-
-	public boolean isIncludeSSO() {
-		return this.includeSSO;
-	}
-
-	public void setIncludeSSO(boolean includeSSO) {
-		this.includeSSO = includeSSO;
-	}
-
-	public String[] getNameID() {
-		return this.nameID;
-	}
-
-	public void setNameID(String[] nameID) {
-		this.nameID = nameID;
-	}
-
-	public String getCustomDiscoveryURL() {
-		return this.customDiscoveryURL;
-	}
-
-	public void setCustomDiscoveryURL(String customDiscoveryURL) {
-		this.customDiscoveryURL = customDiscoveryURL;
+		return configuration;
 	}
 
 	public String getCustomDiscoveryResponseURL() {
-		return this.customDiscoveryResponseURL;
+		return customDiscoveryResponseURL;
 	}
 
-	public void setCustomDiscoveryResponseURL(String customDiscoveryResponseURL) {
-		this.customDiscoveryResponseURL = customDiscoveryResponseURL;
+	public String getCustomDiscoveryURL() {
+		return customDiscoveryURL;
+	}
+
+	public String getEncryptionKey() {
+		return encryptionKey;
+	}
+
+	public String getEntityId() {
+		return entityId;
+	}
+
+	public String[] getNameID() {
+		return nameID;
+	}
+
+	public String getSecurityProfile() {
+		return securityProfile;
+	}
+
+	public String getSerializedMetadata() {
+		return serializedMetadata;
+	}
+
+	public String getSigningKey() {
+		return signingKey;
+	}
+
+	public String getSslSecurityProfile() {
+		return sslSecurityProfile;
 	}
 
 	public String[] getSsoBindings() {
-		return this.ssoBindings;
-	}
-
-	public void setSsoBindings(String[] ssoBindings) {
-		this.ssoBindings = ssoBindings;
+		return ssoBindings;
 	}
 
 	public String getSsoDefaultBinding() {
-		return this.ssoDefaultBinding;
+		return ssoDefaultBinding;
 	}
 
-	public void setSsoDefaultBinding(String ssoDefaultBinding) {
+	public String getTlsKey() {
+		return tlsKey;
+	}
+
+	public boolean isIncludeDiscovery() {
+		return includeDiscovery;
+	}
+
+	public boolean isIncludeDiscoveryExtension() {
+		return includeDiscoveryExtension;
+	}
+
+	public boolean isIncludeHokSSO() {
+		return includeHokSSO;
+	}
+
+	public boolean isIncludeSSO() {
+		return includeSSO;
+	}
+
+	public boolean isLocal() {
+		return local;
+	}
+
+	public boolean isRequestSigned() {
+		return requestSigned;
+	}
+
+	public boolean isRequireArtifactResolveSigned() {
+		return requireArtifactResolveSigned;
+	}
+
+	public boolean isRequireLogoutRequestSigned() {
+		return requireLogoutRequestSigned;
+	}
+
+	public boolean isRequireLogoutResponseSigned() {
+		return requireLogoutResponseSigned;
+	}
+
+	public boolean isSignMetadata() {
+		return signMetadata;
+	}
+
+	public boolean isStore() {
+		return store;
+	}
+
+	public boolean isWantAssertionSigned() {
+		return wantAssertionSigned;
+	}
+
+	public void setAlias(final String alias) {
+		this.alias = alias;
+	}
+
+	public void setBaseURL(final String baseURL) {
+		this.baseURL = baseURL;
+	}
+
+	public void setConfiguration(final String configuration) {
+		this.configuration = configuration;
+	}
+
+	public void setCustomDiscoveryResponseURL(
+			final String customDiscoveryResponseURL) {
+		this.customDiscoveryResponseURL = customDiscoveryResponseURL;
+	}
+
+	public void setCustomDiscoveryURL(final String customDiscoveryURL) {
+		this.customDiscoveryURL = customDiscoveryURL;
+	}
+
+	public void setEncryptionKey(final String encryptionKey) {
+		this.encryptionKey = encryptionKey;
+	}
+
+	public void setEntityId(final String entityId) {
+		this.entityId = entityId;
+	}
+
+	public void setIncludeDiscovery(final boolean includeDiscovery) {
+		this.includeDiscovery = includeDiscovery;
+	}
+
+	public void setIncludeDiscoveryExtension(
+			final boolean includeDiscoveryExtension) {
+		this.includeDiscoveryExtension = includeDiscoveryExtension;
+	}
+
+	public void setIncludeHokSSO(final boolean includeHokSSO) {
+		this.includeHokSSO = includeHokSSO;
+	}
+
+	public void setIncludeSSO(final boolean includeSSO) {
+		this.includeSSO = includeSSO;
+	}
+
+	public void setLocal(final boolean local) {
+		this.local = local;
+	}
+
+	public void setNameID(final String[] nameID) {
+		this.nameID = nameID;
+	}
+
+	public void setRequestSigned(final boolean requestSigned) {
+		this.requestSigned = requestSigned;
+	}
+
+	public void setRequireArtifactResolveSigned(
+			final boolean requireArtifactResolveSigned) {
+		this.requireArtifactResolveSigned = requireArtifactResolveSigned;
+	}
+
+	public void setRequireLogoutRequestSigned(
+			final boolean requireLogoutRequestSigned) {
+		this.requireLogoutRequestSigned = requireLogoutRequestSigned;
+	}
+
+	public void setRequireLogoutResponseSigned(
+			final boolean requireLogoutResponseSigned) {
+		this.requireLogoutResponseSigned = requireLogoutResponseSigned;
+	}
+
+	public void setSecurityProfile(final String securityProfile) {
+		this.securityProfile = securityProfile;
+	}
+
+	public void setSerializedMetadata(final String serializedMetadata) {
+		this.serializedMetadata = serializedMetadata;
+	}
+
+	public void setSigningKey(final String signingKey) {
+		this.signingKey = signingKey;
+	}
+
+	public void setSignMetadata(final boolean signMetadata) {
+		this.signMetadata = signMetadata;
+	}
+
+	public void setSslSecurityProfile(final String sslSecurityProfile) {
+		this.sslSecurityProfile = sslSecurityProfile;
+	}
+
+	public void setSsoBindings(final String[] ssoBindings) {
+		this.ssoBindings = ssoBindings;
+	}
+
+	public void setSsoDefaultBinding(final String ssoDefaultBinding) {
 		this.ssoDefaultBinding = ssoDefaultBinding;
+	}
+
+	public void setStore(final boolean store) {
+		this.store = store;
+	}
+
+	public void setTlsKey(final String tlsKey) {
+		this.tlsKey = tlsKey;
+	}
+
+	public void setWantAssertionSigned(final boolean wantAssertionSigned) {
+		this.wantAssertionSigned = wantAssertionSigned;
 	}
 
 }

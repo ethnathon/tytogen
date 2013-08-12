@@ -1,12 +1,14 @@
 package org.andromda.cartridges.jsf.portlet.myfaces.tomahawk;
 
 import java.io.IOException;
+
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
+
 import org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support.ExtensionsResponseWrapper;
 import org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support.HttpServletRequestWrapper;
 import org.andromda.cartridges.jsf.portlet.myfaces.tomahawk.support.HttpServletResponseWrapper;
@@ -23,283 +25,255 @@ import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 /**
  * This portlet filter supports Tomahawk's extended components, such as
  * inputHtml and fileUpload.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */
-public class ExtensionsPortletFilter
-    implements PortletFilter
-{
-    private static final Log log = LogFactory.getLog(ExtensionsPortletFilter.class);
+public class ExtensionsPortletFilter implements PortletFilter {
+	private static final Log log = LogFactory
+			.getLog(ExtensionsPortletFilter.class);
 
-    private static final String UPLOAD_REPOSITORY_PATH = "uploadRepositoryPath";
+	private static final String UPLOAD_REPOSITORY_PATH = "uploadRepositoryPath";
 
-    private static final String UPLOAD_THRESHOLD_SIZE = "uploadThresholdSize";
+	private static final String UPLOAD_THRESHOLD_SIZE = "uploadThresholdSize";
 
-    private static final String UPLOAD_MAX_FILE_SIZE = "uploadMaxFileSize";
+	private static final String UPLOAD_MAX_FILE_SIZE = "uploadMaxFileSize";
 
-    private static final String MULTIPART_ENCODING = "multipartEncoding";
+	private static final String MULTIPART_ENCODING = "multipartEncoding";
 
-    private int uploadMaxFileSize = 100 * 1024 * 1024; // 10 MB
+	private int uploadMaxFileSize = 100 * 1024 * 1024; // 10 MB
 
-    private int uploadThresholdSize = 1 * 1024 * 1024; // 1 MB
+	private int uploadThresholdSize = 1 * 1024 * 1024; // 1 MB
 
-    private String uploadRepositoryPath = null; // standard temp directory
+	private String uploadRepositoryPath = null; // standard temp directory
 
-    private String multipartEncoding = null;
+	private String multipartEncoding = null;
 
-    private PortletConfig portletConfig;
+	private PortletConfig portletConfig;
 
-    /**
-     * Called by init method of MyFacesFilterPortlet to initialize this portlet
-     * filter.
-     *
-     * @param filterConfig
-     * @throws PortletException
-     */
-    public void init(PortletFilterConfig filterConfig) throws PortletException
-    {
-        if (log.isDebugEnabled())
-        {
-            log.debug("Initializing ExtensionsPortletFilter.");
-        }
+	/**
+	 * Called by destroy method of MyFacesFilterPortlet to destroy this portlet
+	 * filter.
+	 */
+	@Override
+	public void destroy() {
+	}
 
-        setPortletConfig(filterConfig.getPortletConfig());
+	/**
+	 * @return Returns the portletConfig.
+	 */
+	public PortletConfig getPortletConfig() {
+		return portletConfig;
+	}
 
-        // for inputFileUpload
-        String param = filterConfig.getInitParameter(UPLOAD_MAX_FILE_SIZE);
+	/**
+	 * Called by init method of MyFacesFilterPortlet to initialize this portlet
+	 * filter.
+	 * 
+	 * @param filterConfig
+	 * @throws PortletException
+	 */
+	@Override
+	public void init(final PortletFilterConfig filterConfig)
+			throws PortletException {
+		if (log.isDebugEnabled()) {
+			log.debug("Initializing ExtensionsPortletFilter.");
+		}
 
-        uploadMaxFileSize = resolveSize(param, uploadMaxFileSize);
+		setPortletConfig(filterConfig.getPortletConfig());
 
-        param = filterConfig.getInitParameter(UPLOAD_THRESHOLD_SIZE);
+		// for inputFileUpload
+		String param = filterConfig.getInitParameter(UPLOAD_MAX_FILE_SIZE);
 
-        uploadThresholdSize = resolveSize(param, uploadThresholdSize);
+		uploadMaxFileSize = resolveSize(param, uploadMaxFileSize);
 
-        uploadRepositoryPath = filterConfig.getInitParameter(UPLOAD_REPOSITORY_PATH);
+		param = filterConfig.getInitParameter(UPLOAD_THRESHOLD_SIZE);
 
-        multipartEncoding = filterConfig.getInitParameter(MULTIPART_ENCODING);
+		uploadThresholdSize = resolveSize(param, uploadThresholdSize);
 
-        if (log.isDebugEnabled())
-        {
-            log.debug("uploadMaxFileSize=" + uploadMaxFileSize);
-            log.debug("uploadThresholdSize=" + uploadThresholdSize);
-            log.debug("uploadRepositoryPath=" + uploadRepositoryPath);
-            log.debug("multipartEncoding=" + multipartEncoding);
-        }
-    }
+		uploadRepositoryPath = filterConfig
+				.getInitParameter(UPLOAD_REPOSITORY_PATH);
 
-    /**
-     * Called by render method of MyFacesFilterPortlet to put tags, such as
-     * &lt;style&gt;, into &lt;head&gt;.
-     *
-     * @param request
-     * @param response
-     * @param chain PortletFilterChain instance
-     * @throws PortletException
-     * @throws IOException
-     */
-    @SuppressWarnings("deprecation")
-    public void renderFilter(
-        RenderRequest request,
-        RenderResponse response,
-        PortletFilterChain chain) throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
-            log.debug("called renderFilter.");
-            log.debug("RenderRequest=" + request.getClass().getName());
-            log.debug("RenderResponse=" + response.getClass().getName());
-        }
+		multipartEncoding = filterConfig.getInitParameter(MULTIPART_ENCODING);
 
-        final HttpServletRequestWrapper extendedRequest = new HttpServletRequestWrapper(
-            request,
-            getPortletConfig().getPortletContext());
+		if (log.isDebugEnabled()) {
+			log.debug("uploadMaxFileSize=" + uploadMaxFileSize);
+			log.debug("uploadThresholdSize=" + uploadThresholdSize);
+			log.debug("uploadRepositoryPath=" + uploadRepositoryPath);
+			log.debug("multipartEncoding=" + multipartEncoding);
+		}
+	}
 
-        // Serve resources
-        AddResource addResource = null;
-        try
-        {
-            addResource = AddResourceFactory.getInstance(extendedRequest);
-        }
-        catch (Throwable throwable)
-        {
-            log.error(throwable);
-            throw new PortletException(throwable);
-        }
+	/**
+	 * @param contentType
+	 * @return validContentType
+	 */
+	public boolean isValidContentType(final String contentType) {
+		return contentType != null
+				&& (contentType.startsWith("text/html")
+						|| contentType.startsWith("text/xml")
+						|| contentType.startsWith("application/xhtml+xml") || contentType
+							.startsWith("application/xml"));
+	}
 
-        try
-        {
-            addResource.responseStarted();
+	/**
+	 * Called by render method of MyFacesFilterPortlet to wrap the request when
+	 * it has a multipart content.
+	 * 
+	 * @param request
+	 * @param response
+	 * @param chain
+	 *            PortletFilterChain instance
+	 * @throws PortletException
+	 * @throws IOException
+	 */
+	@Override
+	public void processActionFilter(ActionRequest request,
+			final ActionResponse response, final PortletFilterChain chain)
+			throws PortletException, IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("called processActionFilter.");
+		}
 
-            if (addResource.requiresBuffer())
-            {
-                final HttpServletResponseWrapper servletResponse = new HttpServletResponseWrapper(response);
-                final ExtensionsResponseWrapper extendedResponse = new ExtensionsResponseWrapper(
-                    servletResponse,
-                    response);
+		// Check multipart/form-data
+		if (PortletFileUpload.isMultipartContent(request)) {
+			if (log.isDebugEnabled()) {
+				log.debug("ActionRequest is multipart content.");
+			}
+			if (multipartEncoding != null) {
+				if (log.isDebugEnabled()) {
+					log.debug("Mutlipart encoding is " + multipartEncoding);
+				}
+				request.setCharacterEncoding(multipartEncoding);
+			}
+			request = new MultipartPortletRequestWrapper(request,
+					uploadMaxFileSize, uploadThresholdSize,
+					uploadRepositoryPath);
+		}
 
-                // call next rednerFilter
-                chain.renderFilter(request, extendedResponse);
+		// call next processActionFilter
+		chain.processActionFilter(request, response);
+	}
 
-                extendedResponse.finishResponse();
+	/**
+	 * Called by render method of MyFacesFilterPortlet to put tags, such as
+	 * &lt;style&gt;, into &lt;head&gt;.
+	 * 
+	 * @param request
+	 * @param response
+	 * @param chain
+	 *            PortletFilterChain instance
+	 * @throws PortletException
+	 * @throws IOException
+	 */
+	@Override
+	@SuppressWarnings("deprecation")
+	public void renderFilter(final RenderRequest request,
+			final RenderResponse response, final PortletFilterChain chain)
+			throws PortletException, IOException {
+		if (log.isDebugEnabled()) {
+			log.debug("called renderFilter.");
+			log.debug("RenderRequest=" + request.getClass().getName());
+			log.debug("RenderResponse=" + response.getClass().getName());
+		}
 
-                // only parse HTML responses
-                if (extendedResponse.getContentType() != null
-                    && isValidContentType(extendedResponse.getContentType()))
-                {
-                    addResource.parseResponse(
-                        extendedRequest,
-                        extendedResponse.toString(),
-                        servletResponse);
+		final HttpServletRequestWrapper extendedRequest = new HttpServletRequestWrapper(
+				request, getPortletConfig().getPortletContext());
 
-                    addResource.writeMyFacesJavascriptBeforeBodyEnd(
-                        extendedRequest,
-                        servletResponse);
+		// Serve resources
+		AddResource addResource = null;
+		try {
+			addResource = AddResourceFactory.getInstance(extendedRequest);
+		} catch (final Throwable throwable) {
+			log.error(throwable);
+			throw new PortletException(throwable);
+		}
 
-                    if (!addResource.hasHeaderBeginInfos())
-                    {
-                        // writes the response if no header info is needed
-                        addResource.writeResponse(extendedRequest, servletResponse);
-                        return;
-                    }
+		try {
+			addResource.responseStarted();
 
-                    // Some headerInfo has to be added
-                    addResource.writeWithFullHeader(extendedRequest, servletResponse);
+			if (addResource.requiresBuffer()) {
+				final HttpServletResponseWrapper servletResponse = new HttpServletResponseWrapper(
+						response);
+				final ExtensionsResponseWrapper extendedResponse = new ExtensionsResponseWrapper(
+						servletResponse, response);
 
-                    // writes the response
-                    addResource.writeResponse(extendedRequest, servletResponse);
-                }
-                else
-                {
+				// call next rednerFilter
+				chain.renderFilter(request, extendedResponse);
 
-                    byte[] responseArray = extendedResponse.getBytes();
+				extendedResponse.finishResponse();
 
-                    if (responseArray.length > 0)
-                    {
-                        // When not filtering due to not valid content-type,
-                        // deliver the byte-array instead of a charset-converted
-                        // string.  Otherwise a binary stream gets corrupted.
-                        servletResponse.getOutputStream().write(responseArray);
-                    }
-                }
+				// only parse HTML responses
+				if (extendedResponse.getContentType() != null
+						&& isValidContentType(extendedResponse.getContentType())) {
+					addResource.parseResponse(extendedRequest,
+							extendedResponse.toString(), servletResponse);
 
-            }
-            else
-            {
-                chain.renderFilter(request, response);
-            }
-        }
-        finally
-        {
-            addResource.responseFinished();
-        }
-    }
+					addResource.writeMyFacesJavascriptBeforeBodyEnd(
+							extendedRequest, servletResponse);
 
-    /**
-     * Called by render method of MyFacesFilterPortlet to wrap the request when
-     * it has a multipart content.
-     *
-     * @param request
-     * @param response
-     * @param chain PortletFilterChain instance
-     * @throws PortletException
-     * @throws IOException
-     */
-    public void processActionFilter(
-        ActionRequest request,
-        ActionResponse response,
-        PortletFilterChain chain) throws PortletException, IOException
-    {
-        if (log.isDebugEnabled())
-        {
-            log.debug("called processActionFilter.");
-        }
+					if (!addResource.hasHeaderBeginInfos()) {
+						// writes the response if no header info is needed
+						addResource.writeResponse(extendedRequest,
+								servletResponse);
+						return;
+					}
 
-        // Check multipart/form-data
-        if (PortletFileUpload.isMultipartContent(request))
-        {
-            if (log.isDebugEnabled())
-                log.debug("ActionRequest is multipart content.");
-            if (multipartEncoding != null)
-            {
-                if (log.isDebugEnabled())
-                    log.debug("Mutlipart encoding is " + multipartEncoding);
-                request.setCharacterEncoding(multipartEncoding);
-            }
-            request = new MultipartPortletRequestWrapper(
-                request,
-                uploadMaxFileSize,
-                uploadThresholdSize,
-                uploadRepositoryPath);
-        }
+					// Some headerInfo has to be added
+					addResource.writeWithFullHeader(extendedRequest,
+							servletResponse);
 
-        // call next processActionFilter
-        chain.processActionFilter(request, response);
-    }
+					// writes the response
+					addResource.writeResponse(extendedRequest, servletResponse);
+				} else {
 
-    /**
-     * Called by destroy method of MyFacesFilterPortlet to destroy this portlet
-     * filter.
-     */
-    public void destroy()
-    {}
+					final byte[] responseArray = extendedResponse.getBytes();
 
-    private int resolveSize(String param, int defaultValue)
-    {
-        int numberParam = defaultValue;
+					if (responseArray.length > 0) {
+						// When not filtering due to not valid content-type,
+						// deliver the byte-array instead of a charset-converted
+						// string. Otherwise a binary stream gets corrupted.
+						servletResponse.getOutputStream().write(responseArray);
+					}
+				}
 
-        if (param != null)
-        {
-            param = param.toLowerCase();
-            int factor = 1;
-            String number = param;
+			} else {
+				chain.renderFilter(request, response);
+			}
+		} finally {
+			addResource.responseFinished();
+		}
+	}
 
-            if (param.endsWith("g"))
-            {
-                factor = 1024 * 1024 * 1024;
-                number = param.substring(0, param.length() - 1);
-            }
-            else if (param.endsWith("m"))
-            {
-                factor = 1024 * 1024;
-                number = param.substring(0, param.length() - 1);
-            }
-            else if (param.endsWith("k"))
-            {
-                factor = 1024;
-                number = param.substring(0, param.length() - 1);
-            }
+	private int resolveSize(String param, final int defaultValue) {
+		int numberParam = defaultValue;
 
-            numberParam = Integer.parseInt(number) * factor;
-        }
-        return numberParam;
-    }
+		if (param != null) {
+			param = param.toLowerCase();
+			int factor = 1;
+			String number = param;
 
-    /**
-     * @return Returns the portletConfig.
-     */
-    public PortletConfig getPortletConfig()
-    {
-        return portletConfig;
-    }
+			if (param.endsWith("g")) {
+				factor = 1024 * 1024 * 1024;
+				number = param.substring(0, param.length() - 1);
+			} else if (param.endsWith("m")) {
+				factor = 1024 * 1024;
+				number = param.substring(0, param.length() - 1);
+			} else if (param.endsWith("k")) {
+				factor = 1024;
+				number = param.substring(0, param.length() - 1);
+			}
 
-    /**
-     * @param portletConfig The portletConfig to set.
-     */
-    public void setPortletConfig(PortletConfig portletConfig)
-    {
-        this.portletConfig = portletConfig;
-    }
+			numberParam = Integer.parseInt(number) * factor;
+		}
+		return numberParam;
+	}
 
-    /**
-     * @param contentType
-     * @return validContentType
-     */
-    public boolean isValidContentType(String contentType)
-    {
-        return contentType != null
-            && (contentType.startsWith("text/html") || contentType.startsWith("text/xml")
-                || contentType.startsWith("application/xhtml+xml") || contentType
-                .startsWith("application/xml"));
-    }
+	/**
+	 * @param portletConfig
+	 *            The portletConfig to set.
+	 */
+	public void setPortletConfig(final PortletConfig portletConfig) {
+		this.portletConfig = portletConfig;
+	}
 }
