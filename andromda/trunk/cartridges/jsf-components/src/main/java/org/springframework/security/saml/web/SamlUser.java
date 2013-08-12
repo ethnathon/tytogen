@@ -7,22 +7,23 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
 public class SamlUser extends User {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7372716308259035130L;
-	
+
 	/**
 	 * The value of this attribute is calculated in SamlUserDetailsServiceImpl
 	 * by the generated application
 	 */
 	protected final Object customAttributes;
-	protected final Map<String,String> samlAttributes;
-	
-	public SamlUser(String username,
-			Collection<? extends GrantedAuthority> authorities, 
-			Object customAttributes,Map<String,String> samlAttributes) {
+	protected final Map<String, String> samlAttributes;
+
+	public SamlUser(final String username,
+			final Collection<? extends GrantedAuthority> authorities,
+			final Object customAttributes,
+			final Map<String, String> samlAttributes) {
 		super(username, " ", authorities);
 		this.customAttributes = customAttributes;
 		this.samlAttributes = samlAttributes;
@@ -35,5 +36,5 @@ public class SamlUser extends User {
 	public Map<String, String> getSamlAttributes() {
 		return samlAttributes;
 	}
-	
+
 }
