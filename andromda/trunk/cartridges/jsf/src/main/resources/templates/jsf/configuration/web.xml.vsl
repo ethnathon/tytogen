@@ -109,6 +109,9 @@
         <param-value>
         <!-- facelets-libraries merge-point -->
             /WEB-INF/ajsfc.taglib.xml;
+#if ($portlet)
+			/WEB-INF/tomahawk.taglib.xml;
+#end
         </param-value>
     </context-param>
 #if ($faceletsDevelopmentSupportEnabled)

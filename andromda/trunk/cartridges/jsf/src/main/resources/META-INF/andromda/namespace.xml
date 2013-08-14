@@ -197,7 +197,17 @@
             </property>
             <property name="navigationStyle">
                 <default>sidebar</default>
-                <documentation>Controls the way navigation items are displayed</documentation></property>
+                <documentation>Controls the way navigation items are displayed.
+                    Valid values are:
+                    <ul>
+                        <li>sidebar</li>
+                        <li>full</li>
+                        <li>light: navigation based on a custom renderer (css+ ul/li )</li>
+                    </ul>
+                </documentation>
+                
+                </property>
+        			
         </propertyGroup>
         <propertyGroup name="Messages and i18n">
             <documentation>

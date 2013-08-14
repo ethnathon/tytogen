@@ -5,30 +5,28 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jstl/core"
-      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-      xmlns:t="http://myfaces.apache.org/tomahawk"
       xmlns:trh="http://myfaces.apache.org/trinidad/html"
       xmlns:tr="http://myfaces.apache.org/trinidad">
-      
-            <f:facet name="navigation2">
-            
-<tr:panelGroupLayout layout="horizontal" styleClass="menu_lv0">
 
+<ui:composition>
+	<tr:panelGroupLayout layout="horizontal" styleClass="menu_level_0">
 #foreach($useCase in $useCases)
-	#if(${useCase.navigationParents.empty})	
-		#if(!${useCase.navigationChildren.empty})
-				<tr:panelGroupLayout layout="vertical" styleClass="menu_lv1">
-				<tr:commandLink text="${useCase.getName()}" styleClass="elem_lv0"/>
-				<tr:panelGroupLayout layout="vertical" styleClass="submenu_lv1">
-			#foreach($child in ${useCase.navigationChildren})
-				<tr:commandLink text="${child.getName()}" action="${child.forwardName}" styleClass="elem_lv1"/>
-			#end
-				</tr:panelGroupLayout>
-				</tr:panelGroupLayout>
-		#end
-	#end      
+#if(${useCase.navigationParents.empty})	
+#if(!${useCase.navigationChildren.empty})
+		<tr:panelGroupLayout layout="vertical">
+			<tr:commandLink text="${useCase.name}" styleClass="menu_element_level_0"/>
+			<tr:panelGroupLayout layout="vertical" styleClass="menu_level_1">
+#foreach($child in ${useCase.navigationChildren})
+				<tr:commandLink text="${child.name}" 
+							action="${child.path}.${jsfUtils.viewExtension}" 
+							styleClass="menu_element_level_1"
+							immediate="true" />
 #end
-
-</tr:panelGroupLayout>
-</f:facet>
+			</tr:panelGroupLayout>
+		</tr:panelGroupLayout>
+#end
+#end      
+#end
+	</tr:panelGroupLayout>
+</ui:composition>
 </html>

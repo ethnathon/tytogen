@@ -42,12 +42,14 @@
 		<!-- SAML Secured pages merge point-->
 #foreach ($useCase in $useCases)
 #if ($useCase.secured || ($stringUtils.isNotBlank($defaultRole) && !$useCase.registrationUseCase))
-		<security:intercept-url pattern="${useCase.pathRoot}/**" access="$useCase.allSpringSecRoles" />
+#set ($roles = $useCase.roles)
+		<security:intercept-url pattern="${useCase.pathRoot}/**" access="$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)" />
 #end
 #end
 #foreach ($manageable in $manageables)
 #if (!$stringUtils.isNotBlank($manageable.actionRoles))
-		<security:intercept-url pattern="${useCase.pathRoot}/**" access="$manageable.actionRoles" />
+#set ($roles = $manageable.roles)
+		<security:intercept-url pattern="${manageable.pathRoot}/**" access="$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)" />
 #end
 #end
 		<security:custom-filter before="FIRST" ref="metadataGeneratorFilter" />

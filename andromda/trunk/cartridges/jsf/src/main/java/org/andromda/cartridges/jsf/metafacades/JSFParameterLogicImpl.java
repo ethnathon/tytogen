@@ -1173,7 +1173,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 		String zone = (String) this
 				.findTaggedValue(JSFProfile.TAGGEDVALUE_ZONE);
 		if (StringUtils.isNotBlank(zone)) {
-			return zone;
+			return zone.trim();
 		}
 		return "default";
 	}

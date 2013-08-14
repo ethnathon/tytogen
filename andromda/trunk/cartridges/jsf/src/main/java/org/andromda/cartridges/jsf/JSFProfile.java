@@ -78,9 +78,10 @@ public class JSFProfile {
 			.get("TABLE_PAGEABLE");
 	/** VIEW_TYPE */
 	public static final String TAGGEDVALUE_VIEW_TYPE = PROFILE.get("VIEW_TYPE");
-	
-	public static final String TAGGEDVALUE_TAB_NUMBER = PROFILE.get("TAB_NUMBER");
-	
+
+	public static final String TAGGEDVALUE_TAB_NUMBER = PROFILE
+			.get("TAB_NUMBER");
+
 	public static final String TAGGEDVALUE_TAB_LABELS = PROFILE
 			.get("TAB_LABELS");
 	/** ACTION_FORM_RESET */
