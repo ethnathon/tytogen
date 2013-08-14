@@ -19,11 +19,10 @@
         <view-handler>com.sun.facelets.FaceletPortletViewHandler</view-handler>
 #end
 #else
-        <default-render-kit-id>
-            org.apache.myfaces.trinidad.core
-        </default-render-kit-id>
+        <default-render-kit-id>org.apache.myfaces.trinidad.core</default-render-kit-id>
 #end
     </application>
+    
 #if ($liferayPortlet)
     <factory>
         <faces-context-factory>com.liferay.util.bridges.jsf.myfaces.MyFacesContextFactoryImpl</faces-context-factory>
@@ -79,14 +78,21 @@
     </managed-bean>
 #end
 ##Helpers
+<!-- Not generated / missing class 
     <managed-bean>
         <managed-bean-name>autocompleteHelper</managed-bean-name>
         <managed-bean-class>${managedBeansPackage}.AutocompleteHelper</managed-bean-class>
         <managed-bean-scope>${controllerScope}</managed-bean-scope>
     </managed-bean>
+-->
 
 #if ($standalone)
     <!-- menuModel nodes -->
+##for light navigation style only generate a simple backing bean for menus
+##in case of other navigation styles generate a full menumodel
+#if($navigationStyle.equals(""))
+
+#else
 
 #foreach ($useCase in $useCases)
     <managed-bean>
@@ -109,12 +115,12 @@
          <property-name>controllerAction</property-name>
          <value>${useCase.controllerAction}</value>
        </managed-property>
-#set ($roles = $useCase.actionRoles)
-#set ($securityEnabled = $stringUtils.isNotBlank($securityRealm) && $stringUtils.isNotBlank($roles) )
+#set ($roles = $useCase.roles)
+#set ($securityEnabled = $stringUtils.isNotBlank($securityRealm) && !($roles.isEmpty() || $stringUtils.isNotBlank($defaultRole)))
 #if ($securityEnabled)
        <managed-property>
           <property-name>roles</property-name>
-          <value>$roles</value>
+          <value>$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)</value>
        </managed-property>
 #end
        <managed-property>
@@ -157,13 +163,12 @@
          <property-name>controllerAction</property-name>
          <value>init</value>
        </managed-property>
-#set ($roles = $manageable.actionRoles)
-#addDefaultRole($roles)
-#set ($securityEnabled = $stringUtils.isNotBlank($securityRealm) && $stringUtils.isNotBlank($roles))
+#set ($roles = $manageable.roles)
+#set ($securityEnabled = $stringUtils.isNotBlank($securityRealm) && !($roles.isEmpty() || $stringUtils.isNotBlank($defaultRole)))
 #if ($securityEnabled)
        <managed-property>
           <property-name>roles</property-name>
-          <value>${roles}</value>
+          <value>$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)</value>
        </managed-property>
 #end
        <managed-property>
@@ -185,12 +190,14 @@
        <list-entries>
           <value-class>${managedBeansPackage}.NavigationItem</value-class>
 #foreach ($useCase in $applicationUseCases)
+		  <!-- application use case $useCase.name -->
           <value>#{navItem_$stringUtils.replace($useCase.forwardName, '-', '_')}</value>
 #end
 #foreach ($useCase in $useCases)
 #if(!$useCase.registrationUseCase && !$useCase.entryUseCase)
 #set ($parents = $useCase.navigationParents)
 #if ($parents.empty)
+		  <!-- TODO: TAGGED VALUE includeinmenu-->
           <value>#{navItem_$stringUtils.replace($useCase.forwardName, '-', '_')}</value>
 #end
 #end
@@ -273,6 +280,7 @@
       </managed-property>
     </managed-bean>
 #end
+#end ##navigationStyle != light
 
     <!-- global navigational-rules -->
 #foreach ($useCase in $useCases)

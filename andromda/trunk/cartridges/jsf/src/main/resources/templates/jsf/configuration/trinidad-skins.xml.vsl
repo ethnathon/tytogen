@@ -17,12 +17,8 @@
 -->
 <skins xmlns="http://myfaces.apache.org/trinidad/skin">
     <skin>
-        <id>
-            purple.desktop
-        </id>
-        <family>
-            purple
-        </family>
+        <id>purple.desktop</id>
+        <family>purple</family>
         <render-kit-id>
             org.apache.myfaces.trinidad.desktop
         </render-kit-id>
@@ -34,12 +30,8 @@
         </bundle-name>
     </skin>
     <skin>
-        <id>
-            beach.desktop
-        </id>
-        <family>
-            beach
-        </family>
+        <id>beach.desktop</id>
+        <family>beach</family>
         <render-kit-id>
             org.apache.myfaces.trinidad.desktop
         </render-kit-id>
@@ -50,7 +42,7 @@
     <skin>
         <id>default.desktop</id>
         <family>default</family>
-        <render-kit-id> org.apache.myfaces.trinidad.desktop</render-kit-id>
+        <render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
         <style-sheet-name>skins/default/default.css</style-sheet-name>
         <bundle-name>messages</bundle-name>
     </skin>

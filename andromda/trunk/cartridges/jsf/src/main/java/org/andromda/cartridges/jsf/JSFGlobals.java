@@ -21,7 +21,7 @@ public class JSFGlobals {
 	 * The default number of columns to render for input fields.
 	 */
 	public static final String PROPERTY_DEFAULT_INPUT_COLUMN_COUNT = "defaultInputColumnCount";
-	
+
 	/**
 	 * The default role configured in namespace.
 	 */

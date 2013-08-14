@@ -76,7 +76,6 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:c="http://java.sun.com/jstl/core"
       xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-      xmlns:t="http://myfaces.apache.org/tomahawk"
 #if ($manageable.validationRequired)
       xmlns:a="http://www.andromda.org/cartridges/jsf"
 #end

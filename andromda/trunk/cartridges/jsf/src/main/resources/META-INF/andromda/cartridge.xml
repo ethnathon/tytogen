@@ -95,7 +95,6 @@
     <property reference="controllerScope"/>
     <property reference="navigationBeanScope"/>
     <property reference="jsfVersion"/>
-    <property reference="horizontalMenu"/>
 	<property reference="normalizeMessages"/>
     <!-- cartridge-property merge-point -->
 
@@ -136,8 +135,7 @@
     </condition>
     <condition name="navigationUsesRedirect">$navigationUsesRedirect.equalsIgnoreCase("true")</condition>
     <condition name="jsfVersion1">$jsfVersion.trim().equalsIgnoreCase('1.x')</condition>
-    <condition name="horizontalMenu">#if ($horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
-    <condition name="verticalMenu">#if (not $horizontalMenu.equalsIgnoreCase("true"))true#end</condition>
+	<condition name="navigationStyleLight">#if ($navigationStyle.equalsIgnoreCase("light"))true#end</condition>
 	<condition name="samlAuthentication">$loginConfigAuthMethod.toUpperCase().contains('SAML')</condition>
     <!-- condition merge-point-->
 
@@ -252,6 +250,16 @@
         overwrite="true"
         outputCondition="useAutocompleteLookup"/>
 
+	<!-- Portlet resources -->
+	
+	<!-- Tomahawk is used directly only with portlets -->
+    <resource
+        path="resources/taglibs/tomahawk.taglib.xml"
+        outputPattern="WEB-INF/tomahawk.taglib.xml"
+        outlet="configuration"
+        overwrite="true"
+        outputCondition="portlet"/>
+        
     <!-- process templates on model elements -->
     <template
         path="templates/jsf/configuration/web.xml.vsl"
@@ -738,20 +746,12 @@
         outputCondition="standalone"/>
 
 	<template
-        path="templates/jsf/views/facelets/layout/verticalMenu.xhtml.vsl"
-        outputPattern="layout/verticalMenu.xhtml"
-        outlet="views"
-        overwrite="true"
-        generateEmptyFiles="true"
-        outputCondition="verticalMenu"/>
-        
-	<template
         path="templates/jsf/views/facelets/layout/horizontalMenu.xhtml.vsl"
         outputPattern="layout/horizontalMenu.xhtml"
         outlet="views"
         overwrite="true"
         outputToSingleFile="true"
-        outputCondition="horizontalMenu">
+        outputCondition="navigationStyleLight">
         <modelElements>
             <modelElement variable="useCases">
                 <type name="org.andromda.metafacades.uml.FrontEndUseCase"/>
