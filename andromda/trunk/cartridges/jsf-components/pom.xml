@@ -39,7 +39,6 @@
 					<artifactId>commons-collections</artifactId>
 				</exclusion>
 			</exclusions>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.portlet</groupId>
@@ -100,6 +99,11 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.myfaces.trinidad</groupId>
+			<artifactId>trinidad-impl</artifactId>
+			<version>1.2.14</version>
 		</dependency>
 	</dependencies>
 	<properties>
