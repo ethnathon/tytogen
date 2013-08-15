@@ -3,7 +3,7 @@
 #set($formName = $action.formBeanName)
 ##Disable partialSubmit if the current view is a popup to allow popup to close correctly
 #set($needPartialSubmit = $trinidad && !$currentViewPopup) 
-#if ($action.hyperlink || $action.popup)
+#if ($action.hyperlink)
             <tr:subform id="${formName}">
                     <tr:commandLink id="${action.triggerName}Action" 
                         action="#{${action.controller.beanName}.${action.triggerName}}" ##
@@ -12,15 +12,15 @@
 	                	<tr:outputText value="#{messages['$action.messageKey']}"/>
 #foreach ($parameter in $action.parameters)
 #if (!$parameter.complex || $parameter.type.enumeration)
-        #renderActionCommandLinkParameter($parameter "")
+	#renderActionCommandLinkParameter($parameter "")
 #end
 #foreach ($attribute in $parameter.attributes)
-        #renderActionCommandLinkParameter($attribute $parameter)
+	#renderActionCommandLinkParameter($attribute $parameter)
 #end
 #end ##end for
 					</tr:commandLink>
             </tr:subform>
-#else ##action !($action.hyperlink || $action.popup)
+#else ##action !($action.hyperlink)
             #set ($clientValidation = $clientValidation && $action.validationRequired)
             #set ($formValidateName = "validate$stringUtils.capitalize($formName)")
             <tr:subform id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end>

@@ -30,9 +30,11 @@
             <c:set var="title" value="#{messages['${view.titleKey}']}" scope="request"/>
         </ui:define>
         <ui:define name="content">
-#if($view.zones.contains('default'))
-    #drawZone('default')
+#set ( $zones = $view.zones ) 
+#if($zones.contains('default'))
+#drawZone('default')
 #end
+
 ## Render Tabs with Jquery UI      
 #set ( $tabMap = $view.tabLabelsById ) 
 #if ( !$tabMap.isEmpty() )
@@ -45,13 +47,27 @@
                 </ul>
 #foreach ( $key in $tabMap.keySet() )
 				<div id="$key">
+#if($zones.contains($key))
 #drawZone ( $key )
+#end
+#if($zones.contains("${key}-c1")||$zones.contains("${key}-c2"))
+            		<table>
+                    	<tr class="zoneRow">
+                        	<td id="zoneColumn1" class="zoneCell" width="50%">
+#drawZone("${key}-c1")
+							</td>
+							<td id="zoneColumn2" class="zoneCell" width="50%">
+#drawZone("${key}-c2")
+							</td>
+                    	</tr>
+            		</table>
+#end
                 </div>
 #end
 			</div>
 #end
 ## Render page body, laying out zones in a table. 
-#set ( $zones = $view.zones ) 
+
 #if($zones.contains('top') || $zones.contains('column1')||$zones.contains('column2')||$zones.contains('bottom'))
             <table class="zoneTable">
 #if($zones.contains('top'))

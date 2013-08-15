@@ -15,12 +15,13 @@
 #if(!${useCase.navigationChildren.empty})
 		<tr:panelGroupLayout layout="vertical">
 			<tr:commandLink text="${useCase.name}" styleClass="menu_element_level_0"/>
+
 			<tr:panelGroupLayout layout="vertical" styleClass="menu_level_1">
 #foreach($child in ${useCase.navigationChildren})
 				<tr:commandLink text="${child.name}" 
 							action="${child.path}.${jsfUtils.viewExtension}" 
 							styleClass="menu_element_level_1"
-							immediate="true" />
+							immediate="true" rendered="#{menubean}" />
 #end
 			</tr:panelGroupLayout>
 		</tr:panelGroupLayout>
