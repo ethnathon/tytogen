@@ -9,21 +9,27 @@
       xmlns:tr="http://myfaces.apache.org/trinidad">
 
 <ui:composition>
-	<tr:panelGroupLayout layout="horizontal" styleClass="menu_level_0">
+	<tr:panelGroupLayout layout="horizontal" styleClass="menu_level_0" 
+			rendered="#{menuBean.rendered}" disabled="#{menuBean.disabled}">
 #foreach($useCase in $useCases)
 #if(${useCase.navigationParents.empty})	
 #if(!${useCase.navigationChildren.empty})
 		<tr:panelGroupLayout layout="vertical">
-			<tr:commandLink text="${useCase.name}" styleClass="menu_element_level_0"/>
-
+			<tr:goLink text="${useCase.name}" styleClass="menu_element_level_0"
+				rendered="#{menuBean.is${useCase.controllerAction}Rendered()}" disabled="#{menuBean.is${useCase.controllerAction}Disabled()}" ## 
+#if(${useCase.navigationChildren.empty})
+destination="${useCase.path}.jsf"  />
+#else
+/>
 			<tr:panelGroupLayout layout="vertical" styleClass="menu_level_1">
 #foreach($child in ${useCase.navigationChildren})
-				<tr:commandLink text="${child.name}" 
-							action="${child.path}.${jsfUtils.viewExtension}" 
-							styleClass="menu_element_level_1"
-							immediate="true" rendered="#{menubean}" />
+#if(${child.path})
+				<tr:goLink text="${child.name}" destination="${child.path}.jsf" styleClass="menu_element_level_1" 
+					rendered="#{menuBean.is${child.controllerAction}Rendered()}" disabled="#{menuBean.is${child.controllerAction}Disabled()}" />
+#end
 #end
 			</tr:panelGroupLayout>
+#end
 		</tr:panelGroupLayout>
 #end
 #end      

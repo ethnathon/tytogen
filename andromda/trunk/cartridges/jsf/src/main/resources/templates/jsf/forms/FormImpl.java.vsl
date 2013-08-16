@@ -27,6 +27,17 @@ implements java.io.Serializable#if ($stringUtils.isNotBlank($action.formImplemen
     dateFormatter.setLenient(true);
     this.dateTimeFormatters.put(null, dateFormatter);
     }
+    #foreach ($otheraction in $action.useCase.actions)
+    private boolean ${otheraction.formBeanName}Rendered = true;
+    
+    public boolean get${otheraction.formBeanName}Rendered() {
+        return ${otheraction.formBeanName}Rendered;
+    }
+    
+    public void set${otheraction.formBeanName}Rendered(boolean rendered) {
+        ${otheraction.formBeanName}Rendered = rendered;
+    }
+    #end
     private transient javax.faces.event.FacesEvent event;
     /**
     * @param eventIn
@@ -292,13 +303,13 @@ private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
                                 {
                                 return this.${formMessagesProperty}Title;
                                 }
-                                /**
-                                * Gets the maximum severity of the messages stored in this form.
-                                *
-                                * @return the maximum severity or null if no messages are present and/or severity isn't set.
-                                */
-                                public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity()
-                                {
+                                
+    /**
+    * Gets the maximum severity of the messages stored in this form.
+    *
+    * @return the maximum severity or null if no messages are present and/or severity isn't set.
+    */
+	public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity() {
                                 javax.faces.application.FacesMessage.Severity maxSeverity = null;
                                 for (final javax.faces.application.FacesMessage message : this.get${stringUtils.capitalize($formMessagesProperty)}())
                                 {
@@ -308,10 +319,10 @@ private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
                                 maxSeverity = severity;
                                 }
                                 }
-                                return maxSeverity;
-                                }
-                                /**
-                                * The serial version UID of this class. Needed for serialization.
-                                */
-                                private static final long serialVersionUID = ${action.formSerialVersionUID}L;
-                                }
+	    return maxSeverity;
+    }
+    /**
+    * The serial version UID of this class. Needed for serialization.
+    */
+	private static final long serialVersionUID = ${action.formSerialVersionUID}L;
+}

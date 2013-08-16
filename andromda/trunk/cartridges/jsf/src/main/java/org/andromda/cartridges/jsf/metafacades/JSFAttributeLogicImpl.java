@@ -335,7 +335,7 @@ public class JSFAttributeLogicImpl extends JSFAttributeLogic {
 									if (name.equals(parameterName)
 											&& typeName
 													.equals(parameterTypeName)) {
-										selectable = parameter
+										selectable |= parameter
 												.isInputMultibox()
 												|| parameter.isInputSelect()
 												|| parameter.isInputRadio();
@@ -360,7 +360,7 @@ public class JSFAttributeLogicImpl extends JSFAttributeLogic {
 									+ parameter.getName() + " sel"
 									+ parameter.isSelectable());
 							if (name.equals(parameter.getName())) {
-								selectable = parameter.isSelectable();
+								selectable |= parameter.isSelectable();
 							}
 						}
 					}

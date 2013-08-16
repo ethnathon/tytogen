@@ -521,17 +521,7 @@
                 </documentation>
                 <value>andromda_presentation_web_view_zone</value>
             </element>
-            <element name="TAB_NUMBER">
-                <documentation>
-					An integer that will identify the tab number this control 
-					will appear in.
-                </documentation>
-                <value>andromda_presentation_web_view_tab_number</value>
-                <appliedOnElement>Transition coming out of an action state 
-	                carrying the <![CDATA[<<FrontEndView>>]]> stereotype, 
-	                or a parameter coming in an action state carrying the 
-	                <![CDATA[<<FrontEndView>>]]> stereotype</appliedOnElement>
-            </element>
+   
             <element name="TAB_LABELS">
                 <documentation>
                     Comma separated list of the labels that will be rendered as tabs

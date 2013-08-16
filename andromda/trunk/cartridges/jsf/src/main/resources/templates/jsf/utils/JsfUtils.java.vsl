@@ -7,6 +7,8 @@ package $managedBeansPackage;
 
 import org.apache.commons.lang.StringUtils;
 
+
+
 /**
  * Utilities used within the JSF Cartridge
  *
@@ -610,4 +612,41 @@ public class $className
 			logger.warn("Error redirecting to " + actionUrl, e);
 		}
 	}
+	
+#if ($securityEnabled)
+	public static Collection<Roles> getRoles(){
+		org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext()
+				.getAuthentication();
+		Collection<? extends org.springframework.security.core.GrantedAuthority> authorities=auth.getAuthorities();
+		Collection<Roles> authoritiesMDA=new java.util.HashSet<Roles>();
+		for (org.springframework.security.core.GrantedAuthority grantedAuthority : authorities) {
+			String roleString = grantedAuthority.getAuthority();
+			authoritiesMDA.add(Roles.valueOf(roleString));
+		}
+		return authoritiesMDA;
+	}
+	
+	public static org.springframework.security.core.userdetails.User getCurrentUser() {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		if(auth != null) {
+			Object princ = auth.getPrincipal();
+			return (org.springframework.security.core.userdetails.User) princ;		
+		} else {
+			return null;
+		}
+	}
+
+	public static String getCurrentUserName() {
+		final org.springframework.security.core.userdetails.User currentUser = getCurrentUser();
+		String name;
+		if( currentUser == null ) {
+			name = null;
+		} else {
+			name = currentUser.getUsername();
+		}
+		return name;
+	}
+	
+#end
 }
