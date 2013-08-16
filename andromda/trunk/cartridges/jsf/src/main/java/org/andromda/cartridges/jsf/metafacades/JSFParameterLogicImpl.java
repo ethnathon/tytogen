@@ -510,13 +510,12 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 	 * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#isSelectable()
 	 */
 	protected boolean handleIsSelectable() {
-		boolean selectable = false;
-		if (this.isActionParameter()) {
-			selectable = this.isInputMultibox() || this.isInputSelect()
-					|| this.isInputRadio();
+		boolean selectable = this.isInputMultibox() || this.isInputSelect()
+				|| this.isInputRadio() || (this.getType() !=null && this.getType().isEnumeration());
+		if (!selectable && this.isActionParameter()) {
 			final ClassifierFacade type = this.getType();
 
-			if (!selectable && type != null) {
+			if (type != null) {
 				final String name = this.getName();
 				final String typeName = type.getFullyQualifiedName();
 
@@ -524,15 +523,19 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 				// it IS selectable we must
 				// allow the user to set the backing list too
 				final Collection<FrontEndView> views = this.getAction()
-						.getTargetViews();
+						.getUseCase().getViews();
 				for (final Iterator<FrontEndView> iterator = views.iterator(); iterator
 						.hasNext() && !selectable;) {
-					final Collection<FrontEndParameter> parameters = iterator
-							.next().getAllActionParameters();
+					final FrontEndView view = iterator.next();
+					final Collection<FrontEndParameter> parameters = view
+							.getAllFormFields();
+
 					for (final Iterator<FrontEndParameter> parameterIterator = parameters
 							.iterator(); parameterIterator.hasNext()
 							&& !selectable;) {
-						final Object object = parameterIterator.next();
+						final FrontEndParameter object = parameterIterator
+								.next();
+
 						if (object instanceof JSFParameter) {
 							final JSFParameter parameter = (JSFParameter) object;
 							final String parameterName = parameter.getName();
@@ -543,16 +546,33 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 										.getFullyQualifiedName();
 								if (name.equals(parameterName)
 										&& typeName.equals(parameterTypeName)) {
-									selectable = parameter.isInputMultibox()
+									selectable |= parameter.isInputMultibox()
 											|| parameter.isInputSelect()
 											|| parameter.isInputRadio();
+								}
+							}
+							System.out.println("**** target view:" + view.getName()
+									+ " parameter:" + parameter.getName()
+									+ " sel" + selectable);
+							Collection<JSFAttribute> attributes = parameter
+									.getAttributes();
+							if (attributes != null) {
+								for (JSFAttribute attribute : attributes) {
+									if (name.equals(attribute.getName())) {
+										selectable |= attribute
+												.isInputMultibox()
+												|| attribute.isInputSelect()
+												|| attribute.isInputRadio();
+									}
 								}
 							}
 						}
 					}
 				}
 			}
-		} else if (this.isControllerOperationArgument()) {
+		}
+
+		if (!selectable && this.isControllerOperationArgument()) {
 			final String name = this.getName();
 			final Collection actions = this.getControllerOperation()
 					.getDeferringActions();
@@ -563,12 +583,23 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 						.getFormFields();
 				for (final Iterator<FrontEndParameter> fieldIterator = formFields
 						.iterator(); fieldIterator.hasNext() && !selectable;) {
-					final Object object = fieldIterator.next();
+					final FrontEndParameter object = fieldIterator.next();
 					if (object instanceof JSFParameter) {
 						final JSFParameter parameter = (JSFParameter) object;
 						if (!parameter.equals(this)) {
 							if (name.equals(parameter.getName())) {
-								selectable = parameter.isSelectable();
+								selectable |= parameter.isSelectable();
+							}
+						}
+						Collection<JSFAttribute> attributes = parameter
+								.getAttributes();
+						if (attributes != null) {
+							for (JSFAttribute attribute : attributes) {
+								if (name.equals(attribute.getName())) {
+									selectable |= attribute.isInputMultibox()
+											|| attribute.isInputSelect()
+											|| attribute.isInputRadio();
+								}
 							}
 						}
 					}

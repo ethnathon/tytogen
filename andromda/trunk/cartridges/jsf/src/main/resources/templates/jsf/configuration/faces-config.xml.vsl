@@ -90,10 +90,40 @@
     <!-- menuModel nodes -->
 ##for light navigation style only generate a simple backing bean for menus
 ##in case of other navigation styles generate a full menumodel
-#if($navigationStyle.equals(""))
+#if($navigationStyle.equals("light"))
+    <managed-bean>
+       <managed-bean-name>menuBean</managed-bean-name>
+       <managed-bean-class>${managedBeansPackage}.MenuBackingBean</managed-bean-class>
+       <managed-bean-scope>session</managed-bean-scope>
+       <managed-property>
+       		<property-name>rolesByUseCase</property-name>
+       		<map-entries>
+       	  		<key-class>java.lang.String</key-class>
+          		<value-class>java.lang.String</value-class>
+#foreach($useCase in $useCases)
+#if(${useCase.navigationParents.empty})	
+#if(!${useCase.navigationChildren.empty})
+	       		<map-entry>
+					<key>${useCase.name}</key>
+#set ($roles = $useCase.roles)
+					<value>$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)</value>
+				</map-entry>
+#foreach($child in ${useCase.navigationChildren})
+       			<map-entry>
+					<key>${child.name}</key>
+#set ($roles = $useCase.roles)
+					<value>$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)</value>
+				</map-entry>
+#end		
 
-#else
+#end	
+#end
+#end      
+		  </map-entries>
+		</managed-property>
+	  </managed-bean>
 
+#else ## navigation style else than "light", generate a normal treeModel
 #foreach ($useCase in $useCases)
     <managed-bean>
        <managed-bean-name>navItem_$stringUtils.replace($useCase.forwardName, '-', '_')</managed-bean-name>

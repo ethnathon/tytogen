@@ -50,14 +50,14 @@
 #if($zones.contains($key))
 #drawZone ( $key )
 #end
-#if($zones.contains("${key}-c1")||$zones.contains("${key}-c2"))
+#if($zones.contains("${key}-column1")||$zones.contains("${key}-column2"))
             		<table>
                     	<tr class="zoneRow">
                         	<td id="zoneColumn1" class="zoneCell" width="50%">
-#drawZone("${key}-c1")
+#drawZone("${key}-column1")
 							</td>
 							<td id="zoneColumn2" class="zoneCell" width="50%">
-#drawZone("${key}-c2")
+#drawZone("${key}-column2")
 							</td>
                     	</tr>
             		</table>

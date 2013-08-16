@@ -73,7 +73,8 @@ $field.getDocumentation("     * ")
 #if ($field.selectable || $field.type.enumeration)
 #renderBackingListSupport($field "")
 #end
-#foreach ($attribute in $field.attributes)	
+#foreach ($attribute in $field.attributes)
+	//attribute $attribute.name $attribute.class	
 #if ($attribute.isSelectable($field) || $attribute.type.enumeration || $attribute.isBackingValueRequired($field))
 #renderBackingListSupport($attribute $field)
 #end
