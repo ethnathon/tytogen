@@ -625,7 +625,6 @@
     <!-- taglib merge-point -->
     <!-- resource-ref merge-point -->
     <!-- security-constraint merge-point -->
-#if ($securityEnabled)
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Raw-JSF-Pages</web-resource-name>
@@ -642,20 +641,5 @@
         </user-data-constraint>
     </security-constraint>
 
-
-#foreach ($user in $roles)
-    <security-role>
-        <role-name>$user.name</role-name>
-    </security-role>
-#end
-#if ($stringUtils.isNotBlank($defaultRole))
-    <security-role>
-        <role-name>${defaultRole}</role-name>
-    </security-role>
-#end
-
-    <!-- security-role merge-point -->
-
-#end
 #end
 </web-app>

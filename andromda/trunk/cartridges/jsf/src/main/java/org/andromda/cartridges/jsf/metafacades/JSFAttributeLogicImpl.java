@@ -296,104 +296,98 @@ public class JSFAttributeLogicImpl extends JSFAttributeLogic {
 	 * @see JSFAttribute#isSelectable(org.andromda.metafacades.uml.FrontEndParameter)
 	 */
 	protected boolean handleIsSelectable(final FrontEndParameter ownerParameter) {
-		boolean selectable = false;
-		if (ownerParameter != null) {
+		final ClassifierFacade type = this.getType();
 
-			if (ownerParameter.isActionParameter()) {
-				selectable = this.isInputMultibox() || this.isInputSelect()
-						|| this.isInputRadio();
-				final ClassifierFacade type = this.getType();
+		boolean selectable = this.isInputMultibox() || this.isInputSelect()
+				|| this.isInputRadio() || (type != null && type.isEnumeration());
 
-				if (!selectable && type != null) {
-					final String name = this.getName();
-					final String typeName = type.getFullyQualifiedName();
-
-					// - if the parameter is not selectable but on a
-					// targeting
-					// page it IS selectable we must
-					// allow the user to set the backing list too
-					final Collection<FrontEndView> views = ownerParameter
-							.getAction().getTargetViews();
-					for (final Iterator<FrontEndView> iterator = views
-							.iterator(); iterator.hasNext() && !selectable;) {
-						final Collection<FrontEndParameter> parameters = iterator
-								.next().getAllActionParameters();
-						for (final Iterator<FrontEndParameter> parameterIterator = parameters
-								.iterator(); parameterIterator.hasNext()
-								&& !selectable;) {
-							final FrontEndParameter object = parameterIterator
-									.next();
-							if (object instanceof JSFParameter) {
-								final JSFParameter parameter = (JSFParameter) object;
-								final String parameterName = parameter
-										.getName();
-								final ClassifierFacade parameterType = parameter
-										.getType();
-								if (parameterType != null) {
-									final String parameterTypeName = parameterType
-											.getFullyQualifiedName();
-									if (name.equals(parameterName)
-											&& typeName
-													.equals(parameterTypeName)) {
-										selectable |= parameter
-												.isInputMultibox()
-												|| parameter.isInputSelect()
-												|| parameter.isInputRadio();
-									}
-								}
-							}
-						}
-					}
-				}
-			} else if (ownerParameter.isControllerOperationArgument()) {
+		if (ownerParameter != null && !selectable) {
+			if (ownerParameter.isActionParameter() && type != null) {
 				final String name = this.getName();
-				for (final FrontEndAction action : ownerParameter
-						.getControllerOperation().getDeferringActions()) {
-					final Collection<FrontEndParameter> formFields = action
-							.getFormFields();
-					for (final Iterator<FrontEndParameter> fieldIterator = formFields
-							.iterator(); fieldIterator.hasNext() && !selectable;) {
-						final FrontEndParameter object = fieldIterator.next();
+				final String typeName = type.getFullyQualifiedName();
+
+				// - if the parameter is not selectable but on a
+				// targeting
+				// page it IS selectable we must
+				// allow the user to set the backing list too
+				final Collection<FrontEndView> views = ownerParameter
+						.getAction().getTargetViews();
+				for (final Iterator<FrontEndView> iterator = views.iterator(); iterator
+						.hasNext() && !selectable;) {
+					final Collection<FrontEndParameter> parameters = iterator
+							.next().getAllActionParameters();
+					for (final Iterator<FrontEndParameter> parameterIterator = parameters
+							.iterator(); parameterIterator.hasNext()
+							&& !selectable;) {
+						final FrontEndParameter object = parameterIterator
+								.next();
 						if (object instanceof JSFParameter) {
 							final JSFParameter parameter = (JSFParameter) object;
-							System.out.println("param name: "
-									+ parameter.getName() + " sel"
-									+ parameter.isSelectable());
-							if (name.equals(parameter.getName())) {
-								selectable |= parameter.isSelectable();
+							final String parameterName = parameter.getName();
+							final ClassifierFacade parameterType = parameter
+									.getType();
+							if (parameterType != null) {
+								final String parameterTypeName = parameterType
+										.getFullyQualifiedName();
+								if (name.equals(parameterName)
+										&& typeName.equals(parameterTypeName)) {
+									selectable |= parameter.isInputMultibox()
+											|| parameter.isInputSelect()
+											|| parameter.isInputRadio();
+								}
 							}
 						}
 					}
 				}
-			} else if (ownerParameter.getView() != null) {
-				List<FrontEndAction> actions = ownerParameter.getView()
-						.getActions();
-				if (actions != null) {
-					for (FrontEndAction frontEndAction : actions) {
-						List<FrontEndParameter> parameters = frontEndAction
-								.getParameters();
-						if (parameters != null) {
-							for (FrontEndParameter frontEndPrm : parameters) {
-								if (frontEndPrm instanceof JSFParameter
-										&& frontEndPrm.getName().equals(
-												this.getName())) {
-									JSFParameter jsfprm = (JSFParameter) frontEndPrm;
-									selectable |= jsfprm.isInputMultibox()
-											|| jsfprm.isInputSelect()
-											|| jsfprm.isInputRadio();
-								}
-								if (selectable) {
-									break;
-								}
-							}
-						}
-						if (selectable) {
-							break;
+			}
+		} else if (ownerParameter.isControllerOperationArgument()) {
+			final String name = this.getName();
+			for (final FrontEndAction action : ownerParameter
+					.getControllerOperation().getDeferringActions()) {
+				final Collection<FrontEndParameter> formFields = action
+						.getFormFields();
+				for (final Iterator<FrontEndParameter> fieldIterator = formFields
+						.iterator(); fieldIterator.hasNext() && !selectable;) {
+					final FrontEndParameter object = fieldIterator.next();
+					if (object instanceof JSFParameter) {
+						final JSFParameter parameter = (JSFParameter) object;
+						if (name.equals(parameter.getName())) {
+							selectable |= parameter.isSelectable();
 						}
 					}
 				}
 			}
 		}
+
+		if (!selectable && ownerParameter.getView() != null) {
+			List<FrontEndAction> actions = ownerParameter.getView()
+					.getActions();
+			if (actions != null) {
+				for (FrontEndAction frontEndAction : actions) {
+					List<FrontEndParameter> parameters = frontEndAction
+							.getParameters();
+					if (parameters != null) {
+						for (FrontEndParameter frontEndPrm : parameters) {
+							if (frontEndPrm instanceof JSFParameter
+									&& frontEndPrm.getName().equals(
+											this.getName())) {
+								JSFParameter jsfprm = (JSFParameter) frontEndPrm;
+								selectable |= jsfprm.isInputMultibox()
+										|| jsfprm.isInputSelect()
+										|| jsfprm.isInputRadio();
+							}
+							if (selectable) {
+								break;
+							}
+						}
+					}
+					if (selectable) {
+						break;
+					}
+				}
+			}
+		}
+
 		return selectable;
 	}
 

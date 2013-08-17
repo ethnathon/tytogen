@@ -511,7 +511,8 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 	 */
 	protected boolean handleIsSelectable() {
 		boolean selectable = this.isInputMultibox() || this.isInputSelect()
-				|| this.isInputRadio() || (this.getType() !=null && this.getType().isEnumeration());
+				|| this.isInputRadio()
+				|| (this.getType() != null && this.getType().isEnumeration());
 		if (!selectable && this.isActionParameter()) {
 			final ClassifierFacade type = this.getType();
 
@@ -551,9 +552,6 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 											|| parameter.isInputRadio();
 								}
 							}
-							System.out.println("**** target view:" + view.getName()
-									+ " parameter:" + parameter.getName()
-									+ " sel" + selectable);
 							Collection<JSFAttribute> attributes = parameter
 									.getAttributes();
 							if (attributes != null) {
@@ -1209,4 +1207,25 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 		return "default";
 	}
 
+	@Override
+	protected boolean handleIsAccordion() {
+		String accordionTaggedValue = (String) this
+				.findTaggedValue(JSFProfile.TAGGEDVALUE_IS_ACCORDION);
+		boolean result;
+		if (StringUtils.isNotBlank(accordionTaggedValue)) {
+			try {
+				result = Boolean.parseBoolean(accordionTaggedValue.trim());
+			} catch (Exception e) {
+				result = false;
+				System.err.print("Value " + accordionTaggedValue
+						+ " not permitted for tagged value "
+						+ JSFProfile.TAGGEDVALUE_IS_ACCORDION
+						+ " valid values are true,false.");
+				e.printStackTrace();
+			}
+		} else {
+			result = false;
+		}
+		return result;
+	}
 }
