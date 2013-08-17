@@ -81,11 +81,14 @@ $field.getDocumentation("     * ")
 #end
 #end
 
+
+#if(!$operation.deferringActions.empty)
+#set ($action = $operation.deferringActions.iterator().next())
 #foreach ($otheraction in $action.useCase.actions)
     public boolean get${otheraction.formBeanName}Rendered();
     
     public void set${otheraction.formBeanName}Rendered(boolean rendered);
     
 #end
-
+#end
 }
