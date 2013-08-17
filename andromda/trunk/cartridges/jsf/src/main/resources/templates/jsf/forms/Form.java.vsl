@@ -70,7 +70,7 @@ $field.getDocumentation("     * ")
      * @param $field.name
      */
     public void ${field.setterName}($fieldTypeName $field.name);
-#if ($field.selectable || $field.type.enumeration)
+#if ($field.selectable)
 #renderBackingListSupport($field "")
 #end
 #foreach ($attribute in $field.attributes)
@@ -79,6 +79,13 @@ $field.getDocumentation("     * ")
 #renderBackingListSupport($attribute $field)
 #end
 #end
+#end
+
+#foreach ($otheraction in $action.useCase.actions)
+    public boolean get${otheraction.formBeanName}Rendered();
+    
+    public void set${otheraction.formBeanName}Rendered(boolean rendered);
+    
 #end
 
 }
