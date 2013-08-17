@@ -73,6 +73,10 @@ public class JSFProfile {
 	/** INPUT_RESET */
 	public static final String TAGGEDVALUE_INPUT_RESET = PROFILE
 			.get("INPUT_RESET");
+	/** INPUT_RESET */
+	public static final String TAGGEDVALUE_IS_ACCORDION = PROFILE
+			.get("IS_ACCORDION");
+	
 	/** TABLE_PAGEABLE */
 	public static final String TAGGEDVALUE_TABLE_PAGEABLE = PROFILE
 			.get("TABLE_PAGEABLE");

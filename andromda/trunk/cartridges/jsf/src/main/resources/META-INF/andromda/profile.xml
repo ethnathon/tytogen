@@ -272,6 +272,20 @@
                     <value default="true">false</value>
                 </allowedValues>
             </element>
+            <element name="IS_ACCORDION">
+                <documentation>
+                    A flag indicating whether or not a parameter should be rendered as an accordion.  This must be
+                    set to true when you wish to display a list of simple types (such as strings) within a table.
+                </documentation>
+                <value>andromda_presentation_view_accordion</value>
+                <appliedOnElement>
+                    A collection type parameter going into an action state carrying the <![CDATA[<<FrontEndView>>]]> stereotype
+                </appliedOnElement>
+                <allowedValues>
+                    <value>true</value>
+                    <value default="true">false</value>
+                </allowedValues>
+            </element>
             <element name="INPUT_TABLE_IDENTIFIER_COLUMNS">
                 <documentation>
                     Allows one to define which columns should be considered identifiers when creating an input table, these

@@ -53,10 +53,10 @@
 #if($zones.contains("${key}-column1")||$zones.contains("${key}-column2"))
             		<table>
                     	<tr class="zoneRow">
-                        	<td id="zoneColumn1" class="zoneCell" width="50%">
+                        	<td id="${key}-column1" class="zoneCell" width="50%">
 #drawZone("${key}-column1")
 							</td>
-							<td id="zoneColumn2" class="zoneCell" width="50%">
+							<td id="${key}-column2" class="zoneCell" width="50%">
 #drawZone("${key}-column2")
 							</td>
                     	</tr>
