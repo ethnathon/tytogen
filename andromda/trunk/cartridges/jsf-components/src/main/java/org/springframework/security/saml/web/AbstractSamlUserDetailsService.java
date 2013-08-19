@@ -1,12 +1,20 @@
 package org.springframework.security.saml.web;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.opensaml.saml2.core.Attribute;
 import org.opensaml.xml.XMLObject;
+import org.opensaml.xml.schema.XSBase64Binary;
+import org.opensaml.xml.schema.XSBoolean;
+import org.opensaml.xml.schema.XSInteger;
+import org.opensaml.xml.schema.XSString;
+import org.opensaml.xml.schema.XSURI;
 import org.opensaml.xml.schema.impl.XSStringImpl;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -57,7 +65,8 @@ public abstract class AbstractSamlUserDetailsService implements
 	public UserDetails loadUserBySAML(final SAMLCredential credential)
 			throws UsernameNotFoundException {
 		final SamlUser user = new SamlUser(getUserName(credential),
-				getRoles(credential), getCustomAttributes(credential), null);
+				getRoles(credential), getCustomAttributes(credential),
+				getSamlAttributes(credential));
 		return user;
 	}
 
@@ -70,5 +79,54 @@ public abstract class AbstractSamlUserDetailsService implements
 			springRoles.add(new SimpleGrantedAuthority(newRole.toString()));
 		}
 		return springRoles;
+	}
+
+	protected Map<String, Object> getSamlAttributes(SAMLCredential credential) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		for (Attribute attribute : credential.getAttributes()) {
+			result.put(attribute.getName(), getValue(attribute));
+		}
+		return result;
+	}
+
+	protected Object getValue(final Attribute samlAttribute) {
+		Object result = null;
+		if (samlAttribute != null) {
+			final List<XMLObject> attributeValues = samlAttribute
+					.getAttributeValues();
+			if (attributeValues != null && attributeValues.size() > 0) {
+				if (attributeValues.size() == 1) {
+					result = getSingleAttributeValue(attributeValues.get(0));
+				} else {
+					Collection<Object> coll = new ArrayList<Object>();
+					for (XMLObject value : attributeValues) {
+						coll.add(getSingleAttributeValue(value));
+					}
+					result = (Object[]) coll.toArray(new Object[coll.size()]);
+				}
+			}
+		}
+		return result;
+	}
+
+	protected Object getSingleAttributeValue(XMLObject xobj) {
+		Object result = null;
+		if (xobj instanceof XSString) {
+			final XSString attributeXS = (XSString) xobj;
+			result = attributeXS.getValue();
+		} else if (xobj instanceof XSInteger) {
+			final XSInteger attributeXS = (XSInteger) xobj;
+			result = attributeXS.getValue();
+		} else if (xobj instanceof XSBoolean) {
+			final XSBoolean attributeXS = (XSBoolean) xobj;
+			result = attributeXS.getValue();
+		} else if (xobj instanceof XSURI) {
+			final XSURI attributeXS = (XSURI) xobj;
+			result = attributeXS.getValue();
+		} else if (xobj instanceof XSBase64Binary) {
+			final XSBase64Binary attributeXS = (XSBase64Binary) xobj;
+			result = attributeXS.getValue();
+		}
+		return result;
 	}
 }

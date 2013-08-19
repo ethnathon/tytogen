@@ -74,6 +74,20 @@
                     The forms to which input is stored are output here.
                 </documentation>
             </property>
+            <property name="test-impls">
+                <documentation>
+                    The location where authentication test classes
+                    are generated.  These will not be regenerated and require
+                    user intervention.
+                </documentation>
+            </property>
+            <property name="test-config">
+                <documentation>
+                    The location where test configuration files (test-users.properties) are generated.  
+                    These will not be regenerated
+                    and may require user intervention.
+                </documentation>
+            </property>
         </propertyGroup>
         <propertyGroup name="Configuration">
             <documentation>

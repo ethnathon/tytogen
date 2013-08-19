@@ -137,22 +137,31 @@
     <condition name="jsfVersion1">$jsfVersion.trim().equalsIgnoreCase('1.x')</condition>
 	<condition name="navigationStyleLight">#if ($navigationStyle.equalsIgnoreCase("light"))true#end</condition>
 	<condition name="samlAuthentication">$loginConfigAuthMethod.toUpperCase().contains('SAML')</condition>
+	<condition name="testAuthentication">$loginConfigAuthMethod.toUpperCase().contains('TEST')</condition>
     <!-- condition merge-point-->
 
     <!-- cartridge-resource merge-point -->
     
     <resource
-        path="resources/auth/saml/security/*"
+        path="resources/auth/security/saml/*.jsp"
         outputPattern="WEB-INF/security/{0}"
         outlet="configuration"
         outputCondition="samlAuthentication"
         overwrite="true" />
+        
     <resource
-        path="resources/auth/saml/*"
+        path="resources/auth/security/saml/*.xml"
         outputPattern="WEB-INF/{0}"
         outlet="configuration"
         outputCondition="samlAuthentication"
         overwrite="true" />
+
+    <resource
+        path="resources/auth/security/*.properties"
+        outputPattern="{0}"
+        outlet="test-config"
+        outputCondition="testAuthentication"
+        overwrite="false" />        
         
     <resource
         path="resources/views/skins/beach/*"
@@ -545,12 +554,19 @@
     </template>
     
     <template
-        path="templates/jsf/utils/SamlUserDetailsServiceImpl.java.vsl"
+        path="templates/jsf/security/SamlUserDetailsServiceImpl.java.vsl"
         outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
         outlet="controller-impls"
         outputCondition="samlAuthentication"
-        overwrite="true"/>
-        
+        overwrite="false"/>
+
+    <template
+        path="templates/jsf/security/TestAuthenticationProvider.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/${className}.java"
+        outlet="test-impls"
+        outputCondition="testAuthentication"
+        overwrite="false"/>
+    
     <template
         path="templates/jsf/converters/EnumerationConverter.java.vsl"
         outputPattern="${enumeration.converterPath}.java"
@@ -559,23 +575,6 @@
         <modelElements variable="enumeration">
             <modelElement>
                 <type name="org.andromda.cartridges.jsf.metafacades.JSFEnumeration"/>
-            </modelElement>
-        </modelElements>
-    </template>
-
-    <template
-        path="templates/jsf/flow/LogOutServlet.java.vsl"
-        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/LogOutServlet.java"
-        outlet="controllers"
-        overwrite="true"
-        outputToSingleFile="true"
-        outputOnEmptyElements="false"
-        outputCondition="standalone">
-        <modelElements>
-            <modelElement variable="applicationUseCases">
-                <type name="org.andromda.metafacades.uml.FrontEndUseCase">
-                    <property name="entryUseCase"/>
-                </type>
             </modelElement>
         </modelElements>
     </template>

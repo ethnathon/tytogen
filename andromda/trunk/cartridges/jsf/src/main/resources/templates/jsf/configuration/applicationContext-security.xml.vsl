@@ -94,13 +94,13 @@
 	<security:authentication-manager alias="authenticationManager">
 		<security:authentication-provider ref="samlAuthenticationProvider" />
 #if($testAuthentication)
-		<security:authentication-provider user-service-ref="testUserService" />
+		<security:authentication-provider ref="testAuthenticationProvider" />
 #end
 	</security:authentication-manager>
 
 #if($testAuthentication)
 	<!-- test user details -->
-	<security:user-service id="testUserService" properties="classpath:/test-users.properties"/> 
+	<bean id="testAuthenticationProvider" class="org.andromda.presentation.jsf.TestAuthenticationProvider"/> 
 #end
 	
 	<!-- Logger for SAML messages and events -->
