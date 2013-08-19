@@ -18,12 +18,12 @@ public class SamlUser extends User {
 	 * by the generated application
 	 */
 	protected final Object customAttributes;
-	protected final Map<String, String> samlAttributes;
+	protected final Map<String, Object> samlAttributes;
 
 	public SamlUser(final String username,
 			final Collection<? extends GrantedAuthority> authorities,
 			final Object customAttributes,
-			final Map<String, String> samlAttributes) {
+			final Map<String, Object> samlAttributes) {
 		super(username, " ", authorities);
 		this.customAttributes = customAttributes;
 		this.samlAttributes = samlAttributes;
@@ -33,7 +33,7 @@ public class SamlUser extends User {
 		return customAttributes;
 	}
 
-	public Map<String, String> getSamlAttributes() {
+	public Map<String, Object> getSamlAttributes() {
 		return samlAttributes;
 	}
 

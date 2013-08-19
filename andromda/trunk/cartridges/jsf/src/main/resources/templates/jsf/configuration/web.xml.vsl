@@ -494,13 +494,6 @@
         <servlet-name>Trinidad Resources Servlet</servlet-name>
         <servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
     </servlet>
-#if ($securityEnabled)
-#set ($logOutServlet = "${managedBeansPackage}.LogOutServlet")
-    <servlet>
-        <servlet-name>$logOutServlet</servlet-name>
-        <servlet-class>$logOutServlet</servlet-class>
-    </servlet>
-#end
 #foreach ($useCase in $useCases)
     <servlet>
         <servlet-name>$useCase.fullyQualifiedActionClassName</servlet-name>
@@ -590,10 +583,10 @@
         <url-pattern>/adf/*</url-pattern>
     </servlet-mapping>
 #if ($securityEnabled)
-    <servlet-mapping>
+    <!-- servlet-mapping>
         <servlet-name>$logOutServlet</servlet-name>
         <url-pattern>/${logoutFileName}.${facesServletExtension}</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping -->
 #end
 #foreach ($useCase in $useCases)
     <servlet-mapping>
