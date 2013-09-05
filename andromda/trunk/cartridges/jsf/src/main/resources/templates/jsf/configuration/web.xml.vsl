@@ -400,10 +400,10 @@
         <filter-name>TrinidadDialogFilter</filter-name>
         <url-pattern>/__ADFv__</url-pattern>
     </filter-mapping>
-    <filter-mapping>
+    <!-- filter-mapping>
         <filter-name>TrinidadDialogFilter</filter-name>
         <url-pattern>/__*</url-pattern>
-    </filter-mapping>
+    </filter-mapping -->
 
 #if ($securityEnabled && !$roles.empty)
     <filter-mapping>

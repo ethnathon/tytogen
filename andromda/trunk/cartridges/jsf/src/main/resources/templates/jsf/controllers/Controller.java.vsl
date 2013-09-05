@@ -20,7 +20,6 @@ import java.util.HashSet;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.saml.web.SamlUser;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 #end
@@ -179,7 +178,7 @@ $action.trigger.getDocumentation("     * ")
      */
     public void ${action.triggerName}DialogReturn(final org.apache.myfaces.trinidad.event.ReturnEvent event)
     {
-        ${managedBeansPackage}.JsfUtils.redirectToSelf();
+        ${managedBeansPackage}.JsfUtils.redirectToFormOutcome((String)event.getReturnValue());
     }
 #end   
 
@@ -192,12 +191,18 @@ $action.trigger.getDocumentation("     * ")
 #end
     public String ${action.triggerName}(final javax.faces.event.FacesEvent event)
     {
-#if ($action.finalStateTarget)
+##boh, i don't use redirect on navigation, first part of if not tested.
+#if ($action.finalStateTarget && $navigationUsesRedirect)
 #set ($targetUseCase = $action.target.targetUseCase)
         $targetUseCase.controller.fullyQualifiedName controller =
             ($targetUseCase.controller.fullyQualifiedName)this.resolveVariable(
                 "$targetUseCase.controller.beanName");
         return controller.${targetUseCase.controllerAction}();
+#elseif ($action.finalStateTarget && $action.source.popup)
+#set ($targetUseCase = $action.target.targetUseCase)
+		org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog(
+			"${targetUseCase.forwardName}", null); //close the dialog
+		return null;
 #else
         String forward = null;
         final Object currentForm = this.resolveVariable("$action.formKey");
@@ -279,7 +284,8 @@ $action.trigger.getDocumentation("     * ")
 #end
             }
 #end
-#if ($formPopulationOperationRequired && $action.formResetRequired)
+##if action leads to a popup and form is resetted validators fail on submit 
+#if ($formPopulationOperationRequired && $action.formResetRequired && !$action.popup)
             form.reset();
 #end
         }
@@ -1169,7 +1175,7 @@ $decisionTransition.getDocumentation("     * ")
 		return authenticated;
 	}
 
-	protected User getCurrentUser() {
+	protected org.springframework.security.core.userdetails.UserDetails getCurrentUser() {
 		return ${managedBeansPackage}.JsfUtils.getCurrentUser();
 	}
 
