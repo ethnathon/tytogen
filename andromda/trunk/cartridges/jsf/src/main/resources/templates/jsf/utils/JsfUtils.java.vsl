@@ -613,6 +613,30 @@ public class $className
 		}
 	}
 	
+	public static void redirectToFormOutcome(String form_outcome) {
+		if( form_outcome == null || "".equals(form_outcome)){
+			redirectToSelf();
+			return;
+		} 
+		FacesContext context = FacesContext.getCurrentInstance();
+		ExternalContext eContext = context.getExternalContext();
+
+		context.getApplication().getNavigationHandler()
+				.handleNavigation(context, "*", form_outcome);
+
+		String contextPath = eContext.getRequestContextPath();
+		String viewId = context.getViewRoot().getViewId();
+		viewId = viewId.replace(".xhtml",".${facesServletExtension}");
+		final String actionUrl = eContext.encodeActionURL(contextPath
+				+ viewId);
+		try {
+			eContext.redirect(actionUrl);
+		} catch (IOException e) {
+			logger.warn("Error redirecting to " + actionUrl, e);
+		}
+	}
+	
+	
 #if ($securityEnabled)
 	public static Collection<Roles> getRoles(){
 		org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext()
@@ -626,19 +650,19 @@ public class $className
 		return authoritiesMDA;
 	}
 	
-	public static org.springframework.security.core.userdetails.User getCurrentUser() {
+	public static org.springframework.security.core.userdetails.UserDetails getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		if(auth != null) {
 			Object princ = auth.getPrincipal();
-			return (org.springframework.security.core.userdetails.User) princ;		
+			return (org.springframework.security.core.userdetails.UserDetails) princ;		
 		} else {
 			return null;
 		}
 	}
 
 	public static String getCurrentUserName() {
-		final org.springframework.security.core.userdetails.User currentUser = getCurrentUser();
+		final org.springframework.security.core.userdetails.UserDetails currentUser = getCurrentUser();
 		String name;
 		if( currentUser == null ) {
 			name = null;

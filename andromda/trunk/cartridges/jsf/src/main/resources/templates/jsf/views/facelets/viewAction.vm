@@ -7,7 +7,11 @@
             <tr:subform id="${formName}">
                     <tr:commandLink id="${action.triggerName}Action" 
                         action="#{${action.controller.beanName}.${action.triggerName}}" ##
-#*                      *##if($needPartialSubmit) partialSubmit="true" #if($action.popup) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" #end#end ##
+#*                      *##if($needPartialSubmit) partialSubmit="true" ## 
+#*                      	*##if($action.popup) useWindow="true" windowWidth="550" ## 
+#*                      	*#returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
+#*                      	*##end ##
+#*                      *##end ##
 #*                      *##if($stringUtils.isNotEmpty($action.documentation)) shortDesc="#{messages['$action.documentationKey']}"#end >
 	                	<tr:outputText value="#{messages['$action.messageKey']}"/>
 #foreach ($parameter in $action.parameters)
@@ -40,7 +44,10 @@
 					<f:facet name="footer">
                             <tr:panelButtonBar>
                                 <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" 
-                                #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" #end#end/>
+                                #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" ##
+#*              				*# returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
+#*              				*# windowHeight="700" windowWidth="600"
+#*              				*# #end#end/>
 #*              				*##if ($action.resettable)
                                 <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
 #*              				*##end

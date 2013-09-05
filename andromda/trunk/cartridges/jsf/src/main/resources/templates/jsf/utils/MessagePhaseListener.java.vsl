@@ -95,9 +95,11 @@ public class $className
                             (($jsfUtils.requestClassName)request).setAttribute(MESSAGES_TITLE, messagesTitle);
                         }
                     }
+#if($navigationUsesRedirect)                    
                     form.getClass().getMethod("clear${stringUtils.capitalize($formMessagesProperty)}", (Class[])null).invoke(form, (Object[])null);
                     form.getClass().getMethod("set${stringUtils.capitalize($formMessagesProperty)}Title",
                         new Class[]{String.class}).invoke(form, new Object[]{null});
+#end                
                 }
             }
             catch (final Exception exception)
@@ -119,7 +121,54 @@ public class $className
     @Override
     protected void handleAfterPhase(javax.faces.event.PhaseEvent event)
     {
-        // Empty method
+#if($navigationUsesRedirect)
+		//empty method
+#else
+    	RequestContext requestContext = RequestContext.getCurrentInstance();
+		final Object form = requestContext != null ? requestContext
+				.getPageFlowScope().get("form") : null;
+		FacesContext context = FacesContext.getCurrentInstance();
+		final Object form2 = context.getExternalContext().getSessionMap()
+				.get("form");
+		/*
+		 * if an action cycles on the same view we're forcing a redirect
+		 * (opposed to the original cartridge where the action return "null")
+		 * thus messages have to be preserved between two redirects. When an
+		 * action cycles on the same view the renderkit calls a
+		 * "org.apache.myfaces.trinidadinternal.renderkit.core.CoreRenderKit.shortCircuitRenderView(FacesContext)"
+		 * that doesn't actually redraw the view, and suddenly a redirect. after
+		 * this call responseComplete is set to true. We don't clean the backing
+		 * bean right now, but we wait for a redirect.
+		 * 
+		 * Little problem, after the redirect the backing bean in pageflow has
+		 * beeen copied to alla the other form beans. We have to clean also the
+		 * backing bean in session to avoid the messages stay there forever.
+		 */
+		if (!context.getResponseComplete()) {
+			try {
+				if (form != null) {
+					form.getClass()
+							.getMethod("clearJsfMessages", (Class[]) null)
+							.invoke(form, (Object[]) null);
+					form.getClass()
+							.getMethod("setJsfMessagesTitle",
+									new Class[] { String.class })
+							.invoke(form, new Object[] { null });
+				}
+				if (form2 != null) {
+					form2.getClass()
+							.getMethod("clearJsfMessages", (Class[]) null)
+							.invoke(form2, (Object[]) null);
+					form2.getClass()
+							.getMethod("setJsfMessagesTitle",
+									new Class[] { String.class })
+							.invoke(form2, new Object[] { null });
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+#end
     }
 
     /**

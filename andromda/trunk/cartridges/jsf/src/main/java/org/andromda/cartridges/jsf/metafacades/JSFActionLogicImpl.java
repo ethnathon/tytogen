@@ -523,8 +523,8 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 		if (!popup) {
 			for (final FrontEndView feView : this.getTargetViews()) {
 				final JSFView view = (JSFView) feView;
-				popup = view.isPopup();
-				if (!popup) {
+				popup |= view.isPopup();
+				if (popup) {
 					break;
 				}
 			}

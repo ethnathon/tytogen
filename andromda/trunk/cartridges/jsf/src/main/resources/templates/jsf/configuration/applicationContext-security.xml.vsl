@@ -295,7 +295,10 @@
 
 	<!-- SAML 2.0 WebSSO Assertion Consumer -->
 	<bean id="webSSOprofileConsumer"
-		class="org.springframework.security.saml.websso.WebSSOProfileConsumerImpl" />
+		class="org.springframework.security.saml.websso.WebSSOProfileConsumerImpl">
+		<!-- disable maxAuthenticationAge because causing authentication failures-->
+		<property name="maxAuthenticationAge" value="6048000" />
+	</bean>
 
 	<!-- SAML 2.0 Holder-of-Key WebSSO Assertion Consumer -->
 	<bean id="hokWebSSOprofileConsumer"
