@@ -15,10 +15,67 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public abstract class AbstractTestAuthenticationProvider implements
 		AuthenticationProvider, InitializingBean {
+
+	protected class TestUserDetails implements UserDetails {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -2789606190277793765L;
+		private final Collection<? extends GrantedAuthority> authorities;
+		private final String password;
+		private final String username;
+
+		public TestUserDetails(
+				final Collection<? extends GrantedAuthority> authorities,
+				final String password, final String username) {
+			this.authorities = authorities;
+			this.password = password;
+			this.username = username;
+		}
+
+		@Override
+		public Collection<? extends GrantedAuthority> getAuthorities() {
+
+			return authorities;
+		}
+
+		@Override
+		public String getPassword() {
+			return password;
+		}
+
+		@Override
+		public String getUsername() {
+			return username;
+		}
+
+		@Override
+		public boolean isAccountNonExpired() {
+			return true;
+		}
+
+		@Override
+		public boolean isAccountNonLocked() {
+			return true;
+		}
+
+		@Override
+		public boolean isCredentialsNonExpired() {
+			return true;
+		}
+
+		@Override
+		public boolean isEnabled() {
+			return true;
+		}
+
+	}
+
 	protected String propertyFile = null;
 	/**
 	 * Format of the file
@@ -65,29 +122,16 @@ public abstract class AbstractTestAuthenticationProvider implements
 					username + ".password", "");
 			checkPassword(credentials, password);
 			result = new UsernamePasswordAuthenticationToken(
-					authentication.getPrincipal(), credentials, authorities);
+					new TestUserDetails(authorities, password, username),
+					credentials, authorities);
 			final Object authDetails = getAuthenticationDetails(username,
 					authToken.getDetails());
 
-			((UsernamePasswordAuthenticationToken) result).setDetails(authDetails);
+			((UsernamePasswordAuthenticationToken) result)
+					.setDetails(authDetails);
 		}
 
 		return result;
-	}
-
-	protected Collection<GrantedAuthority> getRoles(String username) {
-		final String roles = userData.getProperty(username + ".roles", "");
-		if (StringUtils.isBlank(roles)) {
-			throw new UsernameNotFoundException("username [" + username
-					+ "] check [" + propertyFile + "] contains the key "
-					+ username + ".roles");
-		}
-		final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		final String[] roleArray = roles.split(",");
-		for (final String role : roleArray) {
-			authorities.add(new SimpleGrantedAuthority(role));
-		}
-		return authorities;
 	}
 
 	protected void checkPassword(final Object credentials, final String password) {
@@ -102,6 +146,21 @@ public abstract class AbstractTestAuthenticationProvider implements
 
 	protected abstract Object getAuthenticationDetails(String userName,
 			Object oldDetails);
+
+	protected Collection<GrantedAuthority> getRoles(final String username) {
+		final String roles = userData.getProperty(username + ".roles", "");
+		if (StringUtils.isBlank(roles)) {
+			throw new UsernameNotFoundException("username [" + username
+					+ "] check [" + propertyFile + "] contains the key "
+					+ username + ".roles");
+		}
+		final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		final String[] roleArray = roles.split(",");
+		for (final String role : roleArray) {
+			authorities.add(new SimpleGrantedAuthority(role));
+		}
+		return authorities;
+	}
 
 	@Override
 	public boolean supports(final Class<?> authentication) {

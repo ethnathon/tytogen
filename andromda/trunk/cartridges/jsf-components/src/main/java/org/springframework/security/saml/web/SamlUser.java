@@ -1,6 +1,7 @@
 package org.springframework.security.saml.web;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +36,37 @@ public class SamlUser extends User {
 
 	public Map<String, Object> getSamlAttributes() {
 		return samlAttributes;
+	}
+
+	@Override
+	public String toString() {
+		final int maxLen = 15;
+		return "SamlUser "
+				+ "USER="
+				+ getUsername()
+				+ (customAttributes != null ? ",customAttributes="
+						+ customAttributes + ", " : "")
+				+ (samlAttributes != null ? "samlAttributes="
+						+ toString(samlAttributes.entrySet(), maxLen) + ", "
+						: "") + " roles=" + toString(getAuthorities(), maxLen);
+	}
+
+	private String toString(Collection<?> collection, int maxLen) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("[");
+		int i = 0;
+		for (Iterator<?> iterator = collection.iterator(); iterator.hasNext()
+				&& i < maxLen; i++) {
+			if (i > 0) {
+				builder.append(", ");
+			}
+			builder.append(iterator.next());
+		}
+		if (i == maxLen) {
+			builder.append("...");
+		}
+		builder.append("]");
+		return builder.toString();
 	}
 
 }
