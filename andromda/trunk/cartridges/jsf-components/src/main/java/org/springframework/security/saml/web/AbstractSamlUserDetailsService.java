@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.opensaml.saml2.core.Attribute;
 import org.opensaml.xml.XMLObject;
 import org.opensaml.xml.schema.XSBase64Binary;
@@ -25,6 +27,9 @@ import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 
 public abstract class AbstractSamlUserDetailsService implements
 		SAMLUserDetailsService {
+
+	private static final Log LOGGER = LogFactory
+			.getLog(AbstractSamlUserDetailsService.class);
 
 	protected abstract Object getCustomAttributes(SAMLCredential credential);
 
@@ -64,9 +69,17 @@ public abstract class AbstractSamlUserDetailsService implements
 	@Override
 	public UserDetails loadUserBySAML(final SAMLCredential credential)
 			throws UsernameNotFoundException {
-		final SamlUser user = new SamlUser(getUserName(credential),
-				getRoles(credential), getCustomAttributes(credential),
-				getSamlAttributes(credential));
+		SamlUser user;
+		try {
+			user = new SamlUser(getUserName(credential), getRoles(credential),
+					getCustomAttributes(credential),
+					getSamlAttributes(credential));
+			LOGGER.info("SAML User log in: " + user);
+		} catch (UsernameNotFoundException e) {
+			LOGGER.info("SAML User login refused: " + e.getMessage()
+					+ " credentials:" + credential);
+			throw e;
+		}
 		return user;
 	}
 
