@@ -2,7 +2,16 @@
 ##    <!-- generated from viewAction (BEGIN)-->
 #set($formName = $action.formBeanName)
 ##Disable partialSubmit if the current view is a popup to allow popup to close correctly
-#set($needPartialSubmit = $trinidad && !$currentViewPopup) 
+##Disable partialSubmit if the action don't have any outgoing transition (for downloads)
+##intra use case forwards need "partialSubmit"
+#set ($hasOutgoingTransition = false)
+#foreach ($actionState in $action.actionStates)
+#if ($actionState.forward)
+#set ($hasOutgoingTransition = true)
+#end
+#end
+
+#set($needPartialSubmit = $trinidad && !$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget)) 
 #if ($action.hyperlink)
             <tr:subform id="${formName}">
                     <tr:commandLink id="${action.triggerName}Action" 
@@ -27,7 +36,7 @@
 #else ##action !($action.hyperlink)
             #set ($clientValidation = $clientValidation && $action.validationRequired)
             #set ($formValidateName = "validate$stringUtils.capitalize($formName)")
-            <tr:subform id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end>
+            <tr:subform id="$formName"#if($clientValidation && $commonsValidator) onsubmit="return $formValidateName(this);"#end rendered="#{${formName}.get${formName}Rendered()}">
 #*          	*##if (!$action.hiddenParameters.empty)
 #*                    *##viewHiddenParameters($action 'hidden')
 #*              *##end
@@ -46,7 +55,7 @@
                                 <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" 
                                 #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" ##
 #*              				*# returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
-#*              				*# windowHeight="700" windowWidth="600"
+#*              				*# windowHeight="600" windowWidth="600"
 #*              				*# #end#end/>
 #*              				*##if ($action.resettable)
                                 <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
