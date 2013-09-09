@@ -52,6 +52,7 @@
 		<security:intercept-url pattern="${manageable.pathRoot}/**" access="$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)" />
 #end
 #end
+		<security:intercept-url pattern="/saml/logout/**" />
 		<security:custom-filter before="FIRST" ref="metadataGeneratorFilter" />
 		<security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter" />
 	</security:http>
