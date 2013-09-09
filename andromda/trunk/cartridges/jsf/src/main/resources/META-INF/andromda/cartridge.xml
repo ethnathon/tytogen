@@ -998,6 +998,15 @@
     </template>
     
     <template
+        path="templates/jsf/controllers/MenuBackingBeanImpl.java.vsl"
+        outputPattern="$stringUtils.replace($managedBeansPackage, '.', '/')/MenuBackingBeanImpl.java"
+        outlet="controller-impls"
+        overwrite="false"
+        outputToSingleFile="true"
+        outputCondition="navigationStyleLight">
+    </template>
+    
+    <template
         path="templates/jsf/controllers/crud/Controller.java.vsl"
         outputPattern="$generatedFile"
         outlet="controllers"

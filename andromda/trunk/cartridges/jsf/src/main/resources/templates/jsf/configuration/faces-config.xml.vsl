@@ -93,7 +93,7 @@
 #if($navigationStyle.equals("light"))
     <managed-bean>
        <managed-bean-name>menuBean</managed-bean-name>
-       <managed-bean-class>${managedBeansPackage}.MenuBackingBean</managed-bean-class>
+       <managed-bean-class>${managedBeansPackage}.MenuBackingBeanImpl</managed-bean-class>
        <managed-bean-scope>session</managed-bean-scope>
        <managed-property>
        		<property-name>rolesByUseCase</property-name>
@@ -111,7 +111,7 @@
 #foreach($child in ${useCase.navigationChildren})
        			<map-entry>
 					<key>${child.name}</key>
-#set ($roles = $useCase.roles)
+#set ($roles = $child.roles)
 					<value>$jsfUtils.toSpringSecurityRoles($roles,$defaultRole)</value>
 				</map-entry>
 #end		
