@@ -191,7 +191,7 @@ $action.trigger.getDocumentation("     * ")
 #end
     public String ${action.triggerName}(final javax.faces.event.FacesEvent event)
     {
-##boh, i don't use redirect on navigation, first part of if not tested.
+##boh?*, i don't use redirect on navigation, first part of if not tested.
 #if ($action.finalStateTarget && $navigationUsesRedirect)
 #set ($targetUseCase = $action.target.targetUseCase)
         $targetUseCase.controller.fullyQualifiedName controller =
@@ -202,6 +202,21 @@ $action.trigger.getDocumentation("     * ")
 #set ($targetUseCase = $action.target.targetUseCase)
 		org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog(
 			"${targetUseCase.forwardName}", null); //close the dialog
+##set fields to pass to next usecase
+        try {
+            final $action.fullyQualifiedFormImplementationName form =
+                this.$action.formImplementationGetter;
+            form.setEvent(event);
+            this.setForm("$action.formKey", form, true);
+#foreach ($field in $action.formFields)
+			form.preserveField("${field.name}");
+#foreach ($attribute in $field.type.getAttributes(true))
+			form.preserveField("${field.name}.${attribute.name}");
+#end
+#end
+        } catch (Throwable exception) {
+            logger.error(exception.getMessage(),exception);
+        }
 		return null;
 #else
         String forward = null;
@@ -275,8 +290,7 @@ $action.trigger.getDocumentation("     * ")
 #end
 ##check if there are outgoing transitions
 #if(!$controller.useCase.getViews().isEmpty())
-            if (event != null)
-            {
+            if (event != null) {
 #if ($formPopulationOperationRequired)
                 ${action.useCase.actionClassName}ViewPopulator.populateFormAndViewVariables(this.getContext(), form);
 #else
@@ -284,13 +298,21 @@ $action.trigger.getDocumentation("     * ")
 #end
             }
 #end
+##set fields to pass to next usecase
+#if($action.finalStateTarget)
+#foreach ($field in $action.formFields)
+			form.preserveField("${field.name}");
+#foreach ($attribute in $field.type.getAttributes(true))
+			form.preserveField("${field.name}.${attribute.name}");
+#end
+#end
+#end
+
 ##if action leads to a popup and form is resetted validators fail on submit 
 #if ($formPopulationOperationRequired && $action.formResetRequired && !$action.popup)
             form.reset();
 #end
-        }
-        catch (final Throwable throwable)
-        {
+        } catch (final Throwable throwable) {
             this.setForm("$action.formKey", currentForm, $portlet);
             // - set the forward to null so that we stay on the current view
             forward = null;
