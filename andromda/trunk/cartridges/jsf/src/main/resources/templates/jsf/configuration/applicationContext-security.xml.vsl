@@ -15,7 +15,7 @@
 	<!-- Unsecured pages merge point -->
 	<security:http security="none" pattern="/saml/web/**" />
 	<security:http security="none" pattern="/logout.jsp" />
-	<security:http security="none" pattern="/favicon.ico" />
+	<security:http security="none" pattern="/favicon.ico" /> 
 	<security:http security="none" pattern="/css/**" />
 	<security:http security="none" pattern="/js/**" />
 	<security:http security="none" pattern="/jsf/**" />
@@ -53,6 +53,7 @@
 #end
 #end
 		<security:intercept-url pattern="/saml/logout/**" />
+		<security:intercept-url pattern="/logout/**" />
 		<security:custom-filter before="FIRST" ref="metadataGeneratorFilter" />
 		<security:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter" />
 	</security:http>
@@ -88,7 +89,7 @@
 	<!-- Handler for successful logout -->
 	<bean id="successLogoutHandler"
 		class="org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler">
-		<property name="defaultTargetUrl" value="/logout.jsp" />
+		<property name="defaultTargetUrl" value="${logoutFileName}" />
 	</bean>
 
 	<!-- Register authentication manager with SAML provider -->

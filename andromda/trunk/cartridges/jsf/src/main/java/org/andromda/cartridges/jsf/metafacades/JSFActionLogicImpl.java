@@ -172,24 +172,30 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 	protected String handleGetFormImplementationInterfaceList() {
 		final List<FrontEndControllerOperation> deferredOperations = this
 				.getDeferredOperations();
-		
+
 		for (final Iterator<FrontEndControllerOperation> iterator = deferredOperations
 				.iterator(); iterator.hasNext();) {
 			// - remove any forms that don't have arguments
 			final JSFControllerOperation operation = (JSFControllerOperation) iterator
 					.next();
-			/*if (operation.getArguments().isEmpty()) {
-				iterator.remove();
-			}*/
+			/*
+			 * if (operation.getArguments().isEmpty()) { iterator.remove(); }
+			 */
 		}
 		final StringBuilder list = new StringBuilder();
 		for (final Iterator<FrontEndControllerOperation> iterator = deferredOperations
 				.iterator(); iterator.hasNext();) {
 			final JSFControllerOperation operation = (JSFControllerOperation) iterator
 					.next();
-			list.append(operation.getFormName());
-			if (iterator.hasNext()) {
-				list.append(", ");
+			if (operation != null) {
+				final String formName = operation.getFormName();
+				if(StringUtils.isNotBlank(formName)){
+					if(list.length()>0){
+						list.append(", ");					
+					}
+					list.append(formName);					
+				}
+				
 			}
 		}
 		return list.toString();

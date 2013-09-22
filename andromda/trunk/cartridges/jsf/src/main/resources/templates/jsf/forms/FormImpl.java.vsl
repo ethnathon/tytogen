@@ -7,8 +7,10 @@ package $action.packageName;
 $action.getDocumentation(" * ")
 */
 public class $action.formImplementationName
-implements java.io.Serializable#if ($stringUtils.isNotBlank($action.formImplementationInterfaceList)), $action.formImplementationInterfaceList#end
+implements java.io.Serializable, org.andromda.cartridges.jsf.forms.Resettable#if ($stringUtils.isNotBlank($action.formImplementationInterfaceList)), $action.formImplementationInterfaceList#end
     {
+    
+    private final java.util.Set<String> fieldToPreserve=new java.util.HashSet<String>();
     /**
     * Default constructor
     */
@@ -190,7 +192,7 @@ public void resetIsSetFlags()
     this.reset${stringUtils.capitalize($field.formAttributeSetProperty)}();
 #end
 }
-#if ($action.formResetRequired)
+
     /**
     * Resets any fields of the form that need to be reset.
     */
@@ -208,7 +210,30 @@ public void resetIsSetFlags()
         #end
     #end
     }
+
+    /**
+    * Resets any fields of the form that need to be reset.
+    */
+    public void interUseCaseReset() {
+#foreach($field in $action.formFields)
+#if (!$field.complex || $field.type.enumeration)
+		if(!fieldToPreserve.contains("$field.name")) {
+        	this.$field.name = $field.type.javaNullString;
+        }
+#else
+#foreach ($attribute in $field.type.getAttributes(true))
+		if(!fieldToPreserve.contains("${field.name}.${attribute.name}")) {
+			this.${field.name}.${attribute.setterName}($attribute.type.javaNullString);
+		}
 #end
+#end
+#end
+		fieldToPreserve.clear();
+    }
+    
+    public void preserveField(String fieldName){
+		this.fieldToPreserve.add(fieldName);
+	}
 /**
 * Stores any date or time formatters for this form.
 */
@@ -303,13 +328,13 @@ private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
                                 {
                                 return this.${formMessagesProperty}Title;
                                 }
-                                
-    /**
-    * Gets the maximum severity of the messages stored in this form.
-    *
-    * @return the maximum severity or null if no messages are present and/or severity isn't set.
-    */
-	public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity() {
+                                /**
+                                * Gets the maximum severity of the messages stored in this form.
+                                *
+                                * @return the maximum severity or null if no messages are present and/or severity isn't set.
+                                */
+                                public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity()
+                                {
                                 javax.faces.application.FacesMessage.Severity maxSeverity = null;
                                 for (final javax.faces.application.FacesMessage message : this.get${stringUtils.capitalize($formMessagesProperty)}())
                                 {
@@ -319,10 +344,10 @@ private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
                                 maxSeverity = severity;
                                 }
                                 }
-	    return maxSeverity;
-    }
-    /**
-    * The serial version UID of this class. Needed for serialization.
-    */
-	private static final long serialVersionUID = ${action.formSerialVersionUID}L;
+                                return maxSeverity;
+                                }
+                                /**
+                                * The serial version UID of this class. Needed for serialization.
+                                */
+                                private static final long serialVersionUID = ${action.formSerialVersionUID}L;
 }

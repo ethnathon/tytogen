@@ -6,29 +6,30 @@
 ##     o  $ownerParameter - the parameter that is the owner of this parameter (in the case of complex objects)
 #
 #macro(renderActionInput $parameter $ownerParameter)
-    #if ($parameter.backingListName)
-        #if ($ownerParameter.type.hasStereotype('Entity'))
-            #set ($propertyId = $parameter.getFormPropertyId($ownerParameter))
-            #set ($valuePropertyName = ${parameter.getFormPropertyName($ownerParameter)})
-        #else
-            #set ($propertyId = $parameter.name)
-            #set ($valuePropertyName = $parameter.name)
-        #end
-        #set ($backingListName = $parameter.backingListName)
-        #set ($backingValueName = $parameter.backingValueName)
-        #set ($actionId = "${parameter.action.triggerName}Action")
-    #else
+#*	*##if ($parameter.backingListName)
+#*		*##if ($ownerParameter.type.hasStereotype('Entity'))
+#*			*##set ($propertyId = $parameter.getFormPropertyId($ownerParameter))
+#*			*##set ($valuePropertyName = ${parameter.getFormPropertyName($ownerParameter)})
+#*		*##else
+#*			*##set ($propertyId = $parameter.name)
+#*			*##set ($valuePropertyName = $parameter.name)
+#*		*##end
+#*		*##set ($backingListName = $parameter.backingListName)
+#*		*##set ($backingValueName = $parameter.backingValueName)
+#*		*##set ($actionId = "${parameter.action.triggerName}Action")
+#*	*##else
         #set ($propertyId = $parameter.getFormPropertyId($ownerParameter))
         #set ($valuePropertyName = ${parameter.getFormPropertyName($ownerParameter)})
         #set ($backingListName = ${parameter.getBackingListName($ownerParameter)})
         #set ($backingValueName = ${parameter.getBackingValueName($ownerParameter)})
         #set ($actionId = "${ownerParameter.action.triggerName}Action")
-    #end
-    #set ($formValuePropertyName = "${formName}.${valuePropertyName}")
-    #if (!$parameter.table && !($parameter.inputHidden || $ownerParameter.inputHidden))
+#*	*##end
+#*	*##set ($formValuePropertyName = "${formName}.${valuePropertyName}")
+#*	*##if (!$parameter.table && !($parameter.inputHidden || $ownerParameter.inputHidden))
         #if ($parameter.type.dateType)
             #if ($parameter.readOnly)
                 <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" readOnly="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end 
+				rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
 				#if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages) shortDesc="#{messages['$parameter.documentationKey']}"#end 
 				/>
             #else
@@ -73,6 +74,7 @@
             </tr:selectManyCheckbox>
         #elseif ($parameter.inputRadio)
             <tr:selectOneRadio  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end layout="horizontal"
+            rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
             >
                     <c:if test="${!empty ${backingListName}}">
@@ -82,9 +84,10 @@
         #elseif ($parameter.inputTable)
             #renderInputTable($parameter)
         #elseif ($parameter.plainText)
-            <tr:outputText  value="#{${formValuePropertyName}}"#if($trinidad) partialTriggers="$actionId"#end/>
+            <tr:outputText value="#{${formValuePropertyName}}"#if($trinidad) partialTriggers="$actionId"#end/>
         #elseif ($parameter.inputSecret)
             <tr:inputText  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" secret="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
+            rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
             />
         #else
@@ -97,7 +100,7 @@
     #if ($multiSelect)
         #set ($selectBoxType = "selectManyListbox")
     #end
-    <tr:$selectBoxType  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
+    <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
                     #foreach ($literal in $field.type.literals)
 ##To be reviewed: actually this is done this way because $literal.value does not work
 #set($literalValue = $literal.defaultValue.replace("'","").replace('"',''))
@@ -107,10 +110,11 @@
 <f:selectItem itemLabel="#{messages['${parameter.type.messageKey}.${literal.name}']}" itemValue="$literalValue" 
 #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
 />
-                    #end
+#end
     </tr:$selectBoxType>
 #else
-    <tr:inputText  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
+    <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
+    rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
     #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages) shortDesc="#{messages['$parameter.documentationKey']}"#end 
     >
                     #if ($parameter.type.timeType)
@@ -119,8 +123,8 @@
     </tr:inputText>
 #end
 #end
-        #end
-    #end
+#end
+#end
 ##
 ##  This macro renders an submittable input table
 ##

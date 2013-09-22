@@ -20,6 +20,7 @@ public class $action.actionClassName
     /**  */
     private static final long serialVersionUID = -4200629904955041261L;
 
+	//private static final org.apache.commons.logging.Log LOGGER = org.apache.commons.logging.LogFactory.getLog(${action.actionClassName}.class);
     /**
      * @see javax.servlet.http.HttpServlet#hash()doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
@@ -47,11 +48,16 @@ public class $action.actionClassName
             ($controller.fullyQualifiedName)${facesContextUtilsFullyQualifiedName}.resolveVariable(
                 request, response,
                 "$controller.beanName");
+        org.andromda.cartridges.jsf.forms.Resettable form = (org.andromda.cartridges.jsf.forms.Resettable) controller.resolveVariable("form");
 #if ($action.useCase)
 #set ($useCase = $action.useCase)
 #else
 #set ($useCase = $action)
 #end
+		if (form != null) {
+			form.interUseCaseReset("$useCase.name");
+		}
+		
         final String forwardPath = ${managedBeansPackage}.UseCaseForwards.getPath(controller.${action.controllerAction}());
         if(forwardPath != null){
 #if (!$useCase.views.empty)
