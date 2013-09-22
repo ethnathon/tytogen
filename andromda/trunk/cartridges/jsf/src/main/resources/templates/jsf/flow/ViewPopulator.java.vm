@@ -29,4 +29,14 @@
 #end
                     request.setAttribute("$variableName", backingList);
                 }
+
+#if($variable.inputTable)
+                final boolean ${readableVariable}Rendered = org.apache.commons.beanutils.PropertyUtils.isReadable(form, "${variableName}Rendered");
+                if (${readableVariable}Rendered)
+                {
+                    Object backingList = org.apache.commons.beanutils.PropertyUtils.getProperty(form, "${variableName}Rendered");
+                    request.setAttribute("${variableName}Rendered", backingList);
+                }
+
+#end
 #end

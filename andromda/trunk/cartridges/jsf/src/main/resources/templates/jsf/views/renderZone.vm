@@ -8,7 +8,7 @@
 
 #foreach ($action in $view.actions)
 #if (!$action.tableLink && ${action.zone}==$actualZone)
-	#viewAction($action $view.popup)
+#viewAction($action $view.popup)
 #end
 #end
 

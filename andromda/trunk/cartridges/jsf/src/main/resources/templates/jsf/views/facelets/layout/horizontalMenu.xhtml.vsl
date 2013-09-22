@@ -25,7 +25,8 @@ destination="${useCase.path}.jsf"  />
 #foreach($child in ${useCase.navigationChildren})
 #if(${child.path})
 				<tr:goLink text="${child.name}" destination="${child.path}.jsf" styleClass="menu_element_level_1" 
-					rendered="#{menuBean.is${child.controllerAction}Rendered()}" disabled="#{menuBean.is${child.controllerAction}Disabled()}" />
+					id="${child.controllerAction}" rendered="#{menuBean.is${child.controllerAction}Rendered()}" 
+					disabled="#{menuBean.is${child.controllerAction}Disabled()}" />
 #end
 #end
 			</tr:panelGroupLayout>

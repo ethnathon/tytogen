@@ -278,13 +278,12 @@ $action.trigger.getDocumentation("     * ")
                 ${indent}org.apache.commons.beanutils.PropertyUtils.setProperty(currentForm,
                     ${indent}"$formMessagesProperty", org.apache.commons.beanutils.PropertyUtils.getProperty(form, "$formMessagesProperty"));
 #end
-                ${indent}this.setForm("$action.formKey", currentForm, $portlet);
+                //cause complete form reset when an error is added.
+                //${indent}this.setForm("$action.formKey", currentForm, $portlet);
             ${indent}}
 #saveMessages($action "                ")
 #if ($portlet)
-            }
-            else
-            {
+            } else {
                 forward = this.getLastForward();
             }
 #end
@@ -292,9 +291,9 @@ $action.trigger.getDocumentation("     * ")
 #if(!$controller.useCase.getViews().isEmpty())
             if (event != null) {
 #if ($formPopulationOperationRequired)
-                ${action.useCase.actionClassName}ViewPopulator.populateFormAndViewVariables(this.getContext(), form);
+            	${action.useCase.actionClassName}ViewPopulator.populateFormAndViewVariables(this.getContext(), form);
 #else
-                ${action.useCase.actionClassName}ViewPopulator.populateFormAndViewVariables(this.getContext(), null);
+				${action.useCase.actionClassName}ViewPopulator.populateFormAndViewVariables(this.getContext(), null);
 #end
             }
 #end

@@ -9,18 +9,21 @@
       xmlns:trh="http://myfaces.apache.org/trinidad/html"
       xmlns:tr="http://myfaces.apache.org/trinidad">
 
+
+	<f:loadBundle basename="message-resources" var="messages" />
+    <c:set var="remoteUser" value="${facesContext.externalContext.request.userPrincipal.name}" scope="request"/>
     <ui:insert name="head">
         <ui:include src="head.xhtml"/>
     </ui:insert>
-    <c:set var="remoteUser" value="${facesContext.externalContext.request.userPrincipal.name}" scope="request"/>
     <trh:body>
-       <tr:form usesUpload="#{usesUpload}" partialTriggers="#{partialTriggers}">
         <ui:insert name="title"/>
         <tr:panelPage>
             <f:facet name="branding">
+            	<tr:form>
                 <ui:insert name="header">
                     <ui:include src="header.xhtml"/>
                 </ui:insert>
+                </tr:form>
             </f:facet>
             <f:facet name="infoStatus">
                 <ui:include src="messages.xhtml"/>
@@ -101,12 +104,16 @@
 ##                        <ui:include src="return.xhtml"/>
 ##                    </ui:insert>
 ##            </f:facet>
-            <div id="pageContent">
-                <tr:panelHeader text="#{title}" partialTriggers="#{partialTriggers}">
-                    <ui:insert name="content"/>
-                </tr:panelHeader>
-            </div>
+        	    <div id="pageContent">
+            		<div id="content">
+            			<tr:form usesUpload="#{usesUpload}" partialTriggers="#{partialTriggers}" default="true">
+                			<tr:panelHeader text="#{title}" partialTriggers="#{partialTriggers}">
+                				<ui:include src="messages.xhtml"/>
+	                	    	<ui:insert name="content"/>
+    	        	    	</tr:panelHeader>
+    	        	    </tr:form>
+        	        </div>
+            	</div>
         </tr:panelPage>
-        </tr:form>
     </trh:body>
 </html>

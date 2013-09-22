@@ -275,11 +275,26 @@
             <element name="IS_ACCORDION">
                 <documentation>
                     A flag indicating whether or not a parameter should be rendered as an accordion.  This must be
-                    set to true when you wish to display a list of simple types (such as strings) within a table.
+                    set to true when you wish to display a list of complex types (such an array of ValueObjects) within a table.
                 </documentation>
                 <value>andromda_presentation_view_accordion</value>
                 <appliedOnElement>
                     A collection type parameter going into an action state carrying the <![CDATA[<<FrontEndView>>]]> stereotype
+                </appliedOnElement>
+                <allowedValues>
+                    <value>true</value>
+                    <value default="true">false</value>
+                </allowedValues>
+            </element>
+            <element name="ACCORDION_HEADER_NAMES">
+                <documentation>
+                    A comma separated list of fields whose values should be displayed on the accordion header. 
+                    If the text between commas is not a field will be rendered as is. (ex: field1,-,field2)
+                </documentation>
+                <value>andromda_presentation_view_accordion_headers</value>
+                <appliedOnElement>
+                    A collection type parameter going into an action state carrying the <![CDATA[<<FrontEndView>>]]> stereotype, 
+                    having the @andromda.presentation.view.accordion annotation
                 </appliedOnElement>
                 <allowedValues>
                     <value>true</value>
