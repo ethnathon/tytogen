@@ -110,7 +110,7 @@
 <f:selectItem itemLabel="#{messages['${parameter.type.messageKey}.${literal.name}']}" itemValue="$literalValue" 
 #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
 />
-#end
+                    #end
     </tr:$selectBoxType>
 #else
     <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
@@ -123,8 +123,8 @@
     </tr:inputText>
 #end
 #end
-#end
-#end
+        #end
+    #end
 ##
 ##  This macro renders an submittable input table
 ##

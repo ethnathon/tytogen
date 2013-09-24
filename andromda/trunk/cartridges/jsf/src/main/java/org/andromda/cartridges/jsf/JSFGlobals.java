@@ -45,6 +45,7 @@ public class JSFGlobals {
 	 */
 	public static final String NORMALIZE_MESSAGES = "normalizeMessages";
 
+	
 	/**
 	 * The pattern for constructing the form name.
 	 */
@@ -110,6 +111,9 @@ public class JSFGlobals {
 	 * Represents a popup action type.
 	 */
 	public static final String VIEW_TYPE_POPUP = "popup";
+	
+	public static final String POPUP_GEOMETRY = "popupGeometry";
+
 
 	/**
 	 * Represents a form action type.

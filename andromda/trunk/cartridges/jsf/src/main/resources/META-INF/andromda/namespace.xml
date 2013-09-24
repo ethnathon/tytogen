@@ -678,6 +678,12 @@
                     Use autocomplete instead of select, to select related entities.
                 </documentation>
             </property>
+            <property name="popupGeometry">
+                <default>none</default>
+                <documentation>
+                    Default popup geometry: widthxheight es. 500x300
+                </documentation>
+            </property>
         </propertyGroup>
         <propertyGroup name="Manageable Entities">
             <documentation>

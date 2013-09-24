@@ -1,13 +1,129 @@
-#macro(viewTable $table $zone)
+###macro renderAccordionTableAttribute
+#macro(renderAccordionTableAttribute $attribute)
+                                      <tr:column sortable="true" sortProperty="$itemAttribute.name">
+                                        <f:facet name="header">
+                                          <tr:outputText value="#{messages['$itemAttribute.messageKey']}"/>
+                                        </f:facet>
+                                        <tr:outputText value="#{row1.${itemAttribute.name}}">
+#* *##if ($itemAttribute.type.dateType)
+                                          <f:convertDateTime pattern="$defaultDateFormat"/>
+#* *##end
+                                        </tr:outputText>                                        
+                                      </tr:column>
+#end
+###end macro renderAccordionTableAttribute
+
+
+###macro render Accordion
+#macro(renderAccordion $table)
+    <div class="accordion">
+    <tr:iterator id="$table.name" var="row" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end" #if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+		<h3>
+
+######### Accordion header
+#* *##foreach ($headerName in $table.accordionHeaderNames)
+#* 	*##set($nameFound = false)
+#* 	*##foreach ($attribute in $table.attributes)
+#* 		*##if($headerName.equalsIgnoreCase($attribute.name))
+#* 			*##set($nameFound = true)
+#* 		*##end
+#* 	*##end 
+#* 	*##if($nameFound)
+			<tr:outputText value="#{row.${headerName}}"/>
+#* 	*##else
+			<tr:outputText value="$headerName"/>
+#* 	*##end
+#* *##end
+		</h3>
+
+      	<div class="accordion-item">
+            <!-- tr:outputText value="#{row}"/ -->
+#* *##set($inPanelGrid = false)
+#* *##foreach ($column in $table.tableColumns) ## attribute class JSFAttributeLogicImpl
+#* 	*##if($column.associationEndFacadeMetaType) ##todo: handle array attributes here
+#* 		*##if($inPanelGrid)
+            </h:panelGrid>
+#* 			*##set($inPanelGrid = false)
+#* 		*##end
+			<!-- render table in accordion-->
+			<tr:table id="${table.name}_${column.name}" allDetailsEnabled="true" var="row1" rowBandingInterval="1" 
+								value="#{row.${column.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
+        						width="90%"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+#* 		*##if($table.tableColumnNames.contains($column.name))
+##		the full table has to be shown
+#* 			*##foreach ($itemAttribute in $column.type.getAttributes(true))
+#*				*##renderAccordionTableAttribute($itemAttribute)
+#* 			*##end   
+#* 		*##else
+##		single attributes of the table are selected. Need a way to reorder them
+#* 			*##foreach ($accordionColumnName in $table.tableColumnNames)
+#* 				*##foreach ($itemAttribute in $column.type.getAttributes(true))
+#* 					*##set($attributeFullName = "${column.name}.${itemAttribute.name}")
+#* 					*##if($attributeFullName.equalsIgnoreCase($accordionColumnName))
+				<!-- render single attribute $attributeFullName -->
+#*						*##renderAccordionTableAttribute($itemAttribute)
+#* 					*##end
+#* 				*##end                                                                              
+#* 			*##end
+#* 		*##end 							   
+			</tr:table>
+#* 	*##else ##attribute facade (todo: select only simple attributes (not arrays))
+			<!-- render simple field -->
+#* 		*##if(!$inPanelGrid)
+            <h:panelGrid columns="2" columnClasses="variableLabel,variableText">
+#* 			*##set($inPanelGrid = true)
+#* 		*##end
+#* 		*##if($column.name)
+#* 			*##set($columnName = $column.name)
+#* 		*##else
+#* 			*##set($columnName = $column)
+#* 		*##end
+			<tr:outputText value="#{messages['$table.getTableColumnMessageKey($columnName)']} :"/>
+            <tr:outputText id="${columnName}" value="#{row.${columnName}}"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end >
+            	#if ($column.type.dateType)<f:convertDateTime pattern="$defaultDateFormat"/>#end
+            </tr:outputText>
+#* 	*##end
+
+#* *##end ##foreach column
+#* *##if($inPanelGrid)
+            </h:panelGrid>
+#*	*##set($inPanelGrid = false)
+#* *##end
+             
+#if(!$table.tableFormActions.empty)
+			<tr:panelButtonBar>	             
+#foreach ($action in $table.tableFormActions)
+#if (!$action.tableLinkColumnName)
+			<tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" ## 
+                actionListener="#{${action.controller.beanName}.action}" 
+				#if($trinidad) partialSubmit="true" #if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
+#*         	  *##if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
+				#end#end >
+#renderTableCommandLinkParameters(true)
+        	</tr:commandButton>
+#end
+#end       
+			</tr:panelButtonBar>
+#end
+      </div>    
+    </tr:iterator>
+    </div>
+
+#end
+##########END macro render Accordion
+
+#macro(viewTable $view $table $zone)
 ##    <!-- generated from viewTable (BEGIN)-->
 #set ($targetColumns = $table.targettedTableColumnNames)
 #if($trinidad)
     #set($partialTriggers = "")
     #setTablePartialTriggers($table $partialTriggers)
 #end
-
+#if($table.accordion)
+#renderAccordion($table)  
+#else
     <tr:table id="$table.name" allDetailsEnabled="true" var="row" rowBandingInterval="1" value="#{${table.name}}" rows="#if($enablePreferences)#{${preferencesBeanName}.maxTableRows}#else${maxTableRows}#end"
-        width="90%"#if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
+        width="90%" rendered="#{${table.name}Rendered}" #if($trinidad && $partialTriggers.length() > 0) partialTriggers="$partialTriggers"#end>
             #if (!$table.tableColumns.empty)
                 #foreach ($column in $table.tableColumns)
                     #if($column.name)
@@ -24,7 +140,12 @@
                             #set ($action = $tableColumnActions.iterator().next())
                             <tr:commandLink id="${action.triggerName}Action" action="#{${action.controller.beanName}.${action.triggerName}}" 
                             actionListener="#{${action.controller.beanName}.action}" ##
-                            #if($trinidad) partialSubmit="true" #if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}"#end#end >
+#*                          *##if($trinidad) partialSubmit="true" ##
+#*                          	*##if(${action.popup}) useWindow="true" ##
+#*                          	*#returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}"
+#*               			    *##if($view.popupHeight) windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
+#*                          	*##end
+#*                          *##end >
                                     <tr:outputText value="#{row.${columnName}}">
                                         #if ($column.type.dateType)
                                             <f:convertDateTime pattern="$defaultDateFormat"/>
@@ -65,7 +186,10 @@
             <h:panelGroup styleClass="actionColumn">
                 <tr:commandLink id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" 
                     action="#{${action.controller.beanName}.${action.triggerName}}" 
-                    actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true"  #if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}"#end#end>
+                    actionListener="#{${action.controller.beanName}.action}"#if($trinidad) partialSubmit="true" ##
+#*                *##if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
+#*                *##if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
+#*                *##end#end>
 #renderTableCommandLinkParameters(false)
                 </tr:commandLink>
             </h:panelGroup>
@@ -84,7 +208,9 @@
             <h:panelGroup styleClass="actionColumn">
                 <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.trigger.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" ## 
                 actionListener="#{${action.controller.beanName}.action}"
-				#if($trinidad) partialSubmit="true" #if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}"#end#end >
+				#if($trinidad) partialSubmit="true" #if(${action.popup}) useWindow="true" returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
+#*  		  *##if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
+#*  		  *##end#end >
 #renderTableCommandLinkParameters(true)
                 </tr:commandButton>
             </h:panelGroup>
@@ -93,4 +219,5 @@
 #end
     </tr:table>
     <!-- generated from viewTable (END)-->
+#end
 #end

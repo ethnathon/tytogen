@@ -15,7 +15,8 @@
         </mapping>
         <property reference="viewPopulatorPattern"/>
         <property reference="actionFormKey"/>
-        <property reference="ajaxLibrary"/>     
+        <property reference="ajaxLibrary"/>   
+        <property reference="popupGeometry"/>
     </metafacade>
     <metafacade class="org.andromda.cartridges.jsf.metafacades.JSFSessionObjectLogicImpl">
         <mapping>

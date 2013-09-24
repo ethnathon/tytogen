@@ -8,13 +8,13 @@
 
 #foreach ($action in $view.actions)
 #if (!$action.tableLink && ${action.zone}==$actualZone)
-#viewAction($action $view.popup)
+#viewAction($view $action $view.popup)
 #end
 #end
 
 #foreach ($variable in $view.variables)
 #if ($variable.table && ${variable.zone}==$actualZone)
-#viewTable($variable $actualZone)
+#viewTable($view $variable $actualZone)
 #end
 #end
 #end
