@@ -85,7 +85,7 @@
 		<dependency>
 			<groupId>org.springframework.security.extensions</groupId>
 			<artifactId>spring-security-saml2-core</artifactId>
-			<version>1.0.0-RC2-SNAPSHOT</version>
+			<version>1.0.0.RC3-20130923.060019-217</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -111,12 +111,6 @@
 	</properties>
 	<repositories>
 		<repository>
-			<releases>
-				<enabled>false</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
 			<id>com.springsource.repository.maven.snapshot</id>
 			<name>SpringSource Enterprise Bundle Maven Repository - SpringSource Snapshot Releases</name>
 			<url>http://maven.springframework.org/snapshot</url>

@@ -1,5 +1,4 @@
 #macro(viewVariables $view $zone)
-    <!-- generated from viewVariables (BEIGN)-->
     <h:panelGrid columns="2" columnClasses="variableLabel,variableText">
         #set($partialTriggers = "")
         #setViewPartialTriggers($view $partialTriggers)
@@ -7,8 +6,8 @@
             #set($realZone=$variable.action.getZone())
             #if($variable.getZone()!="default")
                 #set($realZone=$variable.getZone())
-            #end
-            #if ($realZone==$zone)
+#*        *##end
+#*        *##if ($realZone==$zone && !$variable.inputHidden) ##hide variables in FEV -> FEV direct transitions 
                 #if (!$variable.table)
                     #if ($variable.attributes.empty)
                         <tr:outputText value="#{messages['$variable.messageKey']} :" />

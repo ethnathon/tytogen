@@ -151,6 +151,17 @@
                     <value>popup</value>
                 </allowedValues>
             </element>
+            <element name="VIEW_POPUP_GEOMETRY">
+                <documentation>
+                    Dimensions of popup ex. 500x300 (widthxheight)
+                </documentation>
+                <value>andromda_presentation_web_view_popup_geometry</value>
+                <appliedOnElement>A <![CDATA[<<FrontEndView>>]]></appliedOnElement>
+                <allowedValues>
+                    <value>widthxheight</value>
+                    <value>small</value>
+                </allowedValues>
+            </element>
             <element name="INPUT_TYPE">
                 <documentation>
                     Indicates the type of parameter, this information will be used when rendering the views,

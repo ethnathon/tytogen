@@ -304,7 +304,7 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 			final String normZoneName = zoneName.trim().toLowerCase();
 			if (normZoneName.startsWith("tab")) {
 				if (columnTabNamePattern.matcher(normZoneName).matches()) {
-					String tabName=normZoneName.split("-")[0];
+					String tabName = normZoneName.split("-")[0];
 					tabNames.add(tabName);
 				} else {
 					tabNames.add(normZoneName);
@@ -509,6 +509,49 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 	private boolean isNormalizeMessages() {
 		final String normalizeMessages = (String) getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
 		return Boolean.valueOf(normalizeMessages).booleanValue();
+	}
+
+	@Override
+	protected Integer handleGetPopupHeight() {
+		String popupDimStr = ObjectUtils
+				.toString(findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_POPUP_GEOMETRY));
+		Integer popupHeight = parsePopupDim(popupDimStr, true);
+		if (popupHeight == null) {
+			final String defaultPopupGeom = (String) getConfiguredProperty(JSFGlobals.POPUP_GEOMETRY);
+			popupHeight = parsePopupDim(defaultPopupGeom, true);
+		}
+		return popupHeight;
+	}
+
+	private Integer parsePopupDim(String popupDimStr, boolean height) {
+		Integer popupDimension = null;
+		if (StringUtils.isNotBlank(popupDimStr)) {
+			String trimmedString = popupDimStr.trim().toLowerCase();
+			if ("large".equals(trimmedString)) {
+				popupDimension = height ? 600 : 600;
+			} else if ("medium".equals(trimmedString)) {
+				popupDimension = height ? 300 : 300;
+			} else if ("small".equals(trimmedString)) {
+				popupDimension = height ? 150 : 200;
+			} else if (popupDimStr.toLowerCase().contains("x")) {
+				int widthOrHeightCompenent = (height ? 1 : 0);
+				String heightStr = popupDimStr.toLowerCase().split("x")[widthOrHeightCompenent];
+				popupDimension = Integer.parseInt(heightStr);
+			}
+		}
+		return popupDimension;
+	}
+
+	@Override
+	protected Integer handleGetPopupWidth() {
+		String popupDimStr = ObjectUtils
+				.toString(findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_POPUP_GEOMETRY));
+		Integer popupHeight = parsePopupDim(popupDimStr, false);
+		if (popupHeight == null) {
+			final String defaultPopupGeom = (String) getConfiguredProperty(JSFGlobals.POPUP_GEOMETRY);
+			popupHeight = parsePopupDim(defaultPopupGeom, false);
+		}
+		return popupHeight;
 	}
 
 }

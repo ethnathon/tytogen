@@ -1,4 +1,4 @@
-#macro(viewAction $action $currentViewPopup)
+#macro(viewAction $view $action $currentViewPopup)
 ##    <!-- generated from viewAction (BEGIN)-->
 #set($formName = $action.formBeanName)
 ##Disable partialSubmit if the current view is a popup to allow popup to close correctly
@@ -14,10 +14,11 @@
 #set($needPartialSubmit = $trinidad && !$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget)) 
 #if ($action.hyperlink)
             <tr:subform id="${formName}">
-                    <tr:commandLink id="${action.triggerName}Action" 
+                    <tr:commandLink id="${action.triggerName}Action" disabled="#{${formName}.${action.triggerName}Disabled}"
                         action="#{${action.controller.beanName}.${action.triggerName}}" ##
 #*                      *##if($needPartialSubmit) partialSubmit="true" ## 
-#*                      	*##if($action.popup) useWindow="true" windowWidth="550" ## 
+#*                      	*##if($action.popup) useWindow="true" ## 
+#*             				*##if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
 #*                      	*#returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
 #*                      	*##end ##
 #*                      *##end ##
@@ -25,10 +26,10 @@
 	                	<tr:outputText value="#{messages['$action.messageKey']}"/>
 #foreach ($parameter in $action.parameters)
 #if (!$parameter.complex || $parameter.type.enumeration)
-	#renderActionCommandLinkParameter($parameter "")
+#*	*##renderActionCommandLinkParameter($parameter "")
 #end
 #foreach ($attribute in $parameter.attributes)
-	#renderActionCommandLinkParameter($attribute $parameter)
+#*	*##renderActionCommandLinkParameter($attribute $parameter)
 #end
 #end ##end for
 					</tr:commandLink>
@@ -52,10 +53,11 @@
 #*                  *##end
 					<f:facet name="footer">
                             <tr:panelButtonBar>
-                                <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}" 
+                                <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}"
+                                disabled="#{${formName}.${action.triggerName}Disabled}"
                                 #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" ##
 #*              				*# returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
-#*              				*# windowHeight="600" windowWidth="600"
+#*              				*# #if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth"#end 
 #*              				*# #end#end/>
 #*              				*##if ($action.resettable)
                                 <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
