@@ -641,11 +641,14 @@ public class $className
 	public static Collection<Roles> getRoles(){
 		org.springframework.security.core.Authentication auth = org.springframework.security.core.context.SecurityContextHolder.getContext()
 				.getAuthentication();
-		Collection<? extends org.springframework.security.core.GrantedAuthority> authorities=auth.getAuthorities();
 		Collection<Roles> authoritiesMDA=new java.util.HashSet<Roles>();
-		for (org.springframework.security.core.GrantedAuthority grantedAuthority : authorities) {
-			String roleString = grantedAuthority.getAuthority();
-			authoritiesMDA.add(Roles.valueOf(roleString));
+
+		if (auth != null) {
+			Collection<? extends org.springframework.security.core.GrantedAuthority> authorities=auth.getAuthorities();
+			for (org.springframework.security.core.GrantedAuthority grantedAuthority : authorities) {
+				String roleString = grantedAuthority.getAuthority();
+				authoritiesMDA.add(Roles.valueOf(roleString));
+			}
 		}
 		return authoritiesMDA;
 	}

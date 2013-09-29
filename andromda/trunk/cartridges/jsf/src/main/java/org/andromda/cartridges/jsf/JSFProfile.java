@@ -86,8 +86,8 @@ public class JSFProfile {
 	/** VIEW_TYPE */
 	public static final String TAGGEDVALUE_VIEW_TYPE = PROFILE.get("VIEW_TYPE");
 
-	public static final String TAGGEDVALUE_VIEW_POPUP_GEOMETRY = PROFILE
-			.get("VIEW_POPUP_GEOMETRY");
+	public static final String TAGGEDVALUE_POPUP_GEOMETRY = PROFILE
+			.get("POPUP_GEOMETRY");
 
 	public static final String TAGGEDVALUE_TAB_NUMBER = PROFILE
 			.get("TAB_NUMBER");

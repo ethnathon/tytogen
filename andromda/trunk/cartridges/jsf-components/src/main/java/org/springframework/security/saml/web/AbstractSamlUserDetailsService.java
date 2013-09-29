@@ -28,7 +28,7 @@ import org.springframework.security.saml.userdetails.SAMLUserDetailsService;
 public abstract class AbstractSamlUserDetailsService implements
 		SAMLUserDetailsService {
 
-	private static final Log LOGGER = LogFactory
+	protected static final Log LOGGER = LogFactory
 			.getLog(AbstractSamlUserDetailsService.class);
 
 	protected abstract Object getCustomAttributes(SAMLCredential credential);
@@ -74,6 +74,7 @@ public abstract class AbstractSamlUserDetailsService implements
 			user = new SamlUser(getUserName(credential), getRoles(credential),
 					getCustomAttributes(credential),
 					getSamlAttributes(credential));
+			validateUser(user);
 			LOGGER.info("SAML User log in: " + user);
 		} catch (UsernameNotFoundException e) {
 			LOGGER.info("SAML User login refused: " + e.getMessage()
@@ -82,6 +83,15 @@ public abstract class AbstractSamlUserDetailsService implements
 		}
 		return user;
 	}
+
+	/**
+	 * Called after the SamlUser has been created validate to give the application 
+	 * the chance to validate the newly created user.
+	 *  
+	 * @param user
+	 * @throws UsernameNotFoundException if the user can't be validated
+	 */
+	protected abstract void validateUser(SamlUser user) throws UsernameNotFoundException;
 
 	protected Collection<GrantedAuthority> rolesSetToSpringRoles(
 			final Set<String> rolesSet) {

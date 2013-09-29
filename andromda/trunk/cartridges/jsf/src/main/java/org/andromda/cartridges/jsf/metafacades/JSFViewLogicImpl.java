@@ -19,6 +19,7 @@ import org.andromda.metafacades.uml.FrontEndAction;
 import org.andromda.metafacades.uml.FrontEndForward;
 import org.andromda.metafacades.uml.FrontEndParameter;
 import org.andromda.metafacades.uml.ModelElementFacade;
+import org.andromda.metafacades.uml.TaggedValueFacade;
 import org.andromda.metafacades.uml.UseCaseFacade;
 import org.andromda.utils.StringUtilsHelper;
 import org.apache.commons.lang.ObjectUtils;
@@ -513,8 +514,11 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 
 	@Override
 	protected Integer handleGetPopupHeight() {
-		String popupDimStr = ObjectUtils
-				.toString(findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_POPUP_GEOMETRY));
+		Object popupDimObj = findTaggedValue(JSFProfile.TAGGEDVALUE_POPUP_GEOMETRY);
+		String popupDimStr = null;
+		if (popupDimObj != null) {
+			popupDimStr = StringUtils.trimToNull(popupDimObj.toString());
+		}
 		Integer popupHeight = parsePopupDim(popupDimStr, true);
 		if (popupHeight == null) {
 			final String defaultPopupGeom = (String) getConfiguredProperty(JSFGlobals.POPUP_GEOMETRY);
@@ -528,11 +532,14 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 		if (StringUtils.isNotBlank(popupDimStr)) {
 			String trimmedString = popupDimStr.trim().toLowerCase();
 			if ("large".equals(trimmedString)) {
-				popupDimension = height ? 600 : 600;
+				// 450x600
+				popupDimension = height ? 600 : 450;
 			} else if ("medium".equals(trimmedString)) {
-				popupDimension = height ? 300 : 300;
+				// 450x400
+				popupDimension = height ? 400 : 450;
 			} else if ("small".equals(trimmedString)) {
-				popupDimension = height ? 150 : 200;
+				// 350x240
+				popupDimension = height ? 240 : 350;
 			} else if (popupDimStr.toLowerCase().contains("x")) {
 				int widthOrHeightCompenent = (height ? 1 : 0);
 				String heightStr = popupDimStr.toLowerCase().split("x")[widthOrHeightCompenent];
@@ -545,7 +552,7 @@ public class JSFViewLogicImpl extends JSFViewLogic {
 	@Override
 	protected Integer handleGetPopupWidth() {
 		String popupDimStr = ObjectUtils
-				.toString(findTaggedValue(JSFProfile.TAGGEDVALUE_VIEW_POPUP_GEOMETRY));
+				.toString(findTaggedValue(JSFProfile.TAGGEDVALUE_POPUP_GEOMETRY));
 		Integer popupHeight = parsePopupDim(popupDimStr, false);
 		if (popupHeight == null) {
 			final String defaultPopupGeom = (String) getConfiguredProperty(JSFGlobals.POPUP_GEOMETRY);

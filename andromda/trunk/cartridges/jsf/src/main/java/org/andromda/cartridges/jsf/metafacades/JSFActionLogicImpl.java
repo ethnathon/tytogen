@@ -189,13 +189,13 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 					.next();
 			if (operation != null) {
 				final String formName = operation.getFormName();
-				if(StringUtils.isNotBlank(formName)){
-					if(list.length()>0){
-						list.append(", ");					
+				if (StringUtils.isNotBlank(formName)) {
+					if (list.length() > 0) {
+						list.append(", ");
 					}
-					list.append(formName);					
+					list.append(formName);
 				}
-				
+
 			}
 		}
 		return list.toString();
@@ -780,6 +780,36 @@ public class JSFActionLogicImpl extends JSFActionLogic {
 			return zone.trim();
 		}
 		return "default";
+	}
+
+	@Override
+	protected Integer handleGetPopupHeight() {
+		Integer height = null;
+		if (isPopup()) {
+			for (final FrontEndView feView : this.getTargetViews()) {
+				final JSFView view = (JSFView) feView;
+				Integer curHeight = view.getPopupHeight();
+				if (curHeight != null) {
+					height = (height==null ? curHeight:Math.max(curHeight,height));
+				}
+			}
+		}
+		return height;
+	}
+
+	@Override
+	protected Integer handleGetPopupWidth() {
+		Integer width = null;
+		if (isPopup()) {
+			for (final FrontEndView feView : this.getTargetViews()) {
+				final JSFView view = (JSFView) feView;
+				Integer curWidth = view.getPopupWidth();
+				if (curWidth != null) {
+					width = (width==null ? curWidth:Math.max(curWidth,width));
+				}
+			}
+		}
+		return width;
 	}
 
 }

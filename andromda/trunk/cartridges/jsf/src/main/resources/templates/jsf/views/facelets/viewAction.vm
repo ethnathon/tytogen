@@ -18,7 +18,7 @@
                         action="#{${action.controller.beanName}.${action.triggerName}}" ##
 #*                      *##if($needPartialSubmit) partialSubmit="true" ## 
 #*                      	*##if($action.popup) useWindow="true" ## 
-#*             				*##if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth" #end##
+#*             				*##if($action.popupHeight)windowHeight="$action.popupHeight"#end #if($action.popupWidth)windowWidth="$action.popupWidth" #end##
 #*                      	*#returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
 #*                      	*##end ##
 #*                      *##end ##
@@ -57,7 +57,7 @@
                                 disabled="#{${formName}.${action.triggerName}Disabled}"
                                 #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" ##
 #*              				*# returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
-#*              				*# #if($view.popupHeight)windowHeight="$view.popupHeight"#end #if($view.popupWidth)windowWidth="$view.popupWidth"#end 
+#*              				*# #if($action.popupHeight)windowHeight="$action.popupHeight"#end #if($action.popupWidth)windowWidth="$action.popupWidth"#end 
 #*              				*# #end#end/>
 #*              				*##if ($action.resettable)
                                 <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
