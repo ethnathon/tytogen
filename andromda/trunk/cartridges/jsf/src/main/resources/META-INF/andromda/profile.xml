@@ -151,15 +151,17 @@
                     <value>popup</value>
                 </allowedValues>
             </element>
-            <element name="VIEW_POPUP_GEOMETRY">
+            <element name="POPUP_GEOMETRY">
                 <documentation>
-                    Dimensions of popup ex. 500x300 (widthxheight)
+                    Dimensions of popup ex. 500x300 widthxheight
                 </documentation>
                 <value>andromda_presentation_web_view_popup_geometry</value>
-                <appliedOnElement>A <![CDATA[<<FrontEndView>>]]></appliedOnElement>
+                <appliedOnElement>A class with the <![CDATA[<<FrontEndView>>]]> stereotype, tagged as popup.</appliedOnElement>
                 <allowedValues>
                     <value>widthxheight</value>
-                    <value>small</value>
+                    <value>large</value>
+                    <value>medium</value>
+                    <value default="true">small</value>
                 </allowedValues>
             </element>
             <element name="INPUT_TYPE">

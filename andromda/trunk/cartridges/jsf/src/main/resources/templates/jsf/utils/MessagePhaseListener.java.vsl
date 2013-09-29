@@ -164,9 +164,11 @@ public class $className
 									new Class[] { String.class })
 							.invoke(form2, new Object[] { null });
 				}
+				((org.andromda.cartridges.jsf.forms.Resettable)form).setPreserveErrors(false);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+			//in case of a dialog messages messages are preserved for the dialog
 		}
 #end
     }

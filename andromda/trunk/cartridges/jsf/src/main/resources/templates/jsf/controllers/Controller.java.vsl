@@ -269,6 +269,9 @@ $action.trigger.getDocumentation("     * ")
             ${indent}org.apache.myfaces.trinidad.context.RequestContext.getCurrentInstance().returnFromDialog(forward, null); //close the dialog
             ${indent}forward = null;
 #end
+#if($action.popup)
+            ((org.andromda.cartridges.jsf.forms.Resettable)form).setPreserveErrors(true);
+#end
 #end
             ${indent}final FacesMessage.Severity messageSeverity = this.getMaximumMessageSeverity();
             ${indent}if (messageSeverity != null && FacesMessage.SEVERITY_ERROR.getOrdinal() <= messageSeverity.getOrdinal())

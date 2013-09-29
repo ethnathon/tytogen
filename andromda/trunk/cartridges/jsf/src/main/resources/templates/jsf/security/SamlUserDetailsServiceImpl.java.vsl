@@ -19,6 +19,17 @@ public final class $className extends AbstractSamlUserDetailsService{
 	protected Object getCustomAttributes(SAMLCredential arg0) {
 		return null;
 	}
-
+	
+	/**
+	 * Called after the SamlUser has been created validate to give the application 
+	 * the chance to validate the newly created user.
+	 *  
+	 * @param user
+	 * @throws UsernameNotFoundException if the user can't be validated
+	 */
+	@Override
+	protected abstract void validateUser(SamlUser user) throws {
+	
+	}
 }
 

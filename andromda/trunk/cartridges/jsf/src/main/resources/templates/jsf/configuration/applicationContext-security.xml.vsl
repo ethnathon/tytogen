@@ -261,7 +261,7 @@
 	<!-- Logout handler terminating local session -->
 	<bean id="logoutHandler"
 		class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
-		<property name="invalidateHttpSession" value="false" />
+		<property name="invalidateHttpSession" value="true" />
 	</bean>
 
 	<!-- Override default logout processing filter with the one processing SAML 
