@@ -11,7 +11,7 @@
 #end
 #end
 
-#set($needPartialSubmit = $trinidad && !$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget)) 
+#set($needPartialSubmit = $trinidad && ((!$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget))) || $action.popup)  
 #if ($action.hyperlink)
             <tr:subform id="${formName}">
                     <tr:commandLink id="${action.triggerName}Action" disabled="#{${formName}.${action.triggerName}Disabled}"

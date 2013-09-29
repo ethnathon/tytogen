@@ -89,6 +89,10 @@ $field.getDocumentation("     * ")
     
     public void set${otheraction.formBeanName}Rendered(boolean rendered);
     
+    public boolean is${stringUtils.upperCamelCaseName($otheraction.triggerName)}Disabled();
+    
+    public void set${stringUtils.upperCamelCaseName($otheraction.triggerName)}Disabled(boolean disabled);
+    
 #end
 #end
 }
