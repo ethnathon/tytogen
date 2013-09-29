@@ -11,6 +11,8 @@ implements java.io.Serializable, org.andromda.cartridges.jsf.forms.Resettable#if
     {
     
     private final java.util.Set<String> fieldToPreserve=new java.util.HashSet<String>();
+    
+    private boolean preserveErrors = false;
     /**
     * Default constructor
     */
@@ -38,6 +40,16 @@ implements java.io.Serializable, org.andromda.cartridges.jsf.forms.Resettable#if
     
     public void set${otheraction.formBeanName}Rendered(boolean rendered) {
         ${otheraction.formBeanName}Rendered = rendered;
+    }
+    
+    private boolean ${otheraction.triggerName}Disabled = false;
+    
+    public boolean is${stringUtils.upperCamelCaseName($otheraction.triggerName)}Disabled() {
+        return ${otheraction.triggerName}Disabled;
+    }
+    
+    public void set${stringUtils.upperCamelCaseName($otheraction.triggerName)}Disabled(boolean disabled) {
+        ${otheraction.triggerName}Disabled = disabled;
     }
     #end
     private transient javax.faces.event.FacesEvent event;
@@ -100,17 +112,15 @@ implements java.io.Serializable, org.andromda.cartridges.jsf.forms.Resettable#if
 ##if ($implList)
 ##    @Override
 ##end
-public $fieldTypeName ${field.getterName}()
-{
+	public $fieldTypeName ${field.getterName}(){
 #if ($field.complex && !$field.many && !$field.type.enumeration)
-    if (this.$field.name == null)
-    {
-    this.$field.name = new ${field.type.fullyQualifiedName}();
-    this.${field.setterName}(this.$field.name);
-    }
+    	if (this.$field.name == null){
+    		this.$field.name = new ${field.type.fullyQualifiedName}();
+    		this.${field.setterName}(this.$field.name);
+    	}
 #end
-return this.${field.name};
-}
+	return this.${field.name};
+	}
 
 	/*methods to render or enable the component*/
     protected boolean ${field.name}Rendered = true;
@@ -214,12 +224,18 @@ public void resetIsSetFlags()
     /**
     * Resets any fields of the form that need to be reset.
     */
-    public void interUseCaseReset() {
+    public void interUseCaseReset(String useCaseName) {
+    	//do nothing if we're in the same usecase
+    	if("$action.useCase.name".equals(useCaseName)){
+    		return;
+    	}
 #foreach($field in $action.formFields)
 #if (!$field.complex || $field.type.enumeration)
 		if(!fieldToPreserve.contains("$field.name")) {
         	this.$field.name = $field.type.javaNullString;
         }
+        ${field.name}Rendered = true;
+    	${field.name}Disabled = false;
 #else
 #foreach ($attribute in $field.type.getAttributes(true))
 		if(!fieldToPreserve.contains("${field.name}.${attribute.name}")) {
@@ -234,39 +250,38 @@ public void resetIsSetFlags()
     public void preserveField(String fieldName){
 		this.fieldToPreserve.add(fieldName);
 	}
-/**
-* Stores any date or time formatters for this form.
-*/
-private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
-    new java.util.HashMap<String, java.text.DateFormat>();
-        /**
-        * Gets any date and time formatters (keyed by property name)
-        * for this form.
-        *
-        * @return the Map containing any date and time formatters.
-        */
-        public java.util.Map<String, java.text.DateFormat> getDateTimeFormatters()
-            {
-            return this.dateTimeFormatters;
-            }
-            /**
-            * The current collection of messages stored within this form.
-            */
-            private transient java.util.Map<String, javax.faces.application.FacesMessage> $formMessagesProperty =
-                new java.util.LinkedHashMap<String, javax.faces.application.FacesMessage>();
-                    /**
-                    * Adds a {@link javax.faces.application.FacesMessage} message to the current messages
-                    * stored within this form.
-                    *
-                    * @param jsfMessage the faces message to add.
-                    */
-                    public void add${stringUtils.capitalize($formMessagesProperty)}(javax.faces.application.FacesMessage jsfMessage)
-                    {
-                    if (this.${formMessagesProperty} != null)
-                    {
-                    this.${formMessagesProperty}.put(jsfMessage.getDetail(), jsfMessage);
-                    }
-                    }
+	/**
+	* Stores any date or time formatters for this form.
+	*/
+	private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
+    	new java.util.HashMap<String, java.text.DateFormat>();
+    
+    /**
+     * Gets any date and time formatters (keyed by property name)
+     * for this form.
+     *
+     * @return the Map containing any date and time formatters.
+     */
+    public java.util.Map<String, java.text.DateFormat> getDateTimeFormatters() {
+    	return this.dateTimeFormatters;
+    }
+
+    /**
+    * The current collection of messages stored within this form.
+    */
+    private transient java.util.Map<String, javax.faces.application.FacesMessage> $formMessagesProperty =
+        new java.util.LinkedHashMap<String, javax.faces.application.FacesMessage>();
+    /**
+    * Adds a {@link javax.faces.application.FacesMessage} message to the current messages
+    * stored within this form.
+    *
+    * @param jsfMessage the faces message to add.
+    */
+    public void add${stringUtils.capitalize($formMessagesProperty)}(javax.faces.application.FacesMessage jsfMessage) {
+    	if (this.${formMessagesProperty} != null) {
+    		this.${formMessagesProperty}.put(jsfMessage.getDetail(), jsfMessage);
+    	}
+    }
                     /**
                     * Gets the current {@link javax.faces.application.FacesMessage} message
                     * instances stored within this form.
@@ -297,57 +312,67 @@ private final java.util.Map<String, java.text.DateFormat> dateTimeFormatters =
                                 }
                                 }
                                 }
-                                /**
-                                * Clear the current {@link javax.faces.application.FacesMessage} message
-                                * instances stored within this form.
-                                */
-                                public void clear${stringUtils.capitalize($formMessagesProperty)}()
-                                {
-                                this.${formMessagesProperty}.clear();
-                                }
-                                /**
-                                * The faces message title (used on a view).
-                                */
-                                private String ${formMessagesProperty}Title;
-                                /**
-                                * The optional faces message title to set (used on a view).  If not set, the default title
-                                * will be used.
-                                *
-                                * @param ${formMessagesProperty}TitleIn the title to use for the messages on the view.
-                                */
-                                public void set${stringUtils.capitalize($formMessagesProperty)}Title(final String ${formMessagesProperty}TitleIn)
-                                {
-                                this.${formMessagesProperty}Title = ${formMessagesProperty}TitleIn;
-                                }
-                                /**
-                                * Gets the faces messages title to use.
-                                *
-                                * @return the faces messages title.
-                                */
-                                public String get${stringUtils.capitalize($formMessagesProperty)}Title()
-                                {
-                                return this.${formMessagesProperty}Title;
-                                }
-                                /**
-                                * Gets the maximum severity of the messages stored in this form.
-                                *
-                                * @return the maximum severity or null if no messages are present and/or severity isn't set.
-                                */
-                                public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity()
-                                {
-                                javax.faces.application.FacesMessage.Severity maxSeverity = null;
-                                for (final javax.faces.application.FacesMessage message : this.get${stringUtils.capitalize($formMessagesProperty)}())
-                                {
-                                final javax.faces.application.FacesMessage.Severity severity = message.getSeverity();
-                                if (maxSeverity == null || (severity != null && severity.getOrdinal() > maxSeverity.getOrdinal()))
-                                {
-                                maxSeverity = severity;
-                                }
-                                }
-                                return maxSeverity;
-                                }
-                                /**
-                                * The serial version UID of this class. Needed for serialization.
-                                */
-                                private static final long serialVersionUID = ${action.formSerialVersionUID}L;
+                                
+        /**
+        * Clear the current {@link javax.faces.application.FacesMessage} message
+        * instances stored within this form.
+        */
+        public void clear${stringUtils.capitalize($formMessagesProperty)}() {
+        	if(!this.preserveErrors) {
+        		this.${formMessagesProperty}.clear();
+        	}
+        }
+        /**
+        * The faces message title (used on a view).
+        */
+        private String ${formMessagesProperty}Title;
+        
+        /**
+        * The optional faces message title to set (used on a view).  If not set, the default title
+        * will be used.
+        *
+        * @param ${formMessagesProperty}TitleIn the title to use for the messages on the view.
+        */
+        public void set${stringUtils.capitalize($formMessagesProperty)}Title(final String ${formMessagesProperty}TitleIn) {
+        	if(!this.preserveErrors || org.apache.commons.lang.StringUtils.isNotBlank(${formMessagesProperty}TitleIn)) {
+        		this.${formMessagesProperty}Title = ${formMessagesProperty}TitleIn;
+        	}
+        }
+        /**
+        * Gets the faces messages title to use.
+        *
+        * @return the faces messages title.
+        */
+        public String get${stringUtils.capitalize($formMessagesProperty)}Title() {
+        	return this.${formMessagesProperty}Title;
+        }
+        /**
+        * Gets the maximum severity of the messages stored in this form.
+        *
+        * @return the maximum severity or null if no messages are present and/or severity isn't set.
+        */
+        public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity() {
+	        javax.faces.application.FacesMessage.Severity maxSeverity = null;
+	        for (final javax.faces.application.FacesMessage message : this.get${stringUtils.capitalize($formMessagesProperty)}())
+	        {
+	        final javax.faces.application.FacesMessage.Severity severity = message.getSeverity();
+	        if (maxSeverity == null || (severity != null && severity.getOrdinal() > maxSeverity.getOrdinal()))
+	        {
+	        maxSeverity = severity;
+	        }
+	        }
+	        return maxSeverity;
+        }
+        /**
+        * The serial version UID of this class. Needed for serialization.
+        */
+        private static final long serialVersionUID = ${action.formSerialVersionUID}L;
+        
+	/**
+	* If preserveErrors is true clearErrors don't work. This is useful for dialogs
+	* Where you need to preserve errors for the second time the dialog is displayed.
+	*/
+	public void setPreserveErrors(boolean preserveErrors) {
+		this.preserveErrors = preserveErrors;
+	}
 }
