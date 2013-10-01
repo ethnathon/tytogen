@@ -2,6 +2,7 @@ package org.springframework.security.saml.web;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Properties;
@@ -19,9 +20,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public abstract class AbstractTestAuthenticationProvider implements
-		AuthenticationProvider, InitializingBean {
+		AuthenticationProvider, InitializingBean, Serializable {
 
-	protected class TestUserDetails implements UserDetails {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6667064404812865791L;
+
+	protected class TestUserDetails implements UserDetails, Serializable {
 		/**
 		 * 
 		 */
