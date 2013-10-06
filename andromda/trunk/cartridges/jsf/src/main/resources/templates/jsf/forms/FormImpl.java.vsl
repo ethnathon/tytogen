@@ -166,18 +166,17 @@ public boolean is${stringUtils.capitalize($field.formAttributeSetProperty)}()
 {
 return this.$field.formAttributeSetProperty;
 }
-/**
-$field.getDocumentation("     * ")
-* @param ${field.name}In $field.getDocumentation("")
-*/
-##if ($implList)
-##    @Override
-##end
-public void ${field.setterName}($fieldTypeName ${field.name}In)
-{
-this.$field.name = ${field.name}In;
-this.$field.formAttributeSetProperty = true;
-}
+	/**
+	$field.getDocumentation("     * ")
+	* @param ${field.name}In $field.getDocumentation("")
+	*/
+	##if ($implList)
+	##    @Override
+	##end
+	public void ${field.setterName}($fieldTypeName ${field.name}In) {
+		this.$field.name = ${field.name}In;
+		this.$field.formAttributeSetProperty = true;
+	}
 #renderBackingListImplSupport($field "")
 #if (!$field.type.enumeration)
     #if (!$field.attributes.empty)
@@ -193,32 +192,31 @@ this.$field.formAttributeSetProperty = true;
 #end
 #end
 #end
-/**
-* Resets all the "isSet" flags.
-*/
-public void resetIsSetFlags()
-{
+
+	/**
+	* Resets all the "isSet" flags.
+	*/
+	public void resetIsSetFlags() {
 #foreach ($field in $action.formFields)
     this.reset${stringUtils.capitalize($field.formAttributeSetProperty)}();
 #end
-}
+	}
 
     /**
     * Resets any fields of the form that need to be reset.
     */
-    public void reset()
-    {
-    #foreach($field in $action.parameters)
-        #if ($field.reset)
+    public void reset() {
+#* *##foreach($field in $action.parameters)
+#* 		*##if ($field.reset)
             this.$field.name = $field.type.javaNullString;
-        #elseif ($field.complex && !$field.type.enumeration)
-            #foreach ($attribute in $field.type.getAttributes(true))
-                #if ($attribute.reset)
-                    this.${field.name}.${attribute.setterName}($attribute.type.javaNullString);
-                #end
-            #end
-        #end
-    #end
+#* 		*##elseif ($field.complex && !$field.type.enumeration)
+#* 			*##foreach ($attribute in $field.type.getAttributes(true))
+#* 				*##if ($attribute.reset)
+            this.${field.name}.${attribute.setterName}($attribute.type.javaNullString);
+#* 				*##end
+#* 			*##end
+#* 		*##end
+#* *##end
     }
 
     /**
@@ -313,60 +311,64 @@ public void resetIsSetFlags()
                                 }
                                 }
                                 
-        /**
-        * Clear the current {@link javax.faces.application.FacesMessage} message
-        * instances stored within this form.
-        */
-        public void clear${stringUtils.capitalize($formMessagesProperty)}() {
-        	if(!this.preserveErrors) {
-        		this.${formMessagesProperty}.clear();
-        	}
-        }
-        /**
-        * The faces message title (used on a view).
-        */
-        private String ${formMessagesProperty}Title;
-        
-        /**
-        * The optional faces message title to set (used on a view).  If not set, the default title
-        * will be used.
-        *
-        * @param ${formMessagesProperty}TitleIn the title to use for the messages on the view.
-        */
-        public void set${stringUtils.capitalize($formMessagesProperty)}Title(final String ${formMessagesProperty}TitleIn) {
-        	if(!this.preserveErrors || org.apache.commons.lang.StringUtils.isNotBlank(${formMessagesProperty}TitleIn)) {
-        		this.${formMessagesProperty}Title = ${formMessagesProperty}TitleIn;
-        	}
-        }
-        /**
-        * Gets the faces messages title to use.
-        *
-        * @return the faces messages title.
-        */
-        public String get${stringUtils.capitalize($formMessagesProperty)}Title() {
-        	return this.${formMessagesProperty}Title;
-        }
-        /**
-        * Gets the maximum severity of the messages stored in this form.
-        *
-        * @return the maximum severity or null if no messages are present and/or severity isn't set.
-        */
-        public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity() {
+    /**
+    * Clear the current {@link javax.faces.application.FacesMessage} message
+    * instances stored within this form.
+    */
+    public void clear${stringUtils.capitalize($formMessagesProperty)}() {
+    	if (this.${formMessagesProperty} == null) {
+    		this.${formMessagesProperty} = new java.util.LinkedHashMap<String, javax.faces.application.FacesMessage>();
+    	}
+    	if(!this.preserveErrors) {
+    		this.${formMessagesProperty}.clear();
+    	}
+    }
+    /**
+    * The faces message title (used on a view).
+    */
+    private String ${formMessagesProperty}Title;
+    
+    /**
+    * The optional faces message title to set (used on a view).  If not set, the default title
+    * will be used.
+    *
+    * @param ${formMessagesProperty}TitleIn the title to use for the messages on the view.
+    */
+    public void set${stringUtils.capitalize($formMessagesProperty)}Title(final String ${formMessagesProperty}TitleIn) {
+    	if(!this.preserveErrors || org.apache.commons.lang.StringUtils.isNotBlank(${formMessagesProperty}TitleIn)) {
+    		this.${formMessagesProperty}Title = ${formMessagesProperty}TitleIn;
+    	}
+    }
+    /**
+    * Gets the faces messages title to use.
+    *
+    * @return the faces messages title.
+    */
+    public String get${stringUtils.capitalize($formMessagesProperty)}Title() {
+    	return this.${formMessagesProperty}Title;
+    }
+    
+    /**
+    * Gets the maximum severity of the messages stored in this form.
+    *
+    * @return the maximum severity or null if no messages are present and/or severity isn't set.
+    */
+    public javax.faces.application.FacesMessage.Severity getMaximumMessageSeverity() {
 	        javax.faces.application.FacesMessage.Severity maxSeverity = null;
 	        for (final javax.faces.application.FacesMessage message : this.get${stringUtils.capitalize($formMessagesProperty)}())
 	        {
 	        final javax.faces.application.FacesMessage.Severity severity = message.getSeverity();
-	        if (maxSeverity == null || (severity != null && severity.getOrdinal() > maxSeverity.getOrdinal()))
-	        {
-	        maxSeverity = severity;
+	        if (maxSeverity == null || (severity != null && severity.getOrdinal() > maxSeverity.getOrdinal())) {
+	        	maxSeverity = severity;
 	        }
 	        }
 	        return maxSeverity;
-        }
-        /**
-        * The serial version UID of this class. Needed for serialization.
-        */
-        private static final long serialVersionUID = ${action.formSerialVersionUID}L;
+    }
+    
+    /**
+    * The serial version UID of this class. Needed for serialization.
+    */
+    private static final long serialVersionUID = ${action.formSerialVersionUID}L;
         
 	/**
 	* If preserveErrors is true clearErrors don't work. This is useful for dialogs

@@ -21,6 +21,7 @@
 #else
         <default-render-kit-id>org.apache.myfaces.trinidad.core</default-render-kit-id>
 #end
+		<!-- faces-config.xml application merge-location -->
     </application>
     
 #if ($liferayPortlet)

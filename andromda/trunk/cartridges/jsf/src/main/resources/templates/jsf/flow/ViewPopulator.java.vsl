@@ -205,14 +205,15 @@ public class $view.populator
                     // reset $variable.name (since the model indicates that it should be reset)
                     org.apache.commons.beanutils.PropertyUtils.setProperty(form, "$variable.name", $variable.type.javaNullString);
 #end
-#if($variable.table)
+
+                }
+                
                 final boolean ${readableVariable}Rendered = org.apache.commons.beanutils.PropertyUtils.isReadable(form, "${variable.name}Rendered");
                 if (${readableVariable}Rendered) {
                     Object backingList = org.apache.commons.beanutils.PropertyUtils.getProperty(form, "${variable.name}Rendered");
                     request.setAttribute("${variable.name}Rendered", backingList);
-                }
-#end
-
+                } else {
+                    request.setAttribute("${variable.name}Rendered", true);               
                 }
 #end
 #foreach ($variable in $view.backingValueVariables)

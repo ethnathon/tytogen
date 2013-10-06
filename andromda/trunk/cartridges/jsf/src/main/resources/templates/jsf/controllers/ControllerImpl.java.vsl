@@ -186,4 +186,14 @@ ${comma}${dummyValue}#set ($comma = ", ")
 #end
 #end
 #end
+
+#foreach ($parameter in $action.parameters)
+#*	*##if($parameter.inputAutocomplete)
+	@Override
+	protected java.util.List<org.andromda.cartridges.jsf.taglib.IdAndLabel> fillAutocomplete${stringUtils.capitalize($parameter.name)}(String value){
+		//TODO: implement autocomplete
+		return new java.util.ArrayList();
+	}
+#*	*##end
+#end
 }

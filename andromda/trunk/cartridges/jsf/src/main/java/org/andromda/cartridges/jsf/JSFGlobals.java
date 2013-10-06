@@ -238,7 +238,12 @@ public class JSFGlobals {
 	 * The "plain text" type.
 	 */
 	public static final String PLAIN_TEXT = "plaintext";
-
+	
+	/**
+	 * The "autocomplete" type.
+	 */
+	public static final String INPUT_AUTOCOMPLETE = "autocomplete";
+	
 	/**
 	 * The suffix to append to the forward name.
 	 */

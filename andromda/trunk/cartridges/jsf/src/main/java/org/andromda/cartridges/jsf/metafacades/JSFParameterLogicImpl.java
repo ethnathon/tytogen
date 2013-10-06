@@ -1446,4 +1446,9 @@ public class JSFParameterLogicImpl extends JSFParameterLogic {
 		return builder.toString();
 	}
 
+	@Override
+	protected boolean handleIsInputAutocomplete() {
+		return isInputType(JSFGlobals.INPUT_AUTOCOMPLETE);
+	}
+
 }

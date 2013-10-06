@@ -154,7 +154,6 @@ public class $className
 							.getMethod("setJsfMessagesTitle",
 									new Class[] { String.class })
 							.invoke(form, new Object[] { null });
-					((org.andromda.cartridges.jsf.forms.Resettable)form).setPreserveErrors(false);
 				}
 				if (form2 != null) {
 					form2.getClass()
@@ -165,6 +164,10 @@ public class $className
 									new Class[] { String.class })
 							.invoke(form2, new Object[] { null });
 					((org.andromda.cartridges.jsf.forms.Resettable)form2).setPreserveErrors(false);
+				}
+				//to avoid a reset when form == form2
+				if(form != null){
+					((org.andromda.cartridges.jsf.forms.Resettable)form).setPreserveErrors(false);
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
