@@ -336,6 +336,32 @@ $action.trigger.getDocumentation("     * ")
 #end
     }
 
+#foreach ($parameter in $action.parameters)
+#if($parameter.inputAutocomplete)
+
+	public void abstractFillAutocomplete${stringUtils.capitalize($parameter.name)}(javax.faces.event.ActionEvent event) {
+		final javax.faces.context.FacesContext facesContext = this.getContext();
+		final java.util.Map<String, String> parameters = facesContext
+				.getExternalContext().getRequestParameterMap();
+		final String fieldValue = (String) parameters.get(this.getParameterValue(
+				"searchFieldRequestParamName", event));
+		try {
+			java.util.List<org.andromda.cartridges.jsf.taglib.IdAndLabel> list = fillAutocomplete${stringUtils.capitalize($parameter.name)}(fieldValue);
+
+			final javax.faces.el.ValueBinding vb = facesContext
+					.getApplication().createValueBinding(
+							"#{autocompleteResult}");
+			vb.setValue(facesContext, list);
+		} catch (final Throwable throwable) {
+			throwable.printStackTrace();
+			this.addExceptionMessage(throwable);
+		}
+	}
+	
+	protected abstract java.util.List<org.andromda.cartridges.jsf.taglib.IdAndLabel> fillAutocomplete${stringUtils.capitalize($parameter.name)}(String value);
+#end
+#end
+
 #foreach ($actionState in $action.actionStates)
     /**
 $actionState.getDocumentation("     * ")
@@ -425,6 +451,7 @@ ${ident}        forward = #processTransition($actionState.forward)
 #else
 #if($variable.attributes.empty)
         updateComponentValue(requestContext, viewRoot, "$variable.name", form.${variable.getterName}());
+        updateComponentValue(requestContext, viewRoot, "${variable.name}Rendered", form.${variable.getterName}());
 #else
         final ${variable.type.fullyQualifiedName} ${variable.name}=form.${variable.getterName}();
         if(${variable.name} == null)
@@ -899,6 +926,20 @@ $decisionTransition.getDocumentation("     * ")
     }
 
 #end
+
+    protected Object getParameterValue(String parameterName, javax.faces.event.FacesEvent event)
+    {
+        for(Object uiObject : event.getComponent().getChildren()){
+            if(uiObject instanceof javax.faces.component.UIParameter){
+                final javax.faces.component.UIParameter param = (javax.faces.component.UIParameter)uiObject;
+                if(param.getName().equals(parameterName)) {
+                    return param.getValue();
+                }
+            }
+        }
+        return null;
+    }
+    
     /**
      * Retrieves the current action form while making sure the form is of the given
      * <code>type</code>.  If the action form is found, but not of the given type, null will
