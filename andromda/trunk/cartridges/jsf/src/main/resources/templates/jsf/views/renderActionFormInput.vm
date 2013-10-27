@@ -31,20 +31,20 @@
 #*		*##if ($parameter.type.dateType)
 #*			*##if ($parameter.readOnly)
                 <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" readOnly="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end 
-				rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
+				rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}" styleClass="$propertyId"
 				#if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages) shortDesc="#{messages['$parameter.documentationKey']}"#end 
 				/>
 #*			*##else
                 <tr:inputDate  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end 
                 #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
-                >
+                styleClass="$propertyId" >
                         <f:convertDateTime pattern="$parameter.format"/>
                 </tr:inputDate>
 #*			*##end
 #*	  *##elseif ($parameter.inputCheckbox)
             	<tr:selectBooleanCheckbox  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($trinidad) partialTriggers="$actionId"#end
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end
-            	/>
+            		styleClass="$propertyId" />
 #*    *##elseif ($parameter.inputAutocomplete)
         		<ajsfc:autocomplete id="$propertyId" parentId="$formName" value="#{$formValuePropertyName}" 
             		readOnly="false" required="false"
@@ -57,9 +57,9 @@
             #if ($multiSelect)
                 #set ($selectBoxType = "selectManyListbox")
             #end
-            <tr:$selectBoxType  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" valuePassThru="true"#if ($multiSelect) size="$defaultMultiSelectSize"#end#if($trinidad) partialTriggers="$actionId"#end
-            #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
-            >
+            <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" valuePassThru="true"#if ($multiSelect) size="$defaultMultiSelectSize"#end#if($trinidad) partialTriggers="$actionId"#end
+            	rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
+            #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end styleClass="$propertyId" >
                         #if ($parameter.type.enumeration)
                             <f:selectItems value="#{ajsfc.getEnumSelectItems('${parameter.type.messageKey}.','${parameter.type.fullyQualifiedName}')}"/>
                         #else
@@ -71,9 +71,10 @@
 #*    *##elseif ($parameter.inputFile)
             <tr:inputFile  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" columns="50"#if($trinidad) partialTriggers="$actionId"#end
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
-            />
+            	styleClass="$propertyId" />
 #*    *##elseif ($parameter.inputMultibox)
             <tr:selectManyCheckbox  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end
+            	rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}" styleClass="$propertyId"
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
             >
                     <c:if test="${!empty ${backingListName}}">
@@ -82,7 +83,7 @@
             </tr:selectManyCheckbox>
 #*    *##elseif ($parameter.inputRadio)
             <tr:selectOneRadio  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required"#if($trinidad) partialTriggers="$actionId"#end layout="horizontal"
-            rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
+            	rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}" styleClass="$propertyId"
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
             >
                     <c:if test="${!empty ${backingListName}}">
@@ -95,7 +96,7 @@
             <tr:outputText value="#{${formValuePropertyName}}"#if($trinidad) partialTriggers="$actionId"#end/>
 #*    *##elseif ($parameter.inputSecret)
             <tr:inputText  id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" secret="true"#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
-            rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
+            rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}" styleClass="$propertyId"
             #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages ) shortDesc="#{messages['$parameter.documentationKey']}"#end 
             />
         #else
@@ -108,7 +109,7 @@
     #if ($multiSelect)
         #set ($selectBoxType = "selectManyListbox")
     #end
-    <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
+    <tr:$selectBoxType id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly" styleClass="$propertyId"#if ($multiSelect) size="$defaultMultiSelectSize"#else unselectedLabel=""#end#if($trinidad) partialTriggers="$actionId"#end>
                     #foreach ($literal in $field.type.literals)
 ##To be reviewed: actually this is done this way because $literal.value does not work
 #set($literalValue = $literal.defaultValue.replace("'","").replace('"',''))
@@ -122,7 +123,7 @@
     </tr:$selectBoxType>
 #else
     <tr:inputText id="$propertyId" value="#{${formValuePropertyName}}" label="#{messages['$parameter.messageKey']}:" required="$parameter.required" readOnly="$parameter.readOnly"#if($parameter.inputTextarea) rows="3" columns="40"#end#if($parameter.maxLength) maximumLength="$parameter.maxLength"#end#if($trinidad) partialTriggers="$actionId"#end
-    rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}"
+    rendered="#{${formValuePropertyName}Rendered}" disabled="#{${formValuePropertyName}Disabled}" styleClass="$propertyId"
     #if($stringUtils.isNotEmpty($parameter.documentationValue) || $normalizeMessages) shortDesc="#{messages['$parameter.documentationKey']}"#end 
     >
                     #if ($parameter.type.timeType)

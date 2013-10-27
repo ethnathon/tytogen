@@ -247,5 +247,14 @@ $member.onlineHelpKey=$member.onlineHelpValue
 action.save=Save
 #end
 
+#foreach( $view in $applicationUseCase.allViews)
+#set ( $tabMap = $view.tabLabelsById ) 
+#if ( !$tabMap.isEmpty() )
+#foreach ( $key in $tabMap.keySet() )
+${view.messageKey}.tabName.${key}=$tabMap.get($key)
+#end
+#end
+#end
+
 #   CUSTOM MESSAGES
 # custom-messages merge-point
