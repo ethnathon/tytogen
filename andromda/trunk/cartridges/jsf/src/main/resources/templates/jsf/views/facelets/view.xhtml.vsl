@@ -52,7 +52,7 @@
             <div id="tabs">
                 <ul>
 #foreach ( $key in $tabMap.keySet() )
-					<li><a href="#${key}">$tabMap.get($key)</a></li>
+					<li><a href="#${key}">#{messages['${view.messageKey}.tabName.${key}']}</a></li>
 #end
                 </ul>
 #foreach ( $key in $tabMap.keySet() )

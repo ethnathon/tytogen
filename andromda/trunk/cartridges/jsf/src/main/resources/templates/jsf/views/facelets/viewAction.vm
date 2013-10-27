@@ -11,11 +11,11 @@
 #end
 #end
 
-#set($needPartialSubmit = $trinidad && ((!$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget))) || $action.popup)  
+#set($needPartialSubmit = $trinidad && !$action.needsFileUpload &&((!$currentViewPopup && ($hasOutgoingTransition || $action.finalStateTarget))) || $action.popup)  
 #if ($action.hyperlink)
             <tr:subform id="${formName}">
-                    <tr:commandLink id="${action.triggerName}Action" disabled="#{${formName}.${action.triggerName}Disabled}"
-                        action="#{${action.controller.beanName}.${action.triggerName}}" ##
+                    <tr:commandLink id="${action.triggerName}Action" disabled="#{${formName}.${stringUtils.uncapitalizeToPropertyName($action.triggerName)}Disabled}}"
+                        action="#{${action.controller.beanName}.${action.triggerName}}" styleClass="${action.triggerName}" ##
 #*                      *##if($needPartialSubmit) partialSubmit="true" ## 
 #*                      	*##if($action.popup) useWindow="true" ## 
 #*             				*##if($action.popupHeight)windowHeight="$action.popupHeight"#end #if($action.popupWidth)windowWidth="$action.popupWidth" #end##
@@ -41,7 +41,7 @@
 #*          	*##if (!$action.hiddenParameters.empty)
 #*                    *##viewHiddenParameters($action 'hidden')
 #*              *##end
-				<tr:panelFormLayout>
+				<tr:panelFormLayout styleClass="$formName">
 #*              	*##foreach ($parameter in $action.parameters)
 #*              		*##if (!$parameter.complex || $parameter.type.enumeration)
 #*              			*##renderActionInput($parameter "")
@@ -52,15 +52,15 @@
 #*              		*##end
 #*                  *##end
 					<f:facet name="footer">
-                            <tr:panelButtonBar>
+                            <tr:panelButtonBar styleClass="${formName}ButtonBar">
                                 <tr:commandButton id="${action.triggerName}Action" text="#{messages['$action.messageKey']}" action="#{${action.controller.beanName}.${action.triggerName}}"
-                                disabled="#{${formName}.${action.triggerName}Disabled}"
+                                disabled="#{${formName}.${stringUtils.uncapitalizeToPropertyName($action.triggerName)}Disabled}" styleClass="${action.triggerName}"
                                 #if($needPartialSubmit) partialSubmit="true"#if($action.popup) useWindow="true" ##
 #*              				*# returnListener="#{${action.controller.beanName}.${action.triggerName}DialogReturn}" ##
 #*              				*# #if($action.popupHeight)windowHeight="$action.popupHeight"#end #if($action.popupWidth)windowWidth="$action.popupWidth"#end 
 #*              				*# #end#end/>
 #*              				*##if ($action.resettable)
-                                <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}"/>
+                                <tr:resetButton text="#{messages['$action.trigger.resetMessageKey']}" styleClass="${action.triggerName}Reset"/>
 #*              				*##end
                             </tr:panelButtonBar>
                     </f:facet>

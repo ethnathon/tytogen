@@ -656,7 +656,7 @@ public class $className
 	public static org.springframework.security.core.userdetails.UserDetails getCurrentUser() {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
-		if(auth != null) {
+		if(auth != null && auth.getPrincipal() instanceof org.springframework.security.core.userdetails.UserDetails) {
 			Object princ = auth.getPrincipal();
 			return (org.springframework.security.core.userdetails.UserDetails) princ;		
 		} else {

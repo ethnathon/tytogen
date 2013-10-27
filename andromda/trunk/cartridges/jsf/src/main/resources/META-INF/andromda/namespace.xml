@@ -396,6 +396,12 @@
                     Indicates whether or not validation should occur on the client side.
                 </documentation>
             </property>
+            <property name="accept-charset" required="false">
+                <default>none</default>
+                <documentation>
+                    The default encoding in forms (renders an accept-charset in the form fields).
+                </documentation>
+            </property>
         </propertyGroup>
         <propertyGroup name="Portlet Support">
             <documentation>
